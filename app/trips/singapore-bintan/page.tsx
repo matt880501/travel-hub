@@ -51,9 +51,9 @@ export default function SingaporeBintan() {
     <div style={{ minHeight: "100vh", background: "#e0ddd6", fontFamily: "-apple-system, Inter, sans-serif", color: "#222" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 24px", borderBottom: "0.5px solid #ddd", background: "#e0ddd6" }}>
         <div style={{ fontSize: 11, letterSpacing: "0.15em" }}>
-          <a href="/" style={{ color: "#999", textDecoration: "none" }}>MATT</a>
+          <span style={{ color: "#999" }}>MATT</span>
           <span style={{ color: "#ccc", margin: "0 8px" }}>/</span>
-          <a href="/" style={{ color: "#999", textDecoration: "none" }}>TRAVEL ARCHIVE</a>
+          <span style={{ color: "#999" }}>TRAVEL ARCHIVE</span>
           <span style={{ color: "#ccc", margin: "0 8px" }}>/</span>
           <span style={{ color: "#444" }}>SINGAPORE & BINTAN</span>
         </div>
