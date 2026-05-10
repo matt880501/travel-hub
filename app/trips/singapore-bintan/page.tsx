@@ -39,6 +39,7 @@ export default function SingaporeBintan() {
     },
   ];
 
+  const daysLeft = Math.ceil((new Date("2026-07-23").getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
   const typeIcon: Record<string, string> = {
     flight: "✈️", ferry: "⛴️", hotel: "🏨", place: "📍", food: "🍜"
   };
@@ -70,6 +71,10 @@ export default function SingaporeBintan() {
               <span key={tag} style={{ fontSize: 11, color: "#ddd", border: "0.5px solid rgba(255,255,255,0.3)", padding: "3px 10px", borderRadius: 20, background: "rgba(255,255,255,0.08)" }}>{tag}</span>
             ))}
           </div>
+        </div>
+        <div style={{ position: "absolute", bottom: 24, right: 24, zIndex: 1, textAlign: "right" }}>
+          <div style={{ fontSize: 40, fontWeight: 300, color: "#fff", lineHeight: 1 }}>{Math.ceil((new Date("2026-07-23").getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))}</div>
+          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.6)", letterSpacing: "0.15em", marginTop: 4 }}>DAYS TO GO</div>
         </div>
       </div>
 
