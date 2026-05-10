@@ -96,7 +96,7 @@ export default function ChiangMai() {
         <div style={{ fontSize: 11, color: "#999", letterSpacing: "0.1em" }}>FEB 13–19, 2026</div>
       </div>
 
-      <div style={{ position: "relative", height: 400, backgroundImage: "url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778410748/CM_z2pa5z.jpg)", backgroundSize: "cover", backgroundPosition: "center 65%", display: "flex", alignItems: "flex-end", padding: 40, overflow: "hidden" }}>
+      <div style={{ position: "relative", height: 400, backgroundImage: "url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg)", backgroundSize: "cover", backgroundPosition: "center 65%", display: "flex", alignItems: "flex-end", padding: 40, overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%)" }} />
         <div style={{ position: "relative", zIndex: 1 }}>
           <div style={{ fontSize: 10, color: "#7a9e7e", letterSpacing: "0.2em", marginBottom: 8 }}>COMPLETED TRIP</div>
