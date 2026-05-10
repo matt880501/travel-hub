@@ -8,25 +8,25 @@ export default function SingaporeBintan() {
         { time: "08:05", type: "flight", text: "Depart TPE — CI 0753" },
         { time: "12:35", type: "flight", text: "Arrive SIN" },
         { time: "15:00", type: "hotel", text: "Check-in · Mercure ICON Singapore City Centre" },
-        { time: "16:00", type: "place", text: "Merlion Park" },
-        { time: "17:30", type: "place", text: "Marina Bay Sands" },
+        { time: "16:00", type: "place", text: "Merlion Park", url: "https://maps.google.com/?q=Merlion+Park+Singapore" },
+        { time: "17:30", type: "place", text: "Marina Bay Sands", url: "https://maps.google.com/?q=Marina+Bay+Sands+Singapore" },
         { time: "19:00", type: "food", text: "Bak Kut Teh dinner" },
-        { time: "20:30", type: "place", text: "Gardens by the Bay — OCBC Skyway" },
+        { time: "20:30", type: "place", text: "Gardens by the Bay — OCBC Skyway", url: "https://maps.google.com/?q=Gardens+by+the+Bay+Singapore" },
       ]
     },
     {
       day: "DAY 2", date: "Jul 24, Fri", location: "Singapore → Bintan",
       items: [
         { time: "11:00", type: "hotel", text: "Check-out · Mercure ICON" },
-        { time: "12:00", type: "place", text: "Jewel Changi Airport" },
-        { time: "14:00", type: "ferry", text: "Ferry · Singapore → Bintan (Business Class)" },
-        { time: "16:00", type: "hotel", text: "Check-in · Club Med Bintan Island" },
+        { time: "12:00", type: "place", text: "Jewel Changi Airport", url: "https://www.jewelchangiairport.com/en/attractions/rain-vortex.html" },
+        { time: "14:00", type: "ferry", text: "Ferry · Singapore → Bintan (Business Class)", url: "https://maps.google.com/?q=Tanah+Merah+Ferry+Terminal+Singapore" },
+        { time: "16:00", type: "hotel", text: "Check-in · Club Med Bintan Island", url: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE" },
       ]
     },
     {
       day: "DAY 3–6", date: "Jul 25–27", location: "Bintan Island",
       items: [
-        { time: "", type: "place", text: "Club Med all-inclusive — beach, pool, activities" },
+        { time: "", type: "place", text: "Club Med all-inclusive — beach, pool, activities", url: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE" },
       ]
     },
     {
@@ -86,7 +86,14 @@ export default function SingaporeBintan() {
                 <div key={ii} style={{ display: "flex", alignItems: "center", gap: 16, padding: "11px 14px", background: "#eae7e0", borderRadius: 6, border: "0.5px solid #e8e5e0" }}>
                   <span style={{ fontSize: 11, color: "#bbb", width: 36, flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>{item.time}</span>
                   <span style={{ fontSize: 14 }}>{typeIcon[item.type]}</span>
-                  <span style={{ fontSize: 13, color: typeColor[item.type] }}>{item.text}</span>
+                  {(item as any).url ? (
+                    <a href={(item as any).url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: typeColor[item.type], textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 4 }}>
+                      <span style={{ borderBottom: "0.5px solid currentColor" }}>{item.text}</span>
+                      <span style={{ fontSize: 10, opacity: 0.7 }}>↗</span>
+                    </a>
+                  ) : (
+                    <span style={{ fontSize: 13, color: typeColor[item.type], flex: 1 }}>{item.text}</span>
+                  )}
                 </div>
               ))}
             </div>

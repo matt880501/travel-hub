@@ -44,7 +44,7 @@ export default function Home() {
       )}
 
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 24px", borderBottom: "0.5px solid #333" }}>
-        <div style={{ fontSize: 11, letterSpacing: "0.2em" }}>MATT <span style={{ color: "#444", margin: "0 8px" }}>/</span> TRAVEL ARCHIVE</div>
+        <div style={{ fontSize: 11, letterSpacing: "0.2em" }}>MATT <span style={{ color: "#aaa", margin: "0 8px" }}>/</span> TRAVEL ARCHIVE</div>
         <div style={{ display: "flex", gap: 20 }}>
           {["Overview", "Trips", "Map", "Stats"].map(n => (
             <span key={n} style={{ fontSize: 11, color: n === "Overview" ? "#e8e4dc" : "#666", letterSpacing: "0.1em", cursor: "default" }}>{n}</span>
@@ -56,13 +56,13 @@ export default function Home() {
         <div style={{ width: 220, borderRight: "0.5px solid #333", padding: "20px 0", background: "#1e1e1e", flexShrink: 0 }}>
           {trips.map(({ year, list }) => (
             <div key={year} style={{ marginBottom: 24 }}>
-              <div style={{ fontSize: 10, color: "#888", letterSpacing: "0.15em", padding: "4px 16px", marginBottom: 8, background: "#2a2a2a" }}>{year}</div>
+              <div style={{ fontSize: 10, color: "#aaa", letterSpacing: "0.15em", padding: "4px 16px", marginBottom: 8, background: "#2a2a2a" }}>{year}</div>
               {list.map((trip) => (
-                <a href={"/trips/" + trip.id} style={{ textDecoration: "none" }}>
+                <a href={"/trips/" + trip.id} style={{ textDecoration: "none", display: "block" }}>
                 <div key={trip.id} style={{
                   display: "flex", alignItems: "center", justifyContent: "space-between",
                   padding: "6px 16px", fontSize: 12,
-                  color: "#666",
+                  color: "#888",
                   background: "transparent",
                   borderLeft: "1.5px solid transparent",
                 }}>
@@ -71,7 +71,7 @@ export default function Home() {
                     {trip.title}
                   </div>
                   {trip.status === "next" && <span style={{ fontSize: 9, padding: "2px 6px", borderRadius: 10, background: "rgba(122,158,126,0.12)", color: "#7a9e7e" }}>next</span>}
-                  {trip.status === "upcoming" && <span style={{ fontSize: 9, padding: "2px 6px", borderRadius: 10, background: "rgba(255,255,255,0.04)", color: "#444" }}>upcoming</span>}
+                  {trip.status === "upcoming" && <span style={{ fontSize: 9, padding: "2px 6px", borderRadius: 10, background: "rgba(255,255,255,0.04)", color: "#aaa" }}>upcoming</span>}
                 </div>
                 </a>
               ))}
@@ -98,7 +98,7 @@ export default function Home() {
               {[["5", "COUNTRIES"], ["7", "TRIPS"], ["27", "AGE"], ["NZ", "FAVOURITE"]].map(([val, label], i) => (
                 <div key={label} style={{ flex: 1, padding: "14px 16px", borderRight: i < 3 ? "0.5px solid rgba(255,255,255,0.06)" : "none" }}>
                   <div style={{ fontSize: 18, fontWeight: 400, color: val === "NZ" ? "#7a9e7e" : "#e8e4dc" }}>{val}</div>
-                  <div style={{ fontSize: 10, color: "#555", letterSpacing: "0.1em", marginTop: 2 }}>{label}</div>
+                  <div style={{ fontSize: 10, color: "#888", letterSpacing: "0.1em", marginTop: 2 }}>{label}</div>
                 </div>
               ))}
             </div>
@@ -130,7 +130,7 @@ export default function Home() {
               </div>
             </div>
             <div style={{ width: 140, flexShrink: 0 }}>
-              <div style={{ fontSize: 10, color: "#444", letterSpacing: "0.15em", marginBottom: 8 }}>MEMORIES</div>
+              <div style={{ fontSize: 10, color: "#aaa", letterSpacing: "0.15em", marginBottom: 8 }}>MEMORIES</div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
                 {memories.map(e => (
                   <div key={e} style={{ height: 56, background: "#2a2a2a", borderRadius: 4, border: "0.5px solid #333", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>{e}</div>
