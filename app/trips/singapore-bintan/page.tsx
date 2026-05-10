@@ -60,7 +60,7 @@ export default function SingaporeBintan() {
         <div style={{ fontSize: 11, color: "#999", letterSpacing: "0.1em" }}>JUL 23–28, 2026</div>
       </div>
 
-      <div style={{ position: "relative", height: 420, backgroundImage: "url(/Bintan.png)", backgroundSize: "cover", backgroundPosition: "center", display: "flex", alignItems: "flex-end", padding: 40, overflow: "hidden" }}>
+      <div style={{ position: "relative", height: 420, backgroundImage: "url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778410747/Bintan_px0hnl.jpg)", backgroundSize: "cover", backgroundPosition: "center", display: "flex", alignItems: "flex-end", padding: 40, overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%)" }} />
         <div style={{ position: "relative", zIndex: 1 }}>
           <div style={{ fontSize: 10, color: "#7a9e7e", letterSpacing: "0.2em", marginBottom: 8 }}>UPCOMING TRIP</div>

@@ -80,7 +80,7 @@ export default function Home() {
         </div>
 
         <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-          <div style={{ position: "relative", backgroundImage: "url(/NZ.jpeg)", backgroundSize: "cover", backgroundPosition: "center 85%" }}>
+          <div style={{ position: "relative", backgroundImage: "url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778410747/NZ_aghpmx.jpg)", backgroundSize: "cover", backgroundPosition: "center 85%" }}>
             <div style={{ position: "relative", height: 480, display: "flex", alignItems: "flex-end", padding: 24 }}>
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(20,20,20,0.85) 0%, rgba(20,20,20,0.1) 60%)" }} />
               <div style={{ position: "absolute", top: 16, right: 16, display: "flex", gap: 6, zIndex: 1 }}>
