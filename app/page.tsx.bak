@@ -1,7 +1,5 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import dynamic from "next/dynamic";
-const AmMap = dynamic(() => import("./AmMap"), { ssr: false });
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import * as d3geo from "d3-geo";
 import * as topojson from "topojson-client";
@@ -97,13 +95,13 @@ function WorldMap({ visited, onHover }: {
   }, []);
 
   const projection = d3geo.geoNaturalEarth1()
-    .scale(size.w * 0.158)
-    .translate([size.w * 0.45, size.h / 2 + size.h * 0.1]);
+    .scale(size.w * 0.159)
+    .translate([size.w / 2, size.h / 2 + size.h * 0.05]);
 
   const pathGen = d3geo.geoPath().projection(projection);
 
   const COUNTRY_NAMES: Record<string, string> = {
-    "4": "Afghanistan", "36": "Australia", "554": "New Zealand", "392": "Japan", "608": "Philippines", "764": "Thailand", "818": "Egypt", "40": "Austria", "203": "Czechia", "158": "Taiwan", "8": "Albania", "12": "Algeria", "24": "Angola",
+    "4": "Afghanistan", "8": "Albania", "12": "Algeria", "24": "Angola",
     "32": "Argentina", "36": "Australia", "40": "Austria", "50": "Bangladesh",
     "56": "Belgium", "64": "Bhutan", "68": "Bolivia", "76": "Brazil",
     "100": "Bulgaria", "104": "Myanmar", "116": "Cambodia", "120": "Cameroon",
@@ -149,9 +147,11 @@ function WorldMap({ visited, onHover }: {
               stroke={isVisited ? "#d8bc92" : "rgba(255,255,255,0.08)"}
               strokeWidth={isVisited ? 1 : 0.3}
               style={{ cursor: isVisited ? "pointer" : "default", transition: "fill 0.2s" }}
-              onMouseEnter={e => { if (isVisited || isTaiwan) { onHover(name, e.clientX, e.clientY); (e.target as SVGPathElement).setAttribute("fill", isVisited ? "#d8bc92" : "#9a85aa"); } }}
+              onMouseEnter={e => { if (isVisited || isTaiwan) onHover(name, e.clientX, e.clientY); }}
               onMouseMove={e => { if (isVisited || isTaiwan) onHover(name, e.clientX, e.clientY); }}
-              onMouseLeave={e => { onHover(null, 0, 0); (e.target as SVGPathElement).setAttribute("fill", isTaiwan ? "#826f91" : isVisited ? "#b89b74" : "#181818"); }}
+              onMouseLeave={() => onHover(null, 0, 0)}
+              onMouseOver={e => { if (isVisited) (e.target as SVGPathElement).setAttribute("fill", "#d8bc92"); }}
+              onMouseOut={e => { (e.target as SVGPathElement).setAttribute("fill", isTaiwan ? "#826f91" : isVisited ? "#b89b74" : "#181818"); }}
             />
           );
         })}
@@ -233,7 +233,7 @@ export default function Home() {
             <ComposableMap projection="geoNaturalEarth1" projectionConfig={{ scale: 145, center: [20, 20] }} width={1200} height={600} style={{ width: "100%", height: "100%" }}>
               <Geographies geography="https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json">
                 {({ geographies }) =>
-                  geographies.filter(geo => geo.properties.name !== "Antarctica").map(geo => {
+                  geographies.filter(geo => geo.properties.name !== "Antarctica" && geo.properties.name !== "Greenland").map(geo => {
                     const isTaiwan = ["Taiwan", "Taiwan*"].includes(geo.properties.name);
                     const isVisited = VISITED.includes(geo.properties.name);
                     const tripForCountry = TRIPS.flatMap(g => g.list).find(t =>
@@ -247,10 +247,10 @@ export default function Home() {
                         strokeWidth={isVisited ? 1.5 : 0.4}
                         style={{
                           default: { outline: "none" },
-                          hover: { outline: "none", fill: isVisited ? "#d8bc92" : isTaiwan ? "#9a85aa" : "#2a2a2a", cursor: isVisited ? "pointer" : "default" },
+                          hover: { outline: "none", fill: isVisited ? "#d8bc92" : isTaiwan ? "#9a85aa" : "#242424", cursor: isVisited ? "pointer" : "default" },
                           pressed: { outline: "none" },
                         }}
-                        onMouseEnter={e => { setHoveredCountry(geo.properties.name); setTooltipPos({ x: e.clientX, y: e.clientY }); }}
+                        onMouseEnter={e => { if (isVisited || isTaiwan) { setHoveredCountry(geo.properties.name); setTooltipPos({ x: e.clientX, y: e.clientY }); } }}
                         onMouseMove={e => setTooltipPos({ x: e.clientX, y: e.clientY })}
                         onMouseLeave={() => setHoveredCountry(null)}
                         onClick={() => { if (tripForCountry?.href && tripForCountry.href !== "#") window.location.href = tripForCountry.href; }}
@@ -388,7 +388,8 @@ export default function Home() {
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 50%)" }} />
 
           <div style={{ position: "absolute", top: 20, right: 24, display: "flex", alignItems: "center", gap: 12, zIndex: 2 }}>
-            <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg, #c4a882, #8a7060)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 600, color: "#fff", border: "2px solid rgba(255,255,255,0.15)" }}>YC</div>
+            <span style={{ fontSize: 18 }}>🌙</span>
+            <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg, #c4a882, #8a7060)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 600, color: "#fff", border: "2px solid rgba(255,255,255,0.15)" }}>M</div>
           </div>
 
           <div style={{ position: "absolute", bottom: 36, left: 36, right: 36, zIndex: 2, display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
@@ -427,13 +428,12 @@ export default function Home() {
         </div>
 
         {/* ── MAP + MEMORIES ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "6fr 4fr", gap: 12, padding: "0 20px 20px", alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "6fr 4fr", gap: 12, padding: "0 20px 20px" }}>
 
           {/* Map */}
-          <div style={{ background: "#1c1c1c", borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", padding: "16px 16px 0", overflow: "hidden", display: "flex", flexDirection: "column", height: 390 }}>
+          <div style={{ background: "#1c1c1c", borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", padding: "16px 16px 0", overflow: "hidden", display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.18em", fontWeight: 600, marginBottom: 4 }}>WHERE I&apos;VE BEEN</div>
-            <div style={{ flex: 1, minHeight: 0 }}>
-              <AmMap onHover={(name, x, y) => { setHoveredCountry(name); if (x && y) setTooltipPos({ x, y }); }} />
+            <WorldMap visited={VISITED} onHover={(name, x, y) => { setHoveredCountry(name); setTooltipPos({ x, y }); }} />
             </div>
             <div style={{ padding: "10px 0 14px" }}>
               <button onClick={() => setShowMap(true)} style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "7px 16px", cursor: "pointer", color: "#aaa", fontSize: 12 }}>
@@ -464,6 +464,7 @@ export default function Home() {
           <span style={{ fontSize: 48, color: "#c4a882", opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginTop: -8 }}>&ldquo;</span>
           <div>
             <div style={{ fontSize: 15, color: "#c4a882", fontStyle: "italic", fontFamily: "Georgia, serif" }}>We travel not to escape life, but for life not to escape us.</div>
+            <div style={{ fontSize: 10, color: "#555", letterSpacing: "0.15em", marginTop: 6 }}>UNKNOWN</div>
           </div>
         </div>
 
