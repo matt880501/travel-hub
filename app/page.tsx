@@ -103,7 +103,7 @@ function WorldMap({ visited, onHover }: {
   const pathGen = d3geo.geoPath().projection(projection);
 
   const COUNTRY_NAMES: Record<string, string> = {
-    "4": "Afghanistan", "36": "Australia", "554": "New Zealand", "392": "Japan", "608": "Philippines", "764": "Thailand", "818": "Egypt", "40": "Austria", "203": "Czechia", "158": "Taiwan", "8": "Albania", "12": "Algeria", "24": "Angola",
+     "8": "Albania", "12": "Algeria", "24": "Angola",
     "32": "Argentina", "36": "Australia", "40": "Austria", "50": "Bangladesh",
     "56": "Belgium", "64": "Bhutan", "68": "Bolivia", "76": "Brazil",
     "100": "Bulgaria", "104": "Myanmar", "116": "Cambodia", "120": "Cameroon",
