@@ -161,7 +161,7 @@ export default function SingaporeBintan() {
       {/* Hero */}
       <div ref={heroRef} style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
         <motion.div
-          style={{ position: "absolute", inset: "-10% 0", backgroundImage: "url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778430029/Bin1_kryiyj.png)", backgroundSize: "cover", backgroundPosition: "center 40%", y: heroY }}
+          style={{ position: "absolute", inset: "-10% 0", backgroundImage: "url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg)", backgroundSize: "cover", backgroundPosition: "center 40%", y: heroY }}
         />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.45) 70%, rgba(0,0,0,0.8) 100%)" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 60%)" }} />
@@ -265,11 +265,19 @@ export default function SingaporeBintan() {
           viewport={{ once: true }}
           style={{ borderTop: `0.5px solid rgba(30,42,42,0.15)`, paddingTop: 40 }}
         >
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
-            {METADATA.map((m, i) => (
+          <div style={{ fontSize: 10, color: "#7a9090", letterSpacing: "0.2em", marginBottom: 24 }}>ABOUT THIS TRIP</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+            {[
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "28°C — 33°C", sub: "Hot and humid" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>, label: "CURRENCY", value: "SGD / IDR", sub: "Singapore · Indonesia" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, label: "MOOD", value: "Urban / Coastal / Easy", sub: "City meets island" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>, label: "SEASON", value: "Summer", sub: "Rainy Season" },
+            ].map((m, i) => (
               <div key={i}>
-                <div style={{ fontSize: 9, color: MUTED, letterSpacing: "0.2em", marginBottom: 6, opacity: 0.6 }}>{m.label.toUpperCase()}</div>
-                <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.5 }}>{m.value}</div>
+                <div style={{ color: "#7a9090", marginBottom: 10 }}>{m.icon}</div>
+                <div style={{ fontSize: 9, color: "#7a9090", letterSpacing: "0.2em", marginBottom: 6 }}>{m.label}</div>
+                <div style={{ fontSize: 14, color: "#1e2a2a", marginBottom: 3 }}>{m.value}</div>
+                <div style={{ fontSize: 11, color: "#7a9090" }}>{m.sub}</div>
               </div>
             ))}
           </div>

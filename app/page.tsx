@@ -11,7 +11,7 @@ const TRIPS = [
     year: "2026",
     list: [
       { id: "canada", title: "Canada", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "upcoming", img: null, href: "#" },
-      { id: "singapore-bintan", title: "Singapore & Bintan", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "next", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430029/Bin1_kryiyj.png", href: "/trips/singapore-bintan" },
+      { id: "singapore-bintan", title: "Singapore & Bintan", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "next", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg", href: "/trips/singapore-bintan" },
       { id: "nagoya", title: "Nagoya", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430734/NG1_czhase.jpg", href: "#" },
       { id: "chiang-mai", title: "Chiang Mai", date: "Feb, 2026", fullDate: "Feb 13 – Feb 19, 2026", startDate: "2026-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg", href: "/trips/chiang-mai" },
     ],
@@ -58,7 +58,7 @@ const TRIPS = [
 
 const MEMORIES = [
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg", label: "Chiang Mai" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430029/Bin1_kryiyj.png", label: "Bintan" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg", label: "Bintan" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430033/NZ1_vuque7.jpg", label: "New Zealand" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430733/BO1_lbvlfo.jpg", label: "Bohol Island" },
 ];
@@ -206,7 +206,7 @@ export default function Home() {
     .filter(t => t.parsedDate >= today)
     .sort((a, b) => a.parsedDate.getTime() - b.parsedDate.getTime())[0];
 
-  const heroImg = upcomingTrip?.img || "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430029/Bin1_kryiyj.png";
+  const heroImg = upcomingTrip?.img || "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg";
   const heroTitle = upcomingTrip?.title || "Singapore & Bintan";
   const heroFullDate = upcomingTrip?.fullDate || "Jul 23 – Jul 28, 2026";
   const heroHref = upcomingTrip?.href || "/trips/singapore-bintan";

@@ -93,7 +93,7 @@ const EXTRAS = [
 ];
 
 const METADATA = [
-  { label: "Temperature", value: "26°C — 31°C" },
+  { label: "Temperature", value: "22°C — 31°C" },
   { label: "Currency", value: "Thai Baht (THB)" },
   { label: "Mood", value: "Slow / Warm / Quiet" },
   { label: "Season", value: "Cool Season, Lunar New Year" },
@@ -387,11 +387,19 @@ export default function ChiangMai() {
           viewport={{ once: true }}
           style={{ borderTop: `0.5px solid rgba(47,43,39,0.15)`, paddingTop: 40 }}
         >
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 24 }}>
-            {METADATA.map((m, i) => (
+          <div style={{ fontSize: 10, color: "#9a8f85", letterSpacing: "0.2em", marginBottom: 24 }}>ABOUT THIS TRIP</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+            {[
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "22°C — 31°C", sub: "Warm and pleasant" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>, label: "CURRENCY", value: "THB", sub: "Thai Baht" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, label: "MOOD", value: "Slow / Warm / Quiet", sub: "Perfect for reset" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>, label: "SEASON", value: "Cool Season", sub: "Lunar New Year" },
+            ].map((m, i) => (
               <div key={i}>
-                <div style={{ fontSize: 9, color: MUTED, letterSpacing: "0.2em", marginBottom: 6, opacity: 0.6 }}>{m.label.toUpperCase()}</div>
-                <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.5 }}>{m.value}</div>
+                <div style={{ color: "#9a8f85", marginBottom: 10 }}>{m.icon}</div>
+                <div style={{ fontSize: 9, color: "#9a8f85", letterSpacing: "0.2em", marginBottom: 6 }}>{m.label}</div>
+                <div style={{ fontSize: 14, color: "#2f2b27", marginBottom: 3 }}>{m.value}</div>
+                <div style={{ fontSize: 11, color: "#9a8f85" }}>{m.sub}</div>
               </div>
             ))}
           </div>
