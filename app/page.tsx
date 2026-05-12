@@ -307,10 +307,10 @@ export default function Home() {
       )}
 
       {/* ── SIDEBAR ── */}
-      <div style={{ width: 248, flexShrink: 0, background: "#111", borderRight: "1px solid rgba(255,255,255,0.06)", display: "flex", flexDirection: "column", height: "100vh", position: "sticky", top: 0 }}>
+      <div style={{ width: 248, flexShrink: 0, background: "#161616", borderRight: "1px solid rgba(255,255,255,0.06)", display: "flex", flexDirection: "column", height: "100vh", position: "sticky", top: 0 }}>
         <div style={{ padding: "28px 20px 16px" }}>
           <div style={{ fontSize: 22, fontWeight: 600, letterSpacing: "0.02em", color: "#f0ece4" }}>MATT</div>
-          <div style={{ fontSize: 11, color: "#555", letterSpacing: "0.18em", marginTop: 2 }}>TRAVEL ARCHIVE</div>
+          <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.18em", marginTop: 2 }}>TRAVEL ARCHIVE</div>
         </div>
 
         <div style={{ padding: "0 16px 14px" }}>
@@ -383,7 +383,7 @@ export default function Home() {
       <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto" }}>
 
         {/* ── HERO ── */}
-        <div style={{ position: "relative", height: 440, backgroundImage: `url(${heroImg})`, backgroundSize: "cover", backgroundPosition: "center", flexShrink: 0 }}>
+        <div style={{ position: "relative", height: 440, backgroundImage: `url(${heroImg})`, backgroundSize: "cover", backgroundPosition: "center 65%", flexShrink: 0 }}>
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.3) 60%, rgba(10,10,10,0.1) 100%)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 50%)" }} />
 
@@ -460,7 +460,7 @@ export default function Home() {
         </div>
 
         {/* ── QUOTE ── */}
-        <div style={{ margin: "0 20px 20px", background: "#1c1c1c", borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", padding: "24px 32px", backgroundImage: "linear-gradient(135deg, rgba(196,168,130,0.04) 0%, transparent 60%)", display: "flex", alignItems: "center", gap: 20 }}>
+        <div style={{ margin: "0 20px 20px", background: "#1c1c1c", borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", padding: "24px 32px", backgroundImage: "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778591728/Quote_xmqyit.jpg)", backgroundSize: "cover", backgroundPosition: "center 65%", display: "flex", alignItems: "center", gap: 20 }}>
           <span style={{ fontSize: 48, color: "#c4a882", opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginTop: -8 }}>&ldquo;</span>
           <div>
             <div style={{ fontSize: 15, color: "#c4a882", fontStyle: "italic", fontFamily: "Georgia, serif" }}>We travel not to escape life, but for life not to escape us.</div>
