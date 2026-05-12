@@ -463,7 +463,7 @@ export default function Home() {
         <div style={{ margin: "0 20px 20px", background: "#1c1c1c", borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", padding: "24px 32px", backgroundImage: "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778591728/Quote_xmqyit.jpg)", backgroundSize: "cover", backgroundPosition: "center 65%", display: "flex", alignItems: "center", gap: 20 }}>
           <span style={{ fontSize: 48, color: "#c4a882", opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginTop: -8 }}>&ldquo;</span>
           <div>
-            <div style={{ fontSize: 15, color: "#c4a882", fontStyle: "italic", fontFamily: "Georgia, serif" }}>We travel not to escape life, but for life not to escape us.</div>
+            <div style={{ fontSize: 15, color: "#c4a882", fontStyle: "italic", fontFamily: "Georgia, serif" }}>Collected quietly over the years.</div>
           </div>
         </div>
 
