@@ -137,17 +137,17 @@ export default function ChiangMai() {
                 return (
                   <div key={ii}>
                     <div onClick={() => item.note && toggle(key)} style={{ display: "flex", alignItems: "center", gap: 16, padding: "11px 14px", background: "#f0ede6", borderRadius: isOpen ? "6px 6px 0 0" : 6, border: "0.5px solid #d4d0c8", cursor: item.note ? "pointer" : "default" }}>
-                      <span style={{ fontSize: 12, color: "#bbb", width: 36, flexShrink: 0 }}>{item.time}</span>
+                      <span style={{ fontSize: 11, color: "#bbb", width: 36, flexShrink: 0 }}>{item.time}</span>
                       <span style={{ fontSize: 14 }}>{typeIcon[item.type]}</span>
                       {item.mapUrl ? (
-                        <span style={{ fontSize: 15, color: typeColor[item.type], flex: 1 }}>
+                        <span style={{ fontSize: 13, color: typeColor[item.type], flex: 1 }}>
                           <a href={item.mapUrl} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}
                             onMouseEnter={e => (e.currentTarget.style.textDecoration = "underline")}
                             onMouseLeave={e => (e.currentTarget.style.textDecoration = "none")}
                           >{item.text}</a> <span style={{ fontSize: 10, opacity: 0.4 }}>↗</span>
                         </span>
                       ) : (
-                        <span style={{ fontSize: 15, color: typeColor[item.type], flex: 1 }}>{item.text}</span>
+                        <span style={{ fontSize: 13, color: typeColor[item.type], flex: 1 }}>{item.text}</span>
                       )}
                       {item.note && <span style={{ fontSize: 12, color: "#bbb" }}>{isOpen ? "▾" : "▸"}</span>}
                     </div>
@@ -171,7 +171,7 @@ export default function ChiangMai() {
             return (
               <div key={i} style={{ marginBottom: 2 }}>
                 <div onClick={() => toggle(key)} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 14px", background: "#f0ede6", borderRadius: isOpen ? "6px 6px 0 0" : 6, border: "0.5px solid #d4d0c8", cursor: "pointer" }}>
-                  <span style={{ fontSize: 15, color: "#444", flex: 1 }}>💡 {e.text}</span>
+                  <span style={{ fontSize: 13, color: "#444", flex: 1 }}>💡 {e.text}</span>
                   <span style={{ fontSize: 12, color: "#bbb" }}>{isOpen ? "▾" : "▸"}</span>
                 </div>
                 {isOpen && (
