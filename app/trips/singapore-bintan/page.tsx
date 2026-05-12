@@ -1,109 +1,280 @@
 "use client";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+
+type Item = { time: string; text: string; note?: string; mapUrl?: string; };
+type Day = { day: string; date: string; location: string; items: Item[]; };
+
+const ACCENT = "#3d7a7a";
+const BG = "#f0f2f0";
+const TEXT = "#1e2a2a";
+const MUTED = "#7a9090";
+
+const ITINERARY: Day[] = [
+  {
+    day: "DAY 1", date: "Jul 23, Thu", location: "Singapore",
+    items: [
+      { time: "08:05", text: "Depart Taipei — CI 0753" },
+      { time: "12:35", text: "Arrive Singapore" },
+      { time: "15:00", text: "Check-in · Mercure ICON Singapore City Centre" },
+      { time: "16:00", text: "Merlion Park", mapUrl: "https://maps.google.com/?q=Merlion+Park+Singapore" },
+      { time: "17:30", text: "Marina Bay Sands", mapUrl: "https://maps.google.com/?q=Marina+Bay+Sands+Singapore" },
+      { time: "19:00", text: "Bak Kut Teh dinner" },
+      { time: "20:30", text: "Gardens by the Bay — OCBC Skyway", mapUrl: "https://maps.google.com/?q=Gardens+by+the+Bay+Singapore" },
+    ]
+  },
+  {
+    day: "DAY 2", date: "Jul 24, Fri", location: "Singapore → Bintan",
+    items: [
+      { time: "11:00", text: "Check-out · Mercure ICON" },
+      { time: "12:00", text: "Jewel Changi Airport", mapUrl: "https://www.jewelchangiairport.com/en/attractions/rain-vortex.html" },
+      { time: "14:00", text: "Ferry · Singapore → Bintan (Business Class)", mapUrl: "https://maps.google.com/?q=Tanah+Merah+Ferry+Terminal+Singapore" },
+      { time: "16:00", text: "Check-in · Club Med Bintan Island", mapUrl: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE" },
+    ]
+  },
+  {
+    day: "DAY 3–6", date: "Jul 25–27", location: "Bintan Island",
+    items: [
+      { time: "—", text: "Club Med all-inclusive — beach, pool, activities", mapUrl: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE" },
+    ]
+  },
+  {
+    day: "DAY 6", date: "Jul 28, Tue", location: "Bintan → Taipei",
+    items: [
+      { time: "08:35", text: "Ferry · Bintan → Singapore (Business Class)" },
+      { time: "13:45", text: "Depart Singapore — CI 0754" },
+      { time: "18:35", text: "Arrive Taipei" },
+    ]
+  },
+];
+
+const METADATA = [
+  { label: "Temperature", value: "28°C — 33°C" },
+  { label: "Currency", value: "SGD / IDR" },
+  { label: "Mood", value: "Urban / Coastal / Easy" },
+  { label: "Season", value: "Summer, Rainy Season" },
+];
+
+function TimelineItem({ item, index }: { item: Item; index: number }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -10 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.04 }}
+    >
+      <div
+        onClick={() => item.note && setOpen(o => !o)}
+        style={{ display: "flex", gap: 28, padding: "14px 0", borderBottom: `0.5px solid rgba(30,42,42,0.1)`, cursor: item.note ? "pointer" : "default", alignItems: "flex-start" }}
+      >
+        <span style={{ fontSize: 11, color: MUTED, letterSpacing: "0.08em", minWidth: 40, paddingTop: 1, fontVariantNumeric: "tabular-nums" }}>{item.time}</span>
+        <div style={{ flex: 1 }}>
+          {item.mapUrl ? (
+            <a href={item.mapUrl} target="_blank" rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
+              style={{ fontSize: 14, color: TEXT, textDecoration: "none", letterSpacing: "0.01em" }}
+              onMouseEnter={e => (e.currentTarget.style.color = ACCENT)}
+              onMouseLeave={e => (e.currentTarget.style.color = TEXT)}
+            >
+              {item.text}
+              <span style={{ fontSize: 10, color: MUTED, marginLeft: 4, opacity: 0.5 }}>↗</span>
+            </a>
+          ) : (
+            <span style={{ fontSize: 14, color: TEXT, letterSpacing: "0.01em" }}>{item.text}</span>
+          )}
+        </div>
+        {item.note && (
+          <span style={{ fontSize: 10, color: MUTED, opacity: 0.5, paddingTop: 2 }}>{open ? "−" : "+"}</span>
+        )}
+      </div>
+      <AnimatePresence>
+        {open && item.note && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{ overflow: "hidden" }}
+          >
+            <div style={{ paddingLeft: 68, paddingBottom: 14, paddingTop: 4 }}>
+              <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: 0, fontStyle: "italic" }}>{item.note}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+function Countdown({ targetDate }: { targetDate: Date }) {
+  const [time, setTime] = useState({ days: 0, hrs: 0, min: 0 });
+  useState(() => {
+    const calc = () => {
+      const diff = targetDate.getTime() - Date.now();
+      if (diff <= 0) return;
+      setTime({
+        days: Math.floor(diff / 86400000),
+        hrs: Math.floor((diff % 86400000) / 3600000),
+        min: Math.floor((diff % 3600000) / 60000),
+      });
+    };
+    calc();
+    const id = setInterval(calc, 1000);
+    return () => clearInterval(id);
+  });
+  return (
+    <div style={{ display: "flex", gap: 20, alignItems: "flex-end" }}>
+      {([["days", time.days], ["hrs", time.hrs], ["min", time.min]] as [string, number][]).map(([label, val]) => (
+        <div key={label} style={{ textAlign: "center" }}>
+          <div style={{ fontSize: 40, fontWeight: 300, color: "#fff", lineHeight: 1, fontFamily: "Georgia, serif" }}>
+            {String(val).padStart(2, "0")}
+          </div>
+          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", letterSpacing: "0.15em", marginTop: 4 }}>{label.toUpperCase()}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function SingaporeBintan() {
-  const itinerary = [
-    {
-      day: "DAY 1", date: "Jul 23, Thu", location: "Singapore",
-      items: [
-        { time: "08:05", type: "flight", text: "Depart TPE — CI 0753" },
-        { time: "12:35", type: "flight", text: "Arrive SIN" },
-        { time: "15:00", type: "hotel", text: "Check-in · Mercure ICON Singapore City Centre" },
-        { time: "16:00", type: "place", text: "Merlion Park", url: "https://maps.google.com/?q=Merlion+Park+Singapore" },
-        { time: "17:30", type: "place", text: "Marina Bay Sands", url: "https://maps.google.com/?q=Marina+Bay+Sands+Singapore" },
-        { time: "19:00", type: "food", text: "Bak Kut Teh dinner" },
-        { time: "20:30", type: "place", text: "Gardens by the Bay — OCBC Skyway", url: "https://maps.google.com/?q=Gardens+by+the+Bay+Singapore" },
-      ]
-    },
-    {
-      day: "DAY 2", date: "Jul 24, Fri", location: "Singapore → Bintan",
-      items: [
-        { time: "11:00", type: "hotel", text: "Check-out · Mercure ICON" },
-        { time: "12:00", type: "place", text: "Jewel Changi Airport", url: "https://www.jewelchangiairport.com/en/attractions/rain-vortex.html" },
-        { time: "14:00", type: "ferry", text: "Ferry · Singapore → Bintan (Business Class)", url: "https://maps.google.com/?q=Tanah+Merah+Ferry+Terminal+Singapore" },
-        { time: "16:00", type: "hotel", text: "Check-in · Club Med Bintan Island", url: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE" },
-      ]
-    },
-    {
-      day: "DAY 3–6", date: "Jul 25–27", location: "Bintan Island",
-      items: [
-        { time: "", type: "place", text: "Club Med all-inclusive — beach, pool, activities", url: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE" },
-      ]
-    },
-    {
-      day: "DAY 6", date: "Jul 28, Tue", location: "Bintan → TPE",
-      items: [
-        { time: "08:35", type: "ferry", text: "Ferry · Bintan → Singapore (Business Class)" },
-        { time: "13:45", type: "flight", text: "Depart SIN — CI 0754" },
-        { time: "18:35", type: "flight", text: "Arrive TPE" },
-      ]
-    },
-  ];
-
-  const daysLeft = Math.ceil((new Date("2026-07-23").getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
-  const typeIcon: Record<string, string> = {
-    flight: "✈️", ferry: "⛴️", hotel: "🏨", place: "📍", food: "🍜"
-  };
-
-  const typeColor: Record<string, string> = {
-    flight: "#4a7a8a", ferry: "#4a7a8a", hotel: "#4a7a8a", place: "#333", food: "#7a6040"
-  };
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <div style={{ minHeight: "100vh", background: "#e0ddd6", fontFamily: "-apple-system, Inter, sans-serif", color: "#222" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 24px", borderBottom: "0.5px solid #ddd", background: "#e0ddd6" }}>
-        <div style={{ fontSize: 11, letterSpacing: "0.15em" }}>
-          <span style={{ color: "#999" }}>MATT</span>
-          <span style={{ color: "#ccc", margin: "0 8px" }}>/</span>
-          <span style={{ color: "#999" }}>TRAVEL ARCHIVE</span>
-          <span style={{ color: "#ccc", margin: "0 8px" }}>/</span>
-          <span style={{ color: "#444" }}>SINGAPORE & BINTAN</span>
+    <div style={{ minHeight: "100vh", background: BG, fontFamily: "-apple-system, 'Helvetica Neue', sans-serif", color: TEXT }}>
+
+      {/* Nav */}
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 40px", background: "rgba(240,242,240,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(30,42,42,0.08)` }}>
+        <div style={{ fontSize: 10, letterSpacing: "0.2em", color: MUTED }}>
+          <a href="/" style={{ color: MUTED, textDecoration: "none" }}>MATT</a>
+          <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
+          <a href="/" style={{ color: MUTED, textDecoration: "none" }}>TRAVEL ARCHIVE</a>
+          <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
+          <span style={{ color: TEXT }}>SINGAPORE & BINTAN</span>
         </div>
-        <div style={{ fontSize: 11, color: "#999", letterSpacing: "0.1em" }}>JUL 23–28, 2026</div>
+        <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.15em" }}>JUL 23 – 28, 2026</div>
       </div>
 
-      <div style={{ position: "relative", height: 420, backgroundImage: "url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778430029/Bin1_kryiyj.png)", backgroundSize: "cover", backgroundPosition: "center", display: "flex", alignItems: "flex-end", padding: 40, overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%)" }} />
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <div style={{ fontSize: 10, color: "#7a9e7e", letterSpacing: "0.2em", marginBottom: 8 }}>UPCOMING TRIP</div>
-          <div style={{ fontSize: 36, fontWeight: 300, color: "#eae7e0", marginBottom: 12 }}>Singapore & Bintan</div>
-          <div style={{ display: "flex", gap: 8 }}>
-            {["🇸🇬 Singapore", "🇮🇩 Bintan Island", "6 days"].map(tag => (
-              <span key={tag} style={{ fontSize: 11, color: "#ddd", border: "0.5px solid rgba(255,255,255,0.3)", padding: "3px 10px", borderRadius: 20, background: "rgba(255,255,255,0.08)" }}>{tag}</span>
+      {/* Hero */}
+      <div ref={heroRef} style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
+        <motion.div
+          style={{ position: "absolute", inset: "-10% 0", backgroundImage: "url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778430029/Bin1_kryiyj.png)", backgroundSize: "cover", backgroundPosition: "center 40%", y: heroY }}
+        />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.45) 70%, rgba(0,0,0,0.8) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 60%)" }} />
+
+        <motion.div
+          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "0 40px 60px", opacity: heroOpacity, display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}
+        >
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", letterSpacing: "0.3em", marginBottom: 20 }}
+            >
+              UPCOMING JOURNEY
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              style={{ fontSize: "clamp(48px, 8vw, 100px)", fontWeight: 300, color: "#fff", lineHeight: 0.95, letterSpacing: "-0.02em", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 24 }}
+            >
+              Singapore<br />&amp; Bintan
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              style={{ display: "flex", alignItems: "center", gap: 24 }}
+            >
+              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>Summer 2026</span>
+              <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} />
+              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>6 Days</span>
+              <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} />
+              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>Singapore · Indonesia</span>
+            </motion.div>
+          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <Countdown targetDate={new Date("2026-07-23")} />
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          style={{ position: "absolute", right: 40, bottom: 60, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
+        >
+          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.2em", writingMode: "vertical-rl" }}>SCROLL</div>
+          <div style={{ width: 0.5, height: 40, background: "rgba(255,255,255,0.2)" }} />
+        </motion.div>
+      </div>
+
+      {/* Main content */}
+      <div style={{ maxWidth: 860, margin: "0 auto", padding: "80px 40px" }}>
+
+        {/* Itinerary */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          style={{ marginBottom: 96 }}
+        >
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 48 }}>
+            <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>ITINERARY</span>
+            <div style={{ flex: 1, height: 0.5, background: `rgba(61,122,122,0.2)` }} />
+          </div>
+
+          {ITINERARY.map((day, di) => (
+            <motion.div
+              key={di}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: di * 0.05 }}
+              style={{ marginBottom: 52 }}
+            >
+              <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 4 }}>
+                <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.2em" }}>{day.day}</span>
+                <span style={{ fontSize: 18, color: TEXT, fontFamily: "Georgia, serif", fontWeight: 300 }}>{day.date}</span>
+              </div>
+              <div style={{ fontSize: 11, color: MUTED, letterSpacing: "0.1em", marginBottom: 16 }}>{day.location}</div>
+              <div>
+                {day.items.map((item, ii) => (
+                  <TimelineItem key={ii} item={item} index={ii} />
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Metadata footer */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          style={{ borderTop: `0.5px solid rgba(30,42,42,0.15)`, paddingTop: 40 }}
+        >
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+            {METADATA.map((m, i) => (
+              <div key={i}>
+                <div style={{ fontSize: 9, color: MUTED, letterSpacing: "0.2em", marginBottom: 6, opacity: 0.6 }}>{m.label.toUpperCase()}</div>
+                <div style={{ fontSize: 12, color: TEXT, lineHeight: 1.5 }}>{m.value}</div>
+              </div>
             ))}
           </div>
-        </div>
-        <div style={{ position: "absolute", bottom: 24, right: 24, zIndex: 1, textAlign: "right" }}>
-          <div style={{ fontSize: 40, fontWeight: 300, color: "#fff", lineHeight: 1 }}>{Math.ceil((new Date("2026-07-23").getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))}</div>
-          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.6)", letterSpacing: "0.15em", marginTop: 4 }}>DAYS TO GO</div>
-        </div>
-      </div>
+        </motion.div>
 
-      <div style={{ maxWidth: 720, margin: "0 auto", padding: "48px 24px" }}>
-        {itinerary.map((day, di) => (
-          <div key={di} style={{ marginBottom: 48 }}>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16, borderBottom: "0.5px solid #e0ddd8", paddingBottom: 10 }}>
-              <span style={{ fontSize: 10, color: "#7a9e7e", letterSpacing: "0.15em", fontWeight: 500 }}>{day.day}</span>
-              <span style={{ fontSize: 14, color: "#222", fontWeight: 400 }}>{day.date}</span>
-              <span style={{ fontSize: 11, color: "#999" }}>· {day.location}</span>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              {day.items.map((item, ii) => (
-                <div key={ii} style={{ display: "flex", alignItems: "center", gap: 16, padding: "11px 14px", background: "#eae7e0", borderRadius: 6, border: "0.5px solid #e8e5e0" }}>
-                  <span style={{ fontSize: 11, color: "#bbb", width: 36, flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>{item.time}</span>
-                  <span style={{ fontSize: 14 }}>{typeIcon[item.type]}</span>
-                  {(item as any).url ? (
-                    <a href={(item as any).url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: typeColor[item.type], textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 4 }}>
-                      <span style={{ borderBottom: "0.5px solid currentColor" }}>{item.text}</span>
-                      <span style={{ fontSize: 10, opacity: 0.7 }}>↗</span>
-                    </a>
-                  ) : (
-                    <span style={{ fontSize: 13, color: typeColor[item.type], flex: 1 }}>{item.text}</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
       </div>
     </div>
   );
