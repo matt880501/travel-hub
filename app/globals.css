@@ -39,3 +39,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.masonry-grid { display: flex; gap: 10px; }
+.masonry-col { display: flex; flex-direction: column; flex: 1; }
+
+.masonry-grid { display: flex; margin-left: -10px; width: auto; }
+.masonry-col { padding-left: 10px; background-clip: padding-box; }
