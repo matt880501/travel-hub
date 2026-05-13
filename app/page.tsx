@@ -495,7 +495,6 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            {showNext && <Countdown targetDate={heroCountdown} compact={isMobile} />}
           </div>
         </div>
 
