@@ -10,48 +10,48 @@ const TRIPS = [
   {
     year: "2026",
     list: [
-      { id: "canada", title: "Canada", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "upcoming", img: null, href: "#" },
-      { id: "singapore-bintan", title: "Singapore & Bintan", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "next", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg", href: "/trips/singapore-bintan" },
-      { id: "nagoya", title: "Nagoya", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430734/NG1_czhase.jpg", href: "#" },
-      { id: "chiang-mai", title: "Chiang Mai", date: "Feb, 2026", fullDate: "Feb 13 – Feb 19, 2026", startDate: "2026-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg", href: "/trips/chiang-mai" },
+      { id: "canada", title: "Canada", sub: "加拿大", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "upcoming", img: null, href: "#" },
+      { id: "singapore-bintan", title: "Singapore & Bintan", sub: "新加坡 · 民丹島", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "next", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg", href: "/trips/singapore-bintan" },
+      { id: "nagoya", title: "Nagoya", sub: "名古屋", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430734/NG1_czhase.jpg", href: "#" },
+      { id: "chiang-mai", title: "Chiang Mai", sub: "清邁 · 春節", date: "Feb, 2026", fullDate: "Feb 13 – Feb 19, 2026", startDate: "2026-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg", href: "/trips/chiang-mai" },
     ],
   },
   {
     year: "2025",
     list: [
-      { id: "bohol", title: "Bohol Island", date: "Oct, 2025", fullDate: "Oct 22 – Oct 26, 2025", startDate: "2025-10-22", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430733/BO1_lbvlfo.jpg", href: "#" },
-      { id: "okinawa", title: "Okinawa", date: "Apr, 2025", fullDate: "Apr 11 – Apr 15, 2025", startDate: "2025-04-11", status: "done", img: null, href: "#" },
+      { id: "bohol", title: "Bohol Island", sub: "薄荷島", date: "Oct, 2025", fullDate: "Oct 22 – Oct 26, 2025", startDate: "2025-10-22", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430733/BO1_lbvlfo.jpg", href: "#" },
+      { id: "okinawa", title: "Okinawa", sub: "沖繩", date: "Apr, 2025", fullDate: "Apr 11 – Apr 15, 2025", startDate: "2025-04-11", status: "done", img: null, href: "#" },
     ],
   },
   {
     year: "2024",
     list: [
-      { id: "australia", title: "Australia (SYD, MEL)", date: "Aug, 2024", fullDate: "Aug 17 – Aug 30, 2024", startDate: "2024-08-17", status: "done", img: null, href: "#" },
-      { id: "tokyo-2024", title: "Tokyo", date: "May, 2024", fullDate: "May 17 – May 22, 2024", startDate: "2024-05-17", status: "done", img: null, href: "#" },
+      { id: "australia", title: "Australia", sub: "雪梨 · 墨爾本", date: "Aug, 2024", fullDate: "Aug 17 – Aug 30, 2024", startDate: "2024-08-17", status: "done", img: null, href: "#" },
+      { id: "tokyo-2024", title: "Tokyo", sub: "東京", date: "May, 2024", fullDate: "May 17 – May 22, 2024", startDate: "2024-05-17", status: "done", img: null, href: "#" },
     ],
   },
   {
     year: "2023",
     list: [
-      { id: "hokkaido", title: "Hokkaido", date: "Oct, 2023", fullDate: "Oct 5 – Oct 11, 2023", startDate: "2023-10-05", status: "done", img: null, href: "#" },
+      { id: "hokkaido", title: "Hokkaido", sub: "北海道", date: "Oct, 2023", fullDate: "Oct 5 – Oct 11, 2023", startDate: "2023-10-05", status: "done", img: null, href: "#" },
     ],
   },
   {
     year: "2020",
     list: [
-      { id: "egypt", title: "Egypt", date: "Jan, 2020", fullDate: "Jan 23 – Feb 3, 2020", startDate: "2020-01-23", status: "done", img: null, href: "#" },
+      { id: "egypt", title: "Egypt", sub: "埃及", date: "Jan, 2020", fullDate: "Jan 23 – Feb 3, 2020", startDate: "2020-01-23", status: "done", img: null, href: "#" },
     ],
   },
   {
     year: "2019",
     list: [
-      { id: "austria-czech", title: "Austria & Czech", date: "Feb, 2019", fullDate: "Feb 2 – Feb 10, 2019", startDate: "2019-02-02", status: "done", img: null, href: "#" },
+      { id: "austria-czech", title: "Austria & Czech", sub: "奧地利 · 捷克", date: "Feb, 2019", fullDate: "Feb 2 – Feb 10, 2019", startDate: "2019-02-02", status: "done", img: null, href: "#" },
     ],
   },
   {
     year: "2018",
     list: [
-      { id: "new-zealand", title: "New Zealand", date: "Feb, 2018", fullDate: "Feb 13 – Mar 1, 2018", startDate: "2018-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430033/NZ1_vuque7.jpg", href: "#" },
+      { id: "new-zealand", title: "New Zealand", sub: "紐西蘭", date: "Feb, 2018", fullDate: "Feb 13 – Mar 1, 2018", startDate: "2018-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430033/NZ1_vuque7.jpg", href: "#" },
     ],
   },
 ];

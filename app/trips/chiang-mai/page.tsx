@@ -30,8 +30,8 @@ const ITINERARY: Day[] = [
       { time: "10:35", text: "Arrive Chiang Mai" },
       { time: "12:00", text: "Check-in · Travelodge Nimman" },
       { time: "14:00", text: "One Nimman", mapUrl: "https://www.google.com/maps/search/One+Nimman+Chiang+Mai", note: "清邁最美紅磚文創區，適合散步拍照。尼曼區算好逛，比古城區環境好，步調舒服，後來覺得住這不錯。" },
-      { time: "17:00", text: "Khao Soy Nimman", mapUrl: "https://www.google.com/maps/search/Khao+Soy+Nimman+Chiang+Mai", note: "米其林推薦的泰北咖哩麵。早一點去可以不用排隊，排太久的話我覺得不值得。" },
-      { time: "20:00", text: "Nimman House Massage", mapUrl: "https://www.google.com/maps/search/Nimman+House+Massage+Chiang+Mai", note: "就是愛按摩。" },
+      { time: "17:00", text: "烤山尼曼", mapUrl: "https://www.google.com/maps/search/Khao+Soy+Nimman+Chiang+Mai", note: "米其林推薦的泰北咖哩麵。早一點去可以不用排隊，排太久的話我覺得不值得。" },
+      { time: "20:00", text: "Nimman House Massage", mapUrl: "https://www.google.com/maps/search/Nimman+House+Massage+Chiang+Mai", note: "就是愛按摩（這間還好）。" },
     ]
   },
   {
@@ -48,11 +48,11 @@ const ITINERARY: Day[] = [
     day: 3, date: "Feb 15, Sun", location: "Market & Old City",
     items: [
       { time: "09:00", text: "Jing Jai Market", mapUrl: "https://www.google.com/maps/search/Jing+Jai+Market+Chiang+Mai", note: "清邁最美文創早市，算很好逛，環境好。" },
-      { time: "14:00", text: "Chedi Luang Temple", note: "選一個夠了。" },
+      { time: "12:00", text: "Hummus Garden", mapUrl: "https://www.google.com/maps/place/Hummus+Garden+Chiang+Mai/@18.780532,98.9903323,14.58z/data=!4m15!1m8!3m7!1s0x30da3bbb11e91869:0xe27068e785391c52!2sHummus+Garden+Chiang+Mai!8m2!3d18.7749381!4d98.9994335!10e9!16s%2Fg%2F11h6qctkm3!3m5!1s0x30da3bbb11e91869:0xe27068e785391c52!8m2!3d18.7749381!4d98.9994335!16s%2Fg%2F11h6qctkm3?entry=ttu&g_ep=EgoyMDI2MDUxMC4wIKXMDSoASAFQAw%3D%3D" },
+      { time: "14:00", text: "契迪龍寺" },
       { time: "17:00", text: "Sunday Walking Street", mapUrl: "https://www.google.com/maps/search/Sunday+Walking+Street+Chiang+Mai", note: "全泰國最大夜市，感受春節熱鬧氣氛。" },
       { time: "18:30", text: "The House by Ginger", mapUrl: "https://www.google.com/maps/search/The+House+by+Ginger+Chiang+Mai", note: "米其林推薦，古城內懷舊風格精緻泰菜。吃完覺得普普，價位高吃氣氛的。" },
-      { time: "20:30", text: "Makkha Health & Spa", mapUrl: "https://www.google.com/maps/search/Makkha+Health+Spa+Chiang+Mai", note: "環境很好，按完有芒果糯米飯，可能要早點預約。" },
-    ]
+          ]
   },
   {
     day: 4, date: "Feb 16, Mon", location: "Doi Inthanon — 除夕",
@@ -76,6 +76,7 @@ const ITINERARY: Day[] = [
     day: 6, date: "Feb 18, Wed", location: "Free Day",
     items: [
       { time: "—", text: "Hotel, rest & souvenir shopping" },
+      { time: "21:00", text: "Makkha Health & Spa", mapUrl: "https://www.google.com/maps/search/Makkha+Health+Spa+Chiang+Mai", note: "環境很好，按完有芒果糯米飯，可能要早點預約。" },
     ]
   },
   {
