@@ -278,11 +278,11 @@ export default function ChiangMai() {
       </div>
 
       {/* Hero */}
-      <div ref={heroRef} style={{ position: "relative", height: "100vh", overflow: "hidden", background: "#2a1f1a" }}>
-        <motion.div style={{ position: "absolute", top: "-10%", left: 0, right: 0, height: "120%", y: heroY }}>
+      <div ref={heroRef} style={{ position: "relative", height: isMobile ? "auto" : "100vh", overflow: "hidden", background: "#2a1f1a" }}>
+        <motion.div style={isMobile ? { y: 0 } : { position: "absolute", top: "-10%", left: 0, right: 0, height: "120%", y: heroY }}>
           <img
             src="https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg"
-            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block" }}
+            style={{ width: "100%", height: isMobile ? "auto" : "100%", objectFit: isMobile ? undefined : "cover", objectPosition: "center 30%", display: "block" }}
           />
         </motion.div>
         {/* Layered overlays */}
