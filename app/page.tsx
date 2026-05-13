@@ -12,7 +12,7 @@ const TRIPS = [
     list: [
       { id: "canada", title: "Canada", sub: "加拿大", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "upcoming", img: null, href: "#" },
       { id: "singapore-bintan", title: "Singapore & Bintan", sub: "新加坡 · 民丹島", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "next", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg", href: "/trips/singapore-bintan" },
-      { id: "nagoya", title: "Nagoya", sub: "名古屋", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430734/NG1_czhase.jpg", href: "#" },
+      { id: "nagoya", title: "Nagoya", sub: "名古屋 · 飛驒高山 · 犬山", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430734/NG1_czhase.jpg", href: "/trips/nagoya" },
       { id: "chiang-mai", title: "Chiang Mai", sub: "清邁 · 春節", date: "Feb, 2026", fullDate: "Feb 13 – Feb 19, 2026", startDate: "2026-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg", href: "/trips/chiang-mai" },
     ],
   },
