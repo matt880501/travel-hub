@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
 type Category = "food" | "transit" | "stay" | "sight" | "shop" | "onsen" | "cafe";
@@ -114,21 +114,26 @@ function CatIcon({ cat }: { cat?: Category }) {
   return <span style={{ width: 13 }} />;
 }
 
-function GalleryImage({ img, index }: { img: typeof GALLERY[0]; index: number }) {
-  const [hovered, setHovered] = useState(false);
+function GalleryImage({ img, index, onClick, isMobile }: { img: typeof GALLERY[0]; index: number; onClick: () => void; isMobile: boolean }) {
+  const [active, setActive] = useState(false);
+  const handleClick = () => {
+    if (isMobile) { setActive(o => !o); }
+    else { onClick(); }
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.05 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{ position: "relative", borderRadius: 2, overflow: "hidden", cursor: "zoom-in", marginBottom: 10, breakInside: "avoid" }}
+      onMouseEnter={() => { if (!isMobile) setActive(true); }}
+      onMouseLeave={() => { if (!isMobile) setActive(false); }}
+      onClick={handleClick}
+      style={{ position: "relative", borderRadius: 2, overflow: "hidden", cursor: isMobile ? "pointer" : "zoom-in", marginBottom: isMobile ? 6 : 10, breakInside: "avoid" }}
     >
-      <img src={img.url} style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: hovered ? "scale(1.03)" : "scale(1)" }} />
+      <img src={img.url} style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: (!isMobile && active) ? "scale(1.03)" : "scale(1)" }} />
       <AnimatePresence>
-        {hovered && (
+        {active && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -136,7 +141,7 @@ function GalleryImage({ img, index }: { img: typeof GALLERY[0]; index: number })
             transition={{ duration: 0.3 }}
             style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%)", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "20px 16px" }}
           >
-            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.9)", fontStyle: "italic", fontFamily: "Georgia, serif", lineHeight: 1.4 }}>{img.caption}</div>
+            <div style={{ fontSize: isMobile ? 10 : 12, color: "rgba(255,255,255,0.9)", fontStyle: "italic", fontFamily: "Georgia, serif", lineHeight: 1.4 }}>{img.caption}</div>
             <div style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", letterSpacing: "0.12em", marginTop: 4 }}>{img.location}</div>
           </motion.div>
         )}
@@ -200,10 +205,18 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
 
 export default function ChiangMai() {
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const col1 = [GALLERY[0], GALLERY[3], GALLERY[6]];
   const col2 = [GALLERY[1], GALLERY[4], GALLERY[7]];
@@ -227,15 +240,19 @@ export default function ChiangMai() {
       </AnimatePresence>
 
       {/* Nav */}
-      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 40px", background: "rgba(244,241,234,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(47,43,39,0.08)` }}>
-        <div style={{ fontSize: 10, letterSpacing: "0.2em", color: MUTED }}>
-          <a href="/" style={{ color: MUTED, textDecoration: "none" }}>MATT</a>
-          <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
-          <a href="/" style={{ color: MUTED, textDecoration: "none" }}>TRAVEL ARCHIVE</a>
-          <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
-          <span style={{ color: TEXT }}>CHIANG MAI</span>
-        </div>
-        <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.15em" }}>FEB 13 – 19, 2026</div>
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "16px 20px" : "18px 40px", background: "rgba(244,241,234,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(47,43,39,0.08)` }}>
+        {isMobile ? (
+          <a href="/" style={{ fontSize: 10, letterSpacing: "0.15em", color: MUTED, textDecoration: "none" }}>← CHIANG MAI</a>
+        ) : (
+          <div style={{ fontSize: 10, letterSpacing: "0.2em", color: MUTED }}>
+            <a href="/" style={{ color: MUTED, textDecoration: "none" }}>MATT</a>
+            <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
+            <a href="/" style={{ color: MUTED, textDecoration: "none" }}>TRAVEL ARCHIVE</a>
+            <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
+            <span style={{ color: TEXT }}>CHIANG MAI</span>
+          </div>
+        )}
+        {!isMobile && <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.15em" }}>FEB 13 – 19, 2026</div>}
       </div>
 
       {/* Hero */}
@@ -248,7 +265,7 @@ export default function ChiangMai() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 60%)" }} />
 
         <motion.div
-          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "0 40px 60px", opacity: heroOpacity }}
+          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 48px" : "0 40px 60px", opacity: heroOpacity }}
         >
           {/* Eyebrow */}
 
@@ -279,19 +296,21 @@ export default function ChiangMai() {
         </motion.div>
 
         {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          style={{ position: "absolute", right: 40, bottom: 60, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
-        >
-          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.2em", writingMode: "vertical-rl" }}>SCROLL</div>
-          <div style={{ width: 0.5, height: 40, background: "rgba(255,255,255,0.2)" }} />
-        </motion.div>
+        {!isMobile && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+            style={{ position: "absolute", right: 40, bottom: 60, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
+          >
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.2em", writingMode: "vertical-rl" }}>SCROLL</div>
+            <div style={{ width: 0.5, height: 40, background: "rgba(255,255,255,0.2)" }} />
+          </motion.div>
+        )}
       </div>
 
       {/* Main content */}
-      <div style={{ maxWidth: 860, margin: "0 auto", padding: "80px 40px" }}>
+      <div style={{ maxWidth: 860, margin: "0 auto", padding: isMobile ? "60px 20px" : "80px 40px" }}>
 
         {/* Itinerary */}
         <motion.div
@@ -376,13 +395,11 @@ export default function ChiangMai() {
             <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>PHOTOGRAPHS</span>
             <div style={{ flex: 1, height: 0.5, background: `rgba(156,124,90,0.2)` }} />
           </div>
-          <div style={{ display: "flex", gap: 10 }}>
+          <div style={{ display: "flex", gap: isMobile ? 6 : 10 }}>
             {[col1, col2, col3].map((col, ci) => (
               <div key={ci} style={{ flex: 1 }}>
                 {col.map((img, i) => (
-                  <div key={i} onClick={() => setLightbox(img.url)}>
-                    <GalleryImage img={img} index={ci * 3 + i} />
-                  </div>
+                  <GalleryImage key={i} img={img} index={ci * 3 + i} onClick={() => setLightbox(img.url)} isMobile={isMobile} />
                 ))}
               </div>
             ))}
@@ -397,7 +414,7 @@ export default function ChiangMai() {
           style={{ borderTop: `0.5px solid rgba(47,43,39,0.15)`, paddingTop: 40 }}
         >
           <div style={{ fontSize: 10, color: "#9a8f85", letterSpacing: "0.2em", marginBottom: 24 }}>ABOUT THIS TRIP</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? 24 : 32 }}>
             {[
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "22°C — 31°C", sub: "Warm and pleasant" },
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>, label: "CURRENCY", value: "THB", sub: "Thai Baht" },

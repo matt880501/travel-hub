@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
 type Category = "food" | "transit" | "stay" | "sight" | "shop" | "onsen" | "cafe";
@@ -153,24 +153,36 @@ function Countdown({ targetDate }: { targetDate: Date }) {
 }
 
 export default function SingaporeBintan() {
+  const [isMobile, setIsMobile] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <div style={{ minHeight: "100vh", background: BG, fontFamily: "-apple-system, 'Helvetica Neue', sans-serif", color: TEXT }}>
 
       {/* Nav */}
-      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 40px", background: "rgba(240,242,240,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(30,42,42,0.08)` }}>
-        <div style={{ fontSize: 10, letterSpacing: "0.2em", color: MUTED }}>
-          <a href="/" style={{ color: MUTED, textDecoration: "none" }}>MATT</a>
-          <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
-          <a href="/" style={{ color: MUTED, textDecoration: "none" }}>TRAVEL ARCHIVE</a>
-          <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
-          <span style={{ color: TEXT }}>SINGAPORE & BINTAN</span>
-        </div>
-        <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.15em" }}>JUL 23 – 28, 2026</div>
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "16px 20px" : "18px 40px", background: "rgba(240,242,240,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(30,42,42,0.08)` }}>
+        {isMobile ? (
+          <a href="/" style={{ fontSize: 10, letterSpacing: "0.15em", color: MUTED, textDecoration: "none" }}>← SG & BINTAN</a>
+        ) : (
+          <div style={{ fontSize: 10, letterSpacing: "0.2em", color: MUTED }}>
+            <a href="/" style={{ color: MUTED, textDecoration: "none" }}>MATT</a>
+            <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
+            <a href="/" style={{ color: MUTED, textDecoration: "none" }}>TRAVEL ARCHIVE</a>
+            <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
+            <span style={{ color: TEXT }}>SINGAPORE & BINTAN</span>
+          </div>
+        )}
+        {!isMobile && <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.15em" }}>JUL 23 – 28, 2026</div>}
       </div>
 
       {/* Hero */}
@@ -182,15 +194,14 @@ export default function SingaporeBintan() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 60%)" }} />
 
         <motion.div
-          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "0 40px 60px 40px", paddingRight: "80px", opacity: heroOpacity, display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}
+          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 48px" : "0 40px 60px 40px", paddingRight: isMobile ? "20px" : "80px", opacity: heroOpacity, display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "flex-end", justifyContent: "space-between", gap: isMobile ? 20 : 0 }}
         >
           <div>
-
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3 }}
-              style={{ fontSize: "clamp(48px, 8vw, 100px)", fontWeight: 300, color: "#fff", lineHeight: 0.95, letterSpacing: "-0.02em", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 24 }}
+              style={{ fontSize: isMobile ? "clamp(40px, 12vw, 64px)" : "clamp(48px, 8vw, 100px)", fontWeight: 300, color: "#fff", lineHeight: 0.95, letterSpacing: "-0.02em", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 20 }}
             >
               Singapore<br />&amp; Bintan
             </motion.div>
@@ -198,13 +209,12 @@ export default function SingaporeBintan() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              style={{ display: "flex", alignItems: "center", gap: 24 }}
+              style={{ display: "flex", alignItems: "center", gap: isMobile ? 12 : 24, flexWrap: "wrap" }}
             >
               <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>Summer 2026</span>
               <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} />
               <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>6 Days</span>
-              <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} />
-              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>Singapore · Indonesia</span>
+              {!isMobile && <><span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} /><span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>Singapore · Indonesia</span></>}
             </motion.div>
           </div>
           <motion.div
@@ -217,19 +227,21 @@ export default function SingaporeBintan() {
         </motion.div>
 
         {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          style={{ position: "absolute", right: 24, bottom: 60, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
-        >
-          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.2em", writingMode: "vertical-rl" }}>SCROLL</div>
-          <div style={{ width: 0.5, height: 40, background: "rgba(255,255,255,0.2)" }} />
-        </motion.div>
+        {!isMobile && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+            style={{ position: "absolute", right: 24, bottom: 60, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
+          >
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.2em", writingMode: "vertical-rl" }}>SCROLL</div>
+            <div style={{ width: 0.5, height: 40, background: "rgba(255,255,255,0.2)" }} />
+          </motion.div>
+        )}
       </div>
 
       {/* Main content */}
-      <div style={{ maxWidth: 860, margin: "0 auto", padding: "80px 40px" }}>
+      <div style={{ maxWidth: 860, margin: "0 auto", padding: isMobile ? "60px 20px" : "80px 40px" }}>
 
         {/* Itinerary */}
         <motion.div
@@ -274,7 +286,7 @@ export default function SingaporeBintan() {
           style={{ borderTop: `0.5px solid rgba(30,42,42,0.15)`, paddingTop: 40 }}
         >
           <div style={{ fontSize: 10, color: "#7a9090", letterSpacing: "0.2em", marginBottom: 24 }}>ABOUT THIS TRIP</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? 24 : 32 }}>
             {[
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "28°C — 33°C", sub: "Hot and humid" },
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>, label: "CURRENCY", value: "SGD / IDR", sub: "Singapore · Indonesia" },
