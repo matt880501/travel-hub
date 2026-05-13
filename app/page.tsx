@@ -12,7 +12,7 @@ const TRIPS = [
     list: [
       { id: "canada", title: "Canada", sub: "加拿大", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "upcoming", img: null, href: "#" },
       { id: "singapore-bintan", title: "Singapore & Bintan", sub: "新加坡 · 民丹島", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "next", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg", href: "/trips/singapore-bintan" },
-      { id: "nagoya", title: "Nagoya", sub: "名古屋 · 飛驒高山 · 犬山", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430734/NG1_czhase.jpg", href: "/trips/nagoya" },
+      { id: "nagoya", title: "Nagoya", sub: "名古屋 · 飛驒高山 · 犬山", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669488/NG1_cfqqat.jpg", href: "/trips/nagoya" },
       { id: "chiang-mai", title: "Chiang Mai", sub: "清邁 · 春節", date: "Feb, 2026", fullDate: "Feb 13 – Feb 19, 2026", startDate: "2026-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg", href: "/trips/chiang-mai" },
     ],
   },
@@ -200,6 +200,9 @@ export default function Home() {
   const [showMemories, setShowMemories] = useState(false);
   const [showMap, setShowMap] = useState(false);
 
+  const [showNext, setShowNext] = useState(true);
+  useEffect(() => { setShowNext(Math.random() >= 0.5); }, []);
+
   const today = new Date();
   const upcomingTrip = TRIPS.flatMap(g => g.list)
     .filter(t => t.status === "next" || t.status === "upcoming")
@@ -207,10 +210,15 @@ export default function Home() {
     .filter(t => t.parsedDate >= today)
     .sort((a, b) => a.parsedDate.getTime() - b.parsedDate.getTime())[0];
 
-  const heroImg = upcomingTrip?.img || "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg";
-  const heroTitle = upcomingTrip?.title || "Singapore & Bintan";
-  const heroFullDate = upcomingTrip?.fullDate || "Jul 23 – Jul 28, 2026";
-  const heroHref = upcomingTrip?.href || "/trips/singapore-bintan";
+  const lastTrip = TRIPS.flatMap(g => g.list)
+    .filter(t => t.status === "done" && t.img)
+    .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime())[0];
+
+  const activeTrip = showNext ? upcomingTrip : lastTrip;
+  const heroImg = activeTrip?.img || "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg";
+  const heroTitle = activeTrip?.title || "Singapore & Bintan";
+  const heroFullDate = activeTrip?.fullDate || "Jul 23 – Jul 28, 2026";
+  const heroHref = activeTrip?.href || "/trips/singapore-bintan";
   const heroCountdown = upcomingTrip ? new Date(upcomingTrip.startDate) : new Date("2026-07-23");
 
   const displayTrips = search
@@ -394,7 +402,7 @@ export default function Home() {
 
           <div style={{ position: "absolute", bottom: 36, left: 36, right: 36, zIndex: 2, display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
             <div>
-              <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.25em", marginBottom: 10, fontWeight: 500 }}>NEXT TRIP</div>
+              <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.25em", marginBottom: 10, fontWeight: 500 }}>{showNext ? "NEXT TRIP" : "LAST TRIP"}</div>
               <div style={{ fontSize: 44, fontWeight: 400, color: "#f0ece4", lineHeight: 1.1, letterSpacing: "-0.01em", fontFamily: "Georgia, serif" }}>
                 {heroTitle.includes("&") ? (<>{heroTitle.split("&")[0].trim()}<br />&amp; {heroTitle.split("&")[1].trim()}</>) : heroTitle}
               </div>
@@ -405,7 +413,7 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <Countdown targetDate={heroCountdown} />
+            {showNext && <Countdown targetDate={heroCountdown} />}
           </div>
         </div>
 
