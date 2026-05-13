@@ -29,7 +29,7 @@ const GALLERY: { url: string; caption: string; location: string; }[] = [
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669478/NGs15_ror5j0.jpg", caption: "Hida bound for Nagoya", location: "Takayama Station" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669476/NGs16_f9qtav.jpg", caption: "Inuyama Castle", location: "Inuyama" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669475/NGs17_dz0znl.jpg", caption: "Hids' Cafe & Bar", location: "Takayama" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669474/NGs18_baz3jv.jpg", caption: "Takayama Station, departure morning", location: "Takayama" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669474/NGs18_baz3jv.jpg", caption: "Takayama Station, after dark", location: "Takayama" },
 ];
 
 const ITINERARY: Day[] = [
@@ -279,6 +279,16 @@ export default function Nagoya() {
             <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} />
             <span style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", letterSpacing: "0.05em" }}>Japan</span>
           </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          style={{ position: "absolute", right: 40, bottom: 48, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
+        >
+          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.2em", writingMode: "vertical-rl" }}>SCROLL</div>
+          <div style={{ width: 0.5, height: 40, background: "rgba(255,255,255,0.2)" }} />
         </motion.div>
       </div>
 
