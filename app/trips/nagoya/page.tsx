@@ -118,31 +118,38 @@ function CatIcon({ cat }: { cat?: Category }) {
   return <span style={{ width: 13 }} />;
 }
 
-function GalleryImage({ img, index, onClick }: { img: typeof GALLERY[0]; index: number; onClick: () => void }) {
-  const [hovered, setHovered] = useState(false);
+function GalleryImage({ img, index, onClick, isMobile }: { img: typeof GALLERY[0]; index: number; onClick: () => void; isMobile: boolean }) {
+  const [active, setActive] = useState(false);
+  const show = isMobile ? active : active;
+
+  const handleClick = () => {
+    if (isMobile) { setActive(o => !o); }
+    else { onClick(); }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.04 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onClick={onClick}
-      style={{ position: "relative", borderRadius: 2, overflow: "hidden", cursor: "zoom-in", marginBottom: 10, breakInside: "avoid" }}
+      onMouseEnter={() => { if (!isMobile) setActive(true); }}
+      onMouseLeave={() => { if (!isMobile) setActive(false); }}
+      onClick={handleClick}
+      style={{ position: "relative", borderRadius: 2, overflow: "hidden", cursor: isMobile ? "pointer" : "zoom-in", marginBottom: isMobile ? 6 : 10, breakInside: "avoid" }}
     >
-      <img src={img.url} style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: hovered ? "scale(1.03)" : "scale(1)" }} />
+      <img src={img.url} style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: (!isMobile && active) ? "scale(1.03)" : "scale(1)" }} />
       <AnimatePresence>
-        {hovered && (
+        {show && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 55%)", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "20px 16px" }}
+            style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 55%)", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: isMobile ? "12px 10px" : "20px 16px" }}
           >
-            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.9)", fontStyle: "italic", fontFamily: "Georgia, serif", lineHeight: 1.4 }}>{img.caption}</div>
-            <div style={{ fontSize: 10, color: "rgba(255,255,255,0.45)", letterSpacing: "0.12em", marginTop: 4 }}>{img.location}</div>
+            <div style={{ fontSize: isMobile ? 10 : 12, color: "rgba(255,255,255,0.9)", fontStyle: "italic", fontFamily: "Georgia, serif", lineHeight: 1.4 }}>{img.caption}</div>
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.45)", letterSpacing: "0.12em", marginTop: 3 }}>{img.location}</div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -220,8 +227,6 @@ export default function Nagoya() {
   const col1 = [GALLERY[0], GALLERY[3], GALLERY[6], GALLERY[9], GALLERY[12], GALLERY[15]];
   const col2 = [GALLERY[1], GALLERY[4], GALLERY[7], GALLERY[10], GALLERY[13], GALLERY[16]];
   const col3 = [GALLERY[2], GALLERY[5], GALLERY[8], GALLERY[11], GALLERY[14], GALLERY[17]];
-  const mCol1 = GALLERY.filter((_, i) => i % 2 === 0);
-  const mCol2 = GALLERY.filter((_, i) => i % 2 === 1);
 
   return (
     <div style={{ minHeight: "100vh", background: BG, fontFamily: "-apple-system, 'Helvetica Neue', sans-serif", color: TEXT }}>
@@ -386,10 +391,10 @@ export default function Nagoya() {
             <div style={{ flex: 1, height: 0.5, background: `rgba(77,111,142,0.2)` }} />
           </div>
           <div style={{ display: "flex", gap: isMobile ? 6 : 10 }}>
-            {(isMobile ? [mCol1, mCol2] : [col1, col2, col3]).map((col, ci) => (
+            {[col1, col2, col3].map((col, ci) => (
               <div key={ci} style={{ flex: 1 }}>
                 {col.map((img, i) => (
-                  <GalleryImage key={i} img={img} index={ci * (isMobile ? 9 : 6) + i} onClick={() => setLightbox(img.url)} />
+                  <GalleryImage key={i} img={img} index={ci * 6 + i} onClick={() => setLightbox(img.url)} isMobile={isMobile} />
                 ))}
               </div>
             ))}
