@@ -18,9 +18,9 @@ const ITINERARY: Day[] = [
       { time: "08:05", text: "Depart Taipei — CI 0753", cat: "transit" },
       { time: "12:35", text: "Arrive Singapore", cat: "transit" },
       { time: "15:00", text: "Check-in · Mercure ICON Singapore City Centre", cat: "stay" },
-      { time: "16:00", text: "Merlion Park", mapUrl: "https://maps.google.com/?q=Merlion+Park+Singapore", cat: "sight" },
+      { time: "16:00", text: "魚尾獅公園", mapUrl: "https://maps.google.com/?q=Merlion+Park+Singapore", note: "肯定要來當觀光客", cat: "sight" },
       { time: "17:30", text: "Marina Bay Sands", mapUrl: "https://maps.google.com/?q=Marina+Bay+Sands+Singapore", cat: "sight" },
-      { time: "19:00", text: "Bak Kut Teh dinner", cat: "food" },
+      { time: "19:00", text: "Song Fa Bak Kut Teh", mapUrl: "https://www.google.com/maps/place/Song+Fa+Bak+Kut+Teh+(11+New+Bridge+Road)/@1.2890153,103.845118,17z/data=!3m2!4b1!5s0x31da190aaf3074cf:0x9b21d7b61861b222!4m6!3m5!1s0x31da190a80c3583f:0xc7bd17dac49c70f5!8m2!3d1.2890099!4d103.8476983!16s%2Fg%2F1tf5mr7_?entry=ttu&g_ep=EgoyMDI2MDUxMC4wIKXMDSoASAFQAw%3D%3D", note: "肉骨茶", cat: "food" },
       { time: "20:30", text: "Gardens by the Bay — OCBC Skyway", mapUrl: "https://maps.google.com/?q=Gardens+by+the+Bay+Singapore", cat: "sight" },
     ]
   },
@@ -28,21 +28,21 @@ const ITINERARY: Day[] = [
     day: "DAY 2", date: "Jul 24, Fri", location: "Singapore → Bintan",
     items: [
       { time: "11:00", text: "Check-out · Mercure ICON", cat: "stay" },
-      { time: "12:00", text: "Jewel Changi Airport", mapUrl: "https://www.jewelchangiairport.com/en/attractions/rain-vortex.html", cat: "sight" },
-      { time: "14:00", text: "Ferry · Singapore → Bintan (Business Class)", mapUrl: "https://maps.google.com/?q=Tanah+Merah+Ferry+Terminal+Singapore", cat: "transit" },
+      { time: "12:00", text: "星耀樟宜", mapUrl: "https://www.jewelchangiairport.com/en/attractions/rain-vortex.html", cat: "sight" },
+      { time: "14:00", text: "Ferry · Singapore → Bintan (Business Class)", mapUrl: "https://maps.google.com/?q=Tanah+Merah+Ferry+Terminal+Singapore", note: "新加坡88，一天剛剛好", cat: "transit" },
       { time: "16:00", text: "Check-in · Club Med Bintan Island", mapUrl: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE", cat: "stay" },
     ]
   },
   {
     day: "DAY 3–6", date: "Jul 25–27", location: "Bintan Island",
     items: [
-      { time: "—", text: "Club Med all-inclusive — beach, pool, activities", mapUrl: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE", cat: "sight" },
+      { time: "—", text: "Club Med all-inclusive — beach, pool, activities", mapUrl: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE", note: "爽玩", cat: "sight" },
     ]
   },
   {
     day: "DAY 6", date: "Jul 28, Tue", location: "Bintan → Taipei",
     items: [
-      { time: "08:35", text: "Ferry · Bintan → Singapore (Business Class)", cat: "transit" },
+      { time: "08:35", text: "Ferry · Bintan → Singapore (Business Class)", note: "Bintan掰掰", cat: "transit" },
       { time: "13:45", text: "Depart Singapore — CI 0754", cat: "transit" },
       { time: "18:35", text: "Arrive Taipei", cat: "transit" },
     ]
