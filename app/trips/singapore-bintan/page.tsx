@@ -220,13 +220,15 @@ export default function SingaporeBintan() {
               {!isMobile && <><span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} /><span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>Singapore · Indonesia</span></>}
             </motion.div>
           </div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-          >
-            <Countdown targetDate={new Date("2026-07-23")} />
-          </motion.div>
+          {!isMobile && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
+              <Countdown targetDate={new Date("2026-07-23")} />
+            </motion.div>
+          )}
         </motion.div>
 
         {/* Scroll indicator */}
