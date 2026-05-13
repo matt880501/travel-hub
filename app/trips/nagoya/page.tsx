@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
 type Category = "food" | "transit" | "stay" | "sight" | "shop" | "onsen" | "cafe";
@@ -205,6 +205,13 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
 
 export default function Nagoya() {
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
@@ -213,6 +220,8 @@ export default function Nagoya() {
   const col1 = [GALLERY[0], GALLERY[3], GALLERY[6], GALLERY[9], GALLERY[12], GALLERY[15]];
   const col2 = [GALLERY[1], GALLERY[4], GALLERY[7], GALLERY[10], GALLERY[13], GALLERY[16]];
   const col3 = [GALLERY[2], GALLERY[5], GALLERY[8], GALLERY[11], GALLERY[14], GALLERY[17]];
+  const mCol1 = GALLERY.filter((_, i) => i % 2 === 0);
+  const mCol2 = GALLERY.filter((_, i) => i % 2 === 1);
 
   return (
     <div style={{ minHeight: "100vh", background: BG, fontFamily: "-apple-system, 'Helvetica Neue', sans-serif", color: TEXT }}>
@@ -232,15 +241,13 @@ export default function Nagoya() {
       </AnimatePresence>
 
       {/* Nav */}
-      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 40px", background: "rgba(240,242,244,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(27,37,53,0.08)` }}>
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "14px 20px" : "18px 40px", background: "rgba(240,242,244,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(27,37,53,0.08)` }}>
         <div style={{ fontSize: 10, letterSpacing: "0.2em", color: MUTED }}>
-          <a href="/" style={{ color: MUTED, textDecoration: "none" }}>MATT</a>
-          <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
-          <a href="/" style={{ color: MUTED, textDecoration: "none" }}>TRAVEL ARCHIVE</a>
-          <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
+          {!isMobile && <><a href="/" style={{ color: MUTED, textDecoration: "none" }}>MATT</a><span style={{ margin: "0 10px", opacity: 0.4 }}>/</span><a href="/" style={{ color: MUTED, textDecoration: "none" }}>TRAVEL ARCHIVE</a><span style={{ margin: "0 10px", opacity: 0.4 }}>/</span></>}
+          {isMobile && <a href="/" style={{ color: MUTED, textDecoration: "none", marginRight: 10 }}>←</a>}
           <span style={{ color: TEXT }}>NAGOYA · TAKAYAMA · INUYAMA</span>
         </div>
-        <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.15em" }}>FEB 27 – MAR 4, 2026</div>
+        {!isMobile && <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.15em" }}>FEB 27 – MAR 4, 2026</div>}
       </div>
 
       {/* Hero */}
@@ -255,7 +262,7 @@ export default function Nagoya() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,20,35,0.35) 0%, transparent 65%)" }} />
 
         <motion.div
-          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "0 40px 48px", opacity: heroOpacity }}
+          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 32px" : "0 40px 48px", opacity: heroOpacity }}
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -281,19 +288,21 @@ export default function Nagoya() {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          style={{ position: "absolute", right: 40, bottom: 48, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
-        >
-          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.2em", writingMode: "vertical-rl" }}>SCROLL</div>
-          <div style={{ width: 0.5, height: 40, background: "rgba(255,255,255,0.2)" }} />
-        </motion.div>
+        {!isMobile && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+            style={{ position: "absolute", right: 40, bottom: 48, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
+          >
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.2em", writingMode: "vertical-rl" }}>SCROLL</div>
+            <div style={{ width: 0.5, height: 40, background: "rgba(255,255,255,0.2)" }} />
+          </motion.div>
+        )}
       </div>
 
       {/* Main content */}
-      <div style={{ maxWidth: 860, margin: "0 auto", padding: "80px 40px" }}>
+      <div style={{ maxWidth: 860, margin: "0 auto", padding: isMobile ? "60px 20px" : "80px 40px" }}>
 
         {/* Itinerary */}
         <motion.div
@@ -376,11 +385,11 @@ export default function Nagoya() {
             <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>PHOTOGRAPHS</span>
             <div style={{ flex: 1, height: 0.5, background: `rgba(77,111,142,0.2)` }} />
           </div>
-          <div style={{ display: "flex", gap: 10 }}>
-            {[col1, col2, col3].map((col, ci) => (
+          <div style={{ display: "flex", gap: isMobile ? 6 : 10 }}>
+            {(isMobile ? [mCol1, mCol2] : [col1, col2, col3]).map((col, ci) => (
               <div key={ci} style={{ flex: 1 }}>
                 {col.map((img, i) => (
-                  <GalleryImage key={i} img={img} index={ci * 6 + i} onClick={() => setLightbox(img.url)} />
+                  <GalleryImage key={i} img={img} index={ci * (isMobile ? 9 : 6) + i} onClick={() => setLightbox(img.url)} />
                 ))}
               </div>
             ))}
@@ -395,7 +404,7 @@ export default function Nagoya() {
           style={{ borderTop: `0.5px solid rgba(27,37,53,0.15)`, paddingTop: 40 }}
         >
           <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.2em", marginBottom: 24 }}>ABOUT THIS TRIP</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? 24 : 32 }}>
             {[
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "2°C — 15°C", sub: "Cold, snow possible" },
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>, label: "CURRENCY", value: "JPY", sub: "Japanese Yen" },
