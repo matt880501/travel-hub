@@ -19,7 +19,7 @@ const TRIPS = [
   {
     year: "2025",
     list: [
-      { id: "bohol", title: "Bohol Island", sub: "薄荷島", date: "Oct, 2025", fullDate: "Oct 22 – Oct 26, 2025", startDate: "2025-10-22", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430733/BO1_lbvlfo.jpg", href: "#" },
+      { id: "bohol", title: "Bohol Island", sub: "薄荷島", date: "Oct, 2025", fullDate: "Oct 22 – Oct 26, 2025", startDate: "2025-10-22", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682135/BO1_flckks.jpg", href: "/trips/bohol" },
       { id: "okinawa", title: "Okinawa", sub: "沖繩", date: "Apr, 2025", fullDate: "Apr 11 – Apr 15, 2025", startDate: "2025-04-11", status: "done", img: null, href: "#" },
     ],
   },
