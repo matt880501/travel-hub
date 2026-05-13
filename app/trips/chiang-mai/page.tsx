@@ -2,7 +2,8 @@
 import { useState, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
-type Item = { time: string; text: string; note?: string; mapUrl?: string; };
+type Category = "food" | "transit" | "stay" | "sight" | "shop" | "onsen" | "cafe";
+type Item = { time: string; text: string; note?: string; mapUrl?: string; cat?: Category; };
 type Day = { day: number; date: string; location: string; items: Item[]; };
 
 const ACCENT = "#9c7c5a";
@@ -26,64 +27,64 @@ const ITINERARY: Day[] = [
   {
     day: 1, date: "Feb 13, Fri", location: "Chiang Mai — Nimman",
     items: [
-      { time: "07:20", text: "Depart Taipei" },
-      { time: "10:35", text: "Arrive Chiang Mai" },
-      { time: "12:00", text: "Check-in · Travelodge Nimman" },
-      { time: "14:00", text: "One Nimman", mapUrl: "https://www.google.com/maps/search/One+Nimman+Chiang+Mai", note: "清邁最美紅磚文創區，適合散步拍照。尼曼區算好逛，比古城區環境好，步調舒服，後來覺得住這不錯。" },
-      { time: "17:00", text: "烤山尼曼", mapUrl: "https://www.google.com/maps/search/Khao+Soy+Nimman+Chiang+Mai", note: "米其林推薦的泰北咖哩麵。早一點去可以不用排隊，排太久的話我覺得不值得。" },
-      { time: "20:00", text: "Nimman House Massage", mapUrl: "https://www.google.com/maps/search/Nimman+House+Massage+Chiang+Mai", note: "就是愛按摩（這間還好）。" },
+      { time: "07:20", text: "Depart Taipei", cat: "transit" },
+      { time: "10:35", text: "Arrive Chiang Mai", cat: "transit" },
+      { time: "12:00", text: "Check-in · Travelodge Nimman", cat: "stay" },
+      { time: "14:00", text: "One Nimman", mapUrl: "https://www.google.com/maps/search/One+Nimman+Chiang+Mai", note: "清邁最美紅磚文創區，適合散步拍照。尼曼區算好逛，比古城區環境好，步調舒服，後來覺得住這不錯。", cat: "sight" },
+      { time: "17:00", text: "烤山尼曼", mapUrl: "https://www.google.com/maps/search/Khao+Soy+Nimman+Chiang+Mai", note: "米其林推薦的泰北咖哩麵。早一點去可以不用排隊，排太久的話我覺得不值得。", cat: "food" },
+      { time: "20:00", text: "Nimman House Massage", mapUrl: "https://www.google.com/maps/search/Nimman+House+Massage+Chiang+Mai", note: "就是愛按摩（這間還好）。", cat: "onsen" },
     ]
   },
   {
     day: 2, date: "Feb 14, Sat", location: "East — Mae Kampong",
     items: [
-      { time: "09:00", text: "Private car — East Mountains" },
-      { time: "10:30", text: "Mae Kampong Village & Waterfall", mapUrl: "https://www.google.com/maps/search/Mae+Kampong+Chiang+Mai", note: "溪流與森林包圍的百年木造村落，這裡滿不錯的。" },
-      { time: "13:00", text: "The Giant Chiang Mai", mapUrl: "https://www.google.com/maps/search/The+Giant+Chiang+Mai", note: "就是一棵大樹。" },
-      { time: "18:00", text: "Tong Tem Toh", mapUrl: "https://www.google.com/maps/search/Tong+Tem+Toh+Chiang+Mai", note: "尼曼路超人氣泰北料理，烤豬肉好吃。" },
-      { time: "20:00", text: "Sum Bamboo Massage", mapUrl: "https://www.google.com/maps/place/sum+bamboo+massage+(Nimman)", note: "Threads 上非常推的泰式按摩，很道地但很痛，想體驗可以去哈哈。" },
+      { time: "09:00", text: "Private car — East Mountains", cat: "transit" },
+      { time: "10:30", text: "Mae Kampong Village & Waterfall", mapUrl: "https://www.google.com/maps/search/Mae+Kampong+Chiang+Mai", note: "溪流與森林包圍的百年木造村落，這裡滿不錯的。", cat: "sight" },
+      { time: "13:00", text: "The Giant Chiang Mai", mapUrl: "https://www.google.com/maps/search/The+Giant+Chiang+Mai", note: "就是一棵大樹。", cat: "sight" },
+      { time: "18:00", text: "Tong Tem Toh", mapUrl: "https://www.google.com/maps/search/Tong+Tem+Toh+Chiang+Mai", note: "尼曼路超人氣泰北料理，烤豬肉好吃。", cat: "food" },
+      { time: "20:00", text: "Sum Bamboo Massage", mapUrl: "https://www.google.com/maps/place/sum+bamboo+massage+(Nimman)", note: "Threads 上非常推的泰式按摩，很道地但很痛，想體驗可以去哈哈。", cat: "onsen" },
     ]
   },
   {
     day: 3, date: "Feb 15, Sun", location: "Market & Old City",
     items: [
-      { time: "09:00", text: "Jing Jai Market", mapUrl: "https://www.google.com/maps/search/Jing+Jai+Market+Chiang+Mai", note: "清邁最美文創早市，算很好逛，環境好。" },
-      { time: "12:00", text: "Hummus Garden", mapUrl: "https://www.google.com/maps/place/Hummus+Garden+Chiang+Mai/@18.780532,98.9903323,14.58z/data=!4m15!1m8!3m7!1s0x30da3bbb11e91869:0xe27068e785391c52!2sHummus+Garden+Chiang+Mai!8m2!3d18.7749381!4d98.9994335!10e9!16s%2Fg%2F11h6qctkm3!3m5!1s0x30da3bbb11e91869:0xe27068e785391c52!8m2!3d18.7749381!4d98.9994335!16s%2Fg%2F11h6qctkm3?entry=ttu&g_ep=EgoyMDI2MDUxMC4wIKXMDSoASAFQAw%3D%3D" },
-      { time: "14:00", text: "契迪龍寺" },
-      { time: "17:00", text: "Sunday Walking Street", mapUrl: "https://www.google.com/maps/search/Sunday+Walking+Street+Chiang+Mai", note: "全泰國最大夜市，感受春節熱鬧氣氛。" },
-      { time: "18:30", text: "The House by Ginger", mapUrl: "https://www.google.com/maps/search/The+House+by+Ginger+Chiang+Mai", note: "米其林推薦，古城內懷舊風格精緻泰菜。吃完覺得普普，價位高吃氣氛的。" },
-          ]
+      { time: "09:00", text: "Jing Jai Market", mapUrl: "https://www.google.com/maps/search/Jing+Jai+Market+Chiang+Mai", note: "清邁最美文創早市，算很好逛，環境好。", cat: "sight" },
+      { time: "12:00", text: "Hummus Garden", mapUrl: "https://www.google.com/maps/place/Hummus+Garden+Chiang+Mai/@18.780532,98.9903323,14.58z/data=!4m15!1m8!3m7!1s0x30da3bbb11e91869:0xe27068e785391c52!2sHummus+Garden+Chiang+Mai!8m2!3d18.7749381!4d98.9994335!10e9!16s%2Fg%2F11h6qctkm3!3m5!1s0x30da3bbb11e91869:0xe27068e785391c52!8m2!3d18.7749381!4d98.9994335!16s%2Fg%2F11h6qctkm3?entry=ttu&g_ep=EgoyMDI2MDUxMC4wIKXMDSoASAFQAw%3D%3D", cat: "food" },
+      { time: "14:00", text: "契迪龍寺", cat: "sight" },
+      { time: "17:00", text: "Sunday Walking Street", mapUrl: "https://www.google.com/maps/search/Sunday+Walking+Street+Chiang+Mai", note: "全泰國最大夜市，感受春節熱鬧氣氛。", cat: "sight" },
+      { time: "18:30", text: "The House by Ginger", mapUrl: "https://www.google.com/maps/search/The+House+by+Ginger+Chiang+Mai", note: "米其林推薦，古城內懷舊風格精緻泰菜。吃完覺得普普，價位高吃氣氛的。", cat: "food" },
+    ]
   },
   {
     day: 4, date: "Feb 16, Mon", location: "Doi Inthanon — 除夕",
     items: [
-      { time: "08:30", text: "Private car — Doi Inthanon" },
-      { time: "10:30", text: "Summit & Twin Pagodas", mapUrl: "https://www.google.com/maps/search/Doi+Inthanon+National+Park", note: "雲海花園。" },
-      { time: "13:00", text: "Kiew Mae Pan Trail", mapUrl: "https://www.google.com/maps/search/Kiew+Mae+Pan+Trail+Doi+Inthanon", note: "2 小時高山健行，台灣的山比較漂亮哈哈。" },
-      { time: "15:30", text: "Wachirathan Falls", mapUrl: "https://www.google.com/maps/search/Wachirathan+Waterfall+Chiang+Mai", note: "瀑布好美。" },
-      { time: "18:00", text: "KaPaO Thai Kaprao", mapUrl: "https://www.google.com/maps/place/KaPaO", note: "環境好、便宜、好吃，吃完再去隔壁網美甜點很爽。" },
+      { time: "08:30", text: "Private car — Doi Inthanon", cat: "transit" },
+      { time: "10:30", text: "Summit & Twin Pagodas", mapUrl: "https://www.google.com/maps/search/Doi+Inthanon+National+Park", note: "雲海花園。", cat: "sight" },
+      { time: "13:00", text: "Kiew Mae Pan Trail", mapUrl: "https://www.google.com/maps/search/Kiew+Mae+Pan+Trail+Doi+Inthanon", note: "2 小時高山健行，台灣的山比較漂亮哈哈。", cat: "sight" },
+      { time: "15:30", text: "Wachirathan Falls", mapUrl: "https://www.google.com/maps/search/Wachirathan+Waterfall+Chiang+Mai", note: "瀑布好美。", cat: "sight" },
+      { time: "18:00", text: "KaPaO Thai Kaprao", mapUrl: "https://www.google.com/maps/place/KaPaO", note: "環境好、便宜、好吃，吃完再去隔壁網美甜點很爽。", cat: "food" },
     ]
   },
   {
     day: 5, date: "Feb 17, Tue", location: "Elephant Park → InterContinental",
     items: [
-      { time: "09:00", text: "Elephant Nature Park", mapUrl: "https://www.google.com/maps/search/Elephant+Nature+Park+Chiang+Mai" },
-      { time: "14:00", text: "Check-in · InterContinental Mae Ping" },
-      { time: "18:00", text: "Little Stove Kitchen", mapUrl: "https://www.google.com/maps/search/Little+Stove+Kitchen+Chiang+Mai", note: "吃膩泰式的話這間海南雞很好吃。" },
+      { time: "09:00", text: "Elephant Nature Park", mapUrl: "https://www.google.com/maps/search/Elephant+Nature+Park+Chiang+Mai", cat: "sight" },
+      { time: "14:00", text: "Check-in · InterContinental Mae Ping", cat: "stay" },
+      { time: "18:00", text: "Little Stove Kitchen", mapUrl: "https://www.google.com/maps/search/Little+Stove+Kitchen+Chiang+Mai", note: "吃膩泰式的話這間海南雞很好吃。", cat: "food" },
     ]
   },
   {
     day: 6, date: "Feb 18, Wed", location: "Free Day",
     items: [
-      { time: "—", text: "Hotel, rest & souvenir shopping" },
-      { time: "21:00", text: "Makkha Health & Spa", mapUrl: "https://www.google.com/maps/search/Makkha+Health+Spa+Chiang+Mai", note: "環境很好，按完有芒果糯米飯，可能要早點預約。" },
+      { time: "—", text: "Hotel, rest & souvenir shopping", cat: "shop" },
+      { time: "21:00", text: "Makkha Health & Spa", mapUrl: "https://www.google.com/maps/search/Makkha+Health+Spa+Chiang+Mai", note: "環境很好，按完有芒果糯米飯，可能要早點預約。", cat: "onsen" },
     ]
   },
   {
     day: 7, date: "Feb 19, Thu", location: "Depart",
     items: [
-      { time: "11:50", text: "Depart Chiang Mai" },
-      { time: "16:30", text: "Arrive Taipei" },
+      { time: "11:50", text: "Depart Chiang Mai", cat: "transit" },
+      { time: "16:30", text: "Arrive Taipei", cat: "transit" },
     ]
   },
 ];
@@ -99,6 +100,19 @@ const METADATA = [
   { label: "Mood", value: "Slow / Warm / Quiet" },
   { label: "Season", value: "Cool Season, Lunar New Year" },
 ];
+
+function CatIcon({ cat }: { cat?: Category }) {
+  const p = { width: 13, height: 13, viewBox: "0 0 24 24", fill: "none" as const, stroke: MUTED, strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, style: { flexShrink: 0, opacity: 0.7 } };
+  if (!cat) return <span style={{ width: 13 }} />;
+  if (cat === "food") return <svg {...p}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="21" y1="15" x2="21" y2="22"/><path d="M21 2a5 5 0 0 1 0 10V2z"/></svg>;
+  if (cat === "transit") return <svg {...p}><rect x="4" y="3" width="16" height="15" rx="3"/><line x1="4" y1="11" x2="20" y2="11"/><line x1="12" y1="3" x2="12" y2="11"/><path d="M8 19l-1 3M16 19l1 3"/></svg>;
+  if (cat === "stay") return <svg {...p}><path d="M3 9.5L12 4l9 5.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>;
+  if (cat === "sight") return <svg {...p}><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>;
+  if (cat === "shop") return <svg {...p}><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>;
+  if (cat === "onsen") return <svg {...p}><path d="M8 14s1.5-2 4-2 4 2 4 2"/><path d="M12 2v4M9.5 4.5C9.5 6.5 12 7 12 9M14.5 4.5C14.5 6.5 12 7 12 9"/><path d="M5 18s1.5-2 7-2 7 2 7 2"/><path d="M4 22s2-2 8-2 8 2 8 2"/></svg>;
+  if (cat === "cafe") return <svg {...p}><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><line x1="6" y1="2" x2="6" y2="5"/><line x1="10" y1="2" x2="10" y2="5"/><line x1="14" y1="2" x2="14" y2="5"/></svg>;
+  return <span style={{ width: 13 }} />;
+}
 
 function GalleryImage({ img, index }: { img: typeof GALLERY[0]; index: number }) {
   const [hovered, setHovered] = useState(false);
@@ -142,9 +156,10 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
     >
       <div
         onClick={() => item.note && setOpen(o => !o)}
-        style={{ display: "flex", gap: 28, padding: "14px 0", borderBottom: `0.5px solid rgba(47,43,39,0.1)`, cursor: item.note ? "pointer" : "default", alignItems: "flex-start" }}
+        style={{ display: "flex", gap: 16, padding: "14px 0", borderBottom: `0.5px solid rgba(47,43,39,0.1)`, cursor: item.note ? "pointer" : "default", alignItems: "center" }}
       >
-        <span style={{ fontSize: 11, color: MUTED, letterSpacing: "0.08em", minWidth: 40, paddingTop: 1, fontVariantNumeric: "tabular-nums" }}>{item.time}</span>
+        <span style={{ fontSize: 11, color: MUTED, letterSpacing: "0.08em", minWidth: 40, fontVariantNumeric: "tabular-nums" }}>{item.time}</span>
+        <CatIcon cat={item.cat} />
         <div style={{ flex: 1 }}>
           {item.mapUrl ? (
             <a href={item.mapUrl} target="_blank" rel="noopener noreferrer"
@@ -173,7 +188,7 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
             transition={{ duration: 0.3 }}
             style={{ overflow: "hidden" }}
           >
-            <div style={{ paddingLeft: 68, paddingBottom: 14, paddingTop: 4 }}>
+            <div style={{ paddingLeft: 85, paddingBottom: 14, paddingTop: 4 }}>
               <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: 0, fontStyle: "italic" }}>{item.note}</p>
             </div>
           </motion.div>
@@ -236,14 +251,7 @@ export default function ChiangMai() {
           style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "0 40px 60px", opacity: heroOpacity }}
         >
           {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", letterSpacing: "0.3em", marginBottom: 20 }}
-          >
-            COMPLETED JOURNEY
-          </motion.div>
+
 
           {/* Title */}
           <motion.div

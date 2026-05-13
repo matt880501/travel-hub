@@ -65,7 +65,6 @@ const ITINERARY: Day[] = [
       { time: "14:30", text: "Check-in · Tokyu Stay Hida Takayama 結之湯", mapUrl: "https://www.google.com/maps/search/Tokyu+Stay+Hida+Takayama", cat: "stay" },
       { time: "16:30", text: "高山老街初訪 — 三町筋", mapUrl: "https://www.google.com/maps/search/%E9%AB%98%E5%B1%B1%E4%B8%89%E7%94%BA%E7%AD%8B+%E8%80%81%E8%A1%97", note: "今天人超級少，但滿多店家沒開。", cat: "sight" },
       { time: "17:30", text: "丸明燒肉 Maruaki", mapUrl: "https://www.google.com/maps/search/%E4%B8%B8%E6%98%8E+%E9%A3%9B%E9%A9%92%E7%89%9B+%E9%AB%98%E5%B1%B1", note: "飛驒牛壽司配壽喜燒，吃完覺得沒很懂 XD。", cat: "food" },
-      { time: "20:00", text: "結之湯溫泉 — 飯店浴場", cat: "onsen" },
     ]
   },
   {
@@ -75,7 +74,7 @@ const ITINERARY: Day[] = [
       { time: "10:30", text: "荻町城跡觀景台 — 合掌村全景", mapUrl: "https://www.google.com/maps/search/%E8%8D%BB%E7%94%BA%E5%9F%8E%E8%B7%A1%E5%B1%95%E6%9C%9B%E5%8F%B0+%E7%99%BD%E5%B7%9D%E9%84%89", note: "走上來約 10 分鐘，最期待的地方。", cat: "sight" },
       { time: "12:00", text: "村內散策 — 明善寺 · 和田家", mapUrl: "https://www.google.com/maps/search/%E6%98%8E%E5%96%84%E5%AF%BA+%E7%99%BD%E5%B7%9D%E9%84%89", cat: "sight" },
       { time: "14:00", text: "Return bus to Takayama", cat: "transit" },
-      { time: "15:00", text: "高山老街深度巡禮", mapUrl: "https://www.google.com/maps/search/%E9%AB%98%E5%B1%B1%E5%B8%82+%E4%B8%89%E7%94%BA%E7%AD%8B", note: "飛驒牛握壽司、史努比茶屋、米飛兔専賣店。", cat: "sight" },
+      { time: "15:00", text: "高山老街", mapUrl: "https://www.google.com/maps/search/%E9%AB%98%E5%B1%B1%E5%B8%82+%E4%B8%89%E7%94%BA%E7%AD%8B", note: "飛驒牛握壽司、史努比茶屋、米飛兔専賣店。", cat: "sight" },
       { time: "18:30", text: "Matsuki-Ushi 松喜うし", mapUrl: "https://www.google.com/maps/search/%E6%9D%BE%E5%96%9C%E3%81%86%E3%81%97+%E9%AB%98%E5%B1%B1", note: "好吃但好貴。", cat: "food" },
     ]
   },

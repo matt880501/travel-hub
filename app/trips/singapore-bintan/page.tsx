@@ -2,7 +2,8 @@
 import { useState, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
-type Item = { time: string; text: string; note?: string; mapUrl?: string; };
+type Category = "food" | "transit" | "stay" | "sight" | "shop" | "onsen" | "cafe";
+type Item = { time: string; text: string; note?: string; mapUrl?: string; cat?: Category; };
 type Day = { day: string; date: string; location: string; items: Item[]; };
 
 const ACCENT = "#3d7a7a";
@@ -14,36 +15,36 @@ const ITINERARY: Day[] = [
   {
     day: "DAY 1", date: "Jul 23, Thu", location: "Singapore",
     items: [
-      { time: "08:05", text: "Depart Taipei — CI 0753" },
-      { time: "12:35", text: "Arrive Singapore" },
-      { time: "15:00", text: "Check-in · Mercure ICON Singapore City Centre" },
-      { time: "16:00", text: "Merlion Park", mapUrl: "https://maps.google.com/?q=Merlion+Park+Singapore" },
-      { time: "17:30", text: "Marina Bay Sands", mapUrl: "https://maps.google.com/?q=Marina+Bay+Sands+Singapore" },
-      { time: "19:00", text: "Bak Kut Teh dinner" },
-      { time: "20:30", text: "Gardens by the Bay — OCBC Skyway", mapUrl: "https://maps.google.com/?q=Gardens+by+the+Bay+Singapore" },
+      { time: "08:05", text: "Depart Taipei — CI 0753", cat: "transit" },
+      { time: "12:35", text: "Arrive Singapore", cat: "transit" },
+      { time: "15:00", text: "Check-in · Mercure ICON Singapore City Centre", cat: "stay" },
+      { time: "16:00", text: "Merlion Park", mapUrl: "https://maps.google.com/?q=Merlion+Park+Singapore", cat: "sight" },
+      { time: "17:30", text: "Marina Bay Sands", mapUrl: "https://maps.google.com/?q=Marina+Bay+Sands+Singapore", cat: "sight" },
+      { time: "19:00", text: "Bak Kut Teh dinner", cat: "food" },
+      { time: "20:30", text: "Gardens by the Bay — OCBC Skyway", mapUrl: "https://maps.google.com/?q=Gardens+by+the+Bay+Singapore", cat: "sight" },
     ]
   },
   {
     day: "DAY 2", date: "Jul 24, Fri", location: "Singapore → Bintan",
     items: [
-      { time: "11:00", text: "Check-out · Mercure ICON" },
-      { time: "12:00", text: "Jewel Changi Airport", mapUrl: "https://www.jewelchangiairport.com/en/attractions/rain-vortex.html" },
-      { time: "14:00", text: "Ferry · Singapore → Bintan (Business Class)", mapUrl: "https://maps.google.com/?q=Tanah+Merah+Ferry+Terminal+Singapore" },
-      { time: "16:00", text: "Check-in · Club Med Bintan Island", mapUrl: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE" },
+      { time: "11:00", text: "Check-out · Mercure ICON", cat: "stay" },
+      { time: "12:00", text: "Jewel Changi Airport", mapUrl: "https://www.jewelchangiairport.com/en/attractions/rain-vortex.html", cat: "sight" },
+      { time: "14:00", text: "Ferry · Singapore → Bintan (Business Class)", mapUrl: "https://maps.google.com/?q=Tanah+Merah+Ferry+Terminal+Singapore", cat: "transit" },
+      { time: "16:00", text: "Check-in · Club Med Bintan Island", mapUrl: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE", cat: "stay" },
     ]
   },
   {
     day: "DAY 3–6", date: "Jul 25–27", location: "Bintan Island",
     items: [
-      { time: "—", text: "Club Med all-inclusive — beach, pool, activities", mapUrl: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE" },
+      { time: "—", text: "Club Med all-inclusive — beach, pool, activities", mapUrl: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE", cat: "sight" },
     ]
   },
   {
     day: "DAY 6", date: "Jul 28, Tue", location: "Bintan → Taipei",
     items: [
-      { time: "08:35", text: "Ferry · Bintan → Singapore (Business Class)" },
-      { time: "13:45", text: "Depart Singapore — CI 0754" },
-      { time: "18:35", text: "Arrive Taipei" },
+      { time: "08:35", text: "Ferry · Bintan → Singapore (Business Class)", cat: "transit" },
+      { time: "13:45", text: "Depart Singapore — CI 0754", cat: "transit" },
+      { time: "18:35", text: "Arrive Taipei", cat: "transit" },
     ]
   },
 ];
@@ -54,6 +55,19 @@ const METADATA = [
   { label: "Mood", value: "Urban / Coastal / Easy" },
   { label: "Season", value: "Summer, Rainy Season" },
 ];
+
+function CatIcon({ cat }: { cat?: Category }) {
+  const p = { width: 13, height: 13, viewBox: "0 0 24 24", fill: "none" as const, stroke: MUTED, strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, style: { flexShrink: 0, opacity: 0.7 } };
+  if (!cat) return <span style={{ width: 13 }} />;
+  if (cat === "food") return <svg {...p}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="21" y1="15" x2="21" y2="22"/><path d="M21 2a5 5 0 0 1 0 10V2z"/></svg>;
+  if (cat === "transit") return <svg {...p}><rect x="4" y="3" width="16" height="15" rx="3"/><line x1="4" y1="11" x2="20" y2="11"/><line x1="12" y1="3" x2="12" y2="11"/><path d="M8 19l-1 3M16 19l1 3"/></svg>;
+  if (cat === "stay") return <svg {...p}><path d="M3 9.5L12 4l9 5.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>;
+  if (cat === "sight") return <svg {...p}><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>;
+  if (cat === "shop") return <svg {...p}><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>;
+  if (cat === "onsen") return <svg {...p}><path d="M8 14s1.5-2 4-2 4 2 4 2"/><path d="M12 2v4M9.5 4.5C9.5 6.5 12 7 12 9M14.5 4.5C14.5 6.5 12 7 12 9"/><path d="M5 18s1.5-2 7-2 7 2 7 2"/><path d="M4 22s2-2 8-2 8 2 8 2"/></svg>;
+  if (cat === "cafe") return <svg {...p}><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><line x1="6" y1="2" x2="6" y2="5"/><line x1="10" y1="2" x2="10" y2="5"/><line x1="14" y1="2" x2="14" y2="5"/></svg>;
+  return <span style={{ width: 13 }} />;
+}
 
 function TimelineItem({ item, index }: { item: Item; index: number }) {
   const [open, setOpen] = useState(false);
@@ -66,9 +80,10 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
     >
       <div
         onClick={() => item.note && setOpen(o => !o)}
-        style={{ display: "flex", gap: 28, padding: "14px 0", borderBottom: `0.5px solid rgba(30,42,42,0.1)`, cursor: item.note ? "pointer" : "default", alignItems: "flex-start" }}
+        style={{ display: "flex", gap: 16, padding: "14px 0", borderBottom: `0.5px solid rgba(30,42,42,0.1)`, cursor: item.note ? "pointer" : "default", alignItems: "center" }}
       >
-        <span style={{ fontSize: 11, color: MUTED, letterSpacing: "0.08em", minWidth: 40, paddingTop: 1, fontVariantNumeric: "tabular-nums" }}>{item.time}</span>
+        <span style={{ fontSize: 11, color: MUTED, letterSpacing: "0.08em", minWidth: 40, fontVariantNumeric: "tabular-nums" }}>{item.time}</span>
+        <CatIcon cat={item.cat} />
         <div style={{ flex: 1 }}>
           {item.mapUrl ? (
             <a href={item.mapUrl} target="_blank" rel="noopener noreferrer"
@@ -97,7 +112,7 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
             transition={{ duration: 0.3 }}
             style={{ overflow: "hidden" }}
           >
-            <div style={{ paddingLeft: 68, paddingBottom: 14, paddingTop: 4 }}>
+            <div style={{ paddingLeft: 85, paddingBottom: 14, paddingTop: 4 }}>
               <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: 0, fontStyle: "italic" }}>{item.note}</p>
             </div>
           </motion.div>
@@ -167,17 +182,10 @@ export default function SingaporeBintan() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 60%)" }} />
 
         <motion.div
-          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "0 40px 60px", opacity: heroOpacity, display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}
+          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "0 40px 60px 40px", paddingRight: "80px", opacity: heroOpacity, display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}
         >
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", letterSpacing: "0.3em", marginBottom: 20 }}
-            >
-              UPCOMING JOURNEY
-            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -213,7 +221,7 @@ export default function SingaporeBintan() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          style={{ position: "absolute", right: 40, bottom: 60, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
+          style={{ position: "absolute", right: 24, bottom: 60, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
         >
           <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.2em", writingMode: "vertical-rl" }}>SCROLL</div>
           <div style={{ width: 0.5, height: 40, background: "rgba(255,255,255,0.2)" }} />
