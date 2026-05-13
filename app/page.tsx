@@ -199,9 +199,16 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [showMemories, setShowMemories] = useState(false);
   const [showMap, setShowMap] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const [showNext, setShowNext] = useState(true);
   useEffect(() => { setShowNext(Math.random() >= 0.5); }, []);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const today = new Date();
   const upcomingTrip = TRIPS.flatMap(g => g.list)
@@ -228,10 +235,24 @@ export default function Home() {
   return (
     <div style={{ display: "flex", minHeight: "100vh", background: "#161616", fontFamily: "SF Pro Display, -apple-system, sans-serif", color: "#e8e4dc" }}>
 
+      {/* Mobile top bar */}
+      {isMobile && (
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 200, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 20px", background: "rgba(22,22,22,0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+          <div>
+            <div style={{ fontSize: 16, fontWeight: 600, color: "#f0ece4", letterSpacing: "0.02em" }}>MATT</div>
+            <div style={{ fontSize: 9, color: "#c4a882", letterSpacing: "0.18em" }}>TRAVEL ARCHIVE</div>
+          </div>
+          <div style={{ display: "flex", gap: 8 }}>
+            <button onClick={() => setShowMemories(true)} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, padding: "6px 12px", cursor: "pointer", color: "#888", fontSize: 11 }}>Photos</button>
+            <button onClick={() => setShowMap(true)} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, padding: "6px 12px", cursor: "pointer", color: "#888", fontSize: 11 }}>Map</button>
+          </div>
+        </div>
+      )}
+
       {/* Map Modal */}
       {showMap && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.95)", zIndex: 1000, display: "flex", flexDirection: "column", backdropFilter: "blur(8px)" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "28px 36px 16px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: isMobile ? "20px 16px 12px" : "28px 36px 16px" }}>
             <div>
               <div style={{ fontSize: 18, fontWeight: 500, color: "#f0ece4", fontFamily: "Georgia, serif" }}>Where I've Been</div>
               <div style={{ fontSize: 11, color: "#555", letterSpacing: "0.15em", marginTop: 4 }}>CLICK A COUNTRY TO EXPLORE</div>
@@ -270,7 +291,7 @@ export default function Home() {
               </Geographies>
             </ComposableMap>
           </div>
-          <div style={{ padding: "16px 36px 28px", display: "flex", gap: 16, flexWrap: "wrap" }}>
+          <div style={{ padding: isMobile ? "12px 16px 20px" : "16px 36px 28px", display: "flex", gap: isMobile ? 8 : 16, flexWrap: "wrap" }}>
             {TRIPS.flatMap(g => g.list).filter(t => t.status === "done").map(t => (
               <a key={t.id} href={t.href} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "5px 12px 5px 8px" }}>
                 <div style={{ width: 20, height: 20, borderRadius: 4, overflow: "hidden", background: "#2a2a2a", flexShrink: 0 }}>
@@ -288,15 +309,15 @@ export default function Home() {
       {showMemories && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.92)", zIndex: 1000, display: "flex", flexDirection: "column", backdropFilter: "blur(8px)" }}
           onClick={() => setShowMemories(false)}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "28px 36px 20px" }} onClick={e => e.stopPropagation()}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: isMobile ? "20px 16px 16px" : "28px 36px 20px" }} onClick={e => e.stopPropagation()}>
             <div>
               <div style={{ fontSize: 18, fontWeight: 500, color: "#f0ece4", fontFamily: "Georgia, serif" }}>All Memories</div>
               <div style={{ fontSize: 11, color: "#555", letterSpacing: "0.15em", marginTop: 4 }}>{MEMORIES.length} PHOTOS</div>
             </div>
             <button onClick={() => setShowMemories(false)} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "50%", width: 36, height: 36, cursor: "pointer", color: "#aaa", fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center" }}>×</button>
           </div>
-          <div style={{ flex: 1, overflowY: "auto", padding: "0 36px 36px" }} onClick={e => e.stopPropagation()}>
-            <div style={{ columns: 3, gap: 10 }}>
+          <div style={{ flex: 1, overflowY: "auto", padding: isMobile ? "0 16px 24px" : "0 36px 36px" }} onClick={e => e.stopPropagation()}>
+            <div style={{ columns: isMobile ? 2 : 3, gap: 10 }}>
               {MEMORIES.map((m, i) => (
                 <div key={i} style={{ breakInside: "avoid", marginBottom: 10, borderRadius: 10, overflow: "hidden" }}>
                   <img src={m.url} alt={m.label} style={{ width: "100%", display: "block" }} />
@@ -316,7 +337,7 @@ export default function Home() {
       )}
 
       {/* ── SIDEBAR ── */}
-      <div style={{ width: 248, flexShrink: 0, background: "#161616", borderRight: "1px solid rgba(255,255,255,0.06)", display: "flex", flexDirection: "column", height: "100vh", position: "sticky", top: 0 }}>
+      <div style={{ width: 248, flexShrink: 0, background: "#161616", borderRight: "1px solid rgba(255,255,255,0.06)", display: isMobile ? "none" : "flex", flexDirection: "column", height: "100vh", position: "sticky", top: 0 }}>
         <div style={{ padding: "28px 20px 16px" }}>
           <div style={{ fontSize: 22, fontWeight: 600, letterSpacing: "0.02em", color: "#f0ece4" }}>MATT</div>
           <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.18em", marginTop: 2 }}>TRAVEL ARCHIVE</div>
@@ -389,10 +410,10 @@ export default function Home() {
       </div>
 
       {/* ── MAIN ── */}
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto" }}>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto", paddingTop: isMobile ? 56 : 0 }}>
 
         {/* ── HERO ── */}
-        <div style={{ position: "relative", height: 440, backgroundImage: `url(${heroImg})`, backgroundSize: "cover", backgroundPosition: "center 65%", flexShrink: 0 }}>
+        <div style={{ position: "relative", height: isMobile ? 380 : 440, backgroundImage: `url(${heroImg})`, backgroundSize: "cover", backgroundPosition: "center 65%", flexShrink: 0 }}>
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.3) 60%, rgba(10,10,10,0.1) 100%)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 50%)" }} />
 
@@ -400,10 +421,10 @@ export default function Home() {
             <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg, #c4a882, #8a7060)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 600, color: "#fff", border: "2px solid rgba(255,255,255,0.15)" }}>YC</div>
           </div>
 
-          <div style={{ position: "absolute", bottom: 36, left: 36, right: 36, zIndex: 2, display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
+          <div style={{ position: "absolute", bottom: isMobile ? 28 : 36, left: isMobile ? 20 : 36, right: isMobile ? 20 : 36, zIndex: 2, display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "flex-end", justifyContent: "space-between", gap: isMobile ? 16 : 0 }}>
             <div>
               <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.25em", marginBottom: 10, fontWeight: 500 }}>{showNext ? "NEXT TRIP" : "LAST TRIP"}</div>
-              <div style={{ fontSize: 44, fontWeight: 400, color: "#f0ece4", lineHeight: 1.1, letterSpacing: "-0.01em", fontFamily: "Georgia, serif" }}>
+              <div style={{ fontSize: isMobile ? 36 : 44, fontWeight: 400, color: "#f0ece4", lineHeight: 1.1, letterSpacing: "-0.01em", fontFamily: "Georgia, serif" }}>
                 {heroTitle.includes("&") ? (<>{heroTitle.split("&")[0].trim()}<br />&amp; {heroTitle.split("&")[1].trim()}</>) : heroTitle}
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 12 }}>
@@ -418,7 +439,7 @@ export default function Home() {
         </div>
 
         {/* ── STATS ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, padding: "16px 20px", background: "#161616", flexShrink: 0 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? 8 : 12, padding: isMobile ? "12px 16px" : "16px 20px", background: "#161616", flexShrink: 0 }}>
           {[
             { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" /></svg>, val: "10", label: "Trips Taken" },
             { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>, val: "8", label: "Countries Visited" },
@@ -436,10 +457,10 @@ export default function Home() {
         </div>
 
         {/* ── MAP + MEMORIES ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "6fr 4fr", gap: 12, padding: "0 20px 20px", alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "6fr 4fr", gap: isMobile ? 8 : 12, padding: isMobile ? "0 16px 16px" : "0 20px 20px", alignItems: "start" }}>
 
           {/* Map */}
-          <div style={{ background: "#1c1c1c", borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", padding: "16px 16px 0", overflow: "hidden", display: "flex", flexDirection: "column", height: 390 }}>
+          <div style={{ background: "#1c1c1c", borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", padding: "16px 16px 0", overflow: "hidden", display: "flex", flexDirection: "column", height: isMobile ? 240 : 390 }}>
             <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.18em", fontWeight: 600, marginBottom: 4 }}>WHERE I&apos;VE BEEN</div>
             <div style={{ flex: 1, minHeight: 0 }}>
               <AmMap onHover={(name, x, y) => { setHoveredCountry(name); if (x && y) setTooltipPos({ x, y }); }} />
@@ -469,12 +490,36 @@ export default function Home() {
         </div>
 
         {/* ── QUOTE ── */}
-        <div style={{ margin: "0 20px 20px", background: "#1c1c1c", borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", padding: "24px 32px", backgroundImage: "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778591728/Quote_xmqyit.jpg)", backgroundSize: "cover", backgroundPosition: "center 65%", display: "flex", alignItems: "center", gap: 20 }}>
+        <div style={{ margin: isMobile ? "0 16px 16px" : "0 20px 20px", background: "#1c1c1c", borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", padding: isMobile ? "20px 24px" : "24px 32px", backgroundImage: "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778591728/Quote_xmqyit.jpg)", backgroundSize: "cover", backgroundPosition: "center 65%", display: "flex", alignItems: "center", gap: 20 }}>
           <span style={{ fontSize: 48, color: "#c4a882", opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginTop: -8 }}>&ldquo;</span>
           <div>
             <div style={{ fontSize: 15, color: "#c4a882", fontStyle: "italic", fontFamily: "Georgia, serif" }}>For the moments that stayed.</div>
           </div>
         </div>
+
+        {/* ── MOBILE TRIP LIST ── */}
+        {isMobile && (
+          <div style={{ padding: "0 16px 32px" }}>
+            <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.18em", fontWeight: 600, marginBottom: 12 }}>ALL TRIPS</div>
+            {TRIPS.map(({ year, list }) => (
+              <div key={year} style={{ marginBottom: 16 }}>
+                <div style={{ fontSize: 10, color: "#3a3a3a", letterSpacing: "0.15em", marginBottom: 8, fontWeight: 600 }}>{year}</div>
+                {list.map(trip => (
+                  <a key={trip.id} href={trip.href} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 12, padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+                    <div style={{ width: 36, height: 36, borderRadius: 6, overflow: "hidden", flexShrink: 0, background: "#222" }}>
+                      {trip.img && <img src={trip.img} style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.85 }} />}
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontSize: 13, color: "#aaa" }}>{trip.title}</div>
+                      <div style={{ fontSize: 10, color: "#444", marginTop: 2 }}>{trip.date}</div>
+                    </div>
+                    {trip.status === "next" && <span style={{ fontSize: 9, padding: "2px 7px", borderRadius: 10, background: "rgba(122,158,126,0.15)", color: "#7a9e7e" }}>next</span>}
+                  </a>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
 
       </div>
     </div>
