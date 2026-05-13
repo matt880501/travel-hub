@@ -11,23 +11,24 @@ const BG = "#f2ede3";
 const TEXT = "#1c2c2c";
 const MUTED = "#7a9898";
 
-const GALLERY = [
-  { src: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682135/BOs1_c10ey9.jpg", caption: "迎賓酒，到了" },
-  { src: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682136/BOs2_qlgxli.jpg", caption: "Day 1 晚餐" },
-  { src: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682136/BOs3_qmavdd.jpg", caption: "出海追海豚" },
-  { src: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682137/BOs4_gz4cd6.jpg", caption: "我們的船" },
-  { src: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682143/BOs5_scqgut.jpg", caption: "Ubeco" },
-  { src: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682136/BOs6_uagkz4.jpg", caption: "巧克力山" },
-  { src: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682136/BOs7_vicepb.jpg", caption: "Goodbye Amorita" },
-  { src: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682141/BOs8_szrdgw.jpg", caption: "Amorita 最棒的晚餐" },
-  { src: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682146/BOs9_jvpq3m.jpg", caption: "超可怕水母" },
-  { src: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682143/BOs10_gmt3jk.jpg", caption: "Bohol's Sky" },
-  { src: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682142/BOs11_osze22.jpg", caption: "眼鏡猴" },
+const GALLERY: { url: string; caption: string; location: string; }[] = [
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682135/BOs1_c10ey9.jpg", caption: "Welcome cocktail", location: "Amorita Resort" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682136/BOs2_qlgxli.jpg", caption: "章魚，Day 1 dinner", location: "Amorita" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682136/BOs3_qmavdd.jpg", caption: "Chasing dolphins", location: "Balicasag Island" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682137/BOs4_gz4cd6.jpg", caption: "Our ride for the day", location: "Bohol Sea" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682143/BOs5_scqgut.jpg", caption: "Ubeco pasta & wine", location: "Alona, Panglao" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682136/BOs6_uagkz4.jpg", caption: "Chocolate Hills", location: "Carmen, Bohol" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682136/BOs7_vicepb.jpg", caption: "Goodbye Amorita", location: "Panglao" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682141/BOs8_szrdgw.jpg", caption: "Best dinner of the trip", location: "Saffron, Amorita" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682146/BOs9_jvpq3m.jpg", caption: "超可怕水母", location: "Moalboal" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682143/BOs10_gmt3jk.jpg", caption: "Bohol's sky", location: "Panglao" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682142/BOs11_osze22.jpg", caption: "Tarsier，眼鏡猴", location: "Tarsier Sanctuary" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682145/BOs12_a50luk.jpg", caption: "Morning at Amorita", location: "Amorita Resort" },
 ];
 
 const ITINERARY: Day[] = [
   {
-    day: "DAY 1", date: "Hello Bohol", location: "Taipei → Cebu → Bohol",
+    day: "DAY 1", date: "Oct 22, Wed", location: "Taipei → Cebu → Bohol",
     items: [
       { time: "07:00", text: "STARLUX 起飛，台北飛宿霧", cat: "transit" },
       { time: "09:50", text: "降落宿霧 CEB", cat: "transit", note: "抵達菲律賓。" },
@@ -39,7 +40,7 @@ const ITINERARY: Day[] = [
     ]
   },
   {
-    day: "DAY 2", date: "Adventure & Chill", location: "Balicasag Island · Alona Beach",
+    day: "DAY 2", date: "Oct 23, Thu", location: "Balicasag Island · Alona Beach",
     items: [
       { time: "06:30", text: "飯店接送出發", cat: "transit" },
       { time: "07:30", text: "前往 Balicasag Island 追海豚", cat: "dive" },
@@ -51,7 +52,7 @@ const ITINERARY: Day[] = [
     ]
   },
   {
-    day: "DAY 3", date: "Bohol Land Tour", location: "Chocolate Hills · Tarsier · Bee Farm",
+    day: "DAY 3", date: "Oct 24, Fri", location: "Chocolate Hills · Tarsier · Bee Farm",
     items: [
       { time: "07:30", text: "早餐", cat: "cafe" },
       { time: "08:30", text: "出發，薄荷島陸地之旅", cat: "transit" },
@@ -63,7 +64,7 @@ const ITINERARY: Day[] = [
     ]
   },
   {
-    day: "DAY 4", date: "Sardine Run & BBQ", location: "Moalboal · Amorita Saffron",
+    day: "DAY 4", date: "Oct 25, Sat", location: "Moalboal · Amorita Saffron",
     items: [
       { time: "07:00", text: "晨間瑜珈", cat: "sight" },
       { time: "08:00", text: "早餐", cat: "cafe" },
@@ -73,7 +74,7 @@ const ITINERARY: Day[] = [
     ]
   },
   {
-    day: "DAY 5", date: "Goodbye, Bohol", location: "Bohol → Cebu → Taipei",
+    day: "DAY 5", date: "Oct 26, Sun", location: "Bohol → Cebu → Taipei",
     items: [
       { time: "早上", text: "Amorita 最後時光", cat: "sight" },
       { time: "11:40", text: "薄荷島渡輪出發", cat: "transit" },
@@ -100,25 +101,39 @@ function CatIcon({ cat }: { cat?: Category }) {
 
 function GalleryImage({ img, index, onClick, isMobile }: { img: typeof GALLERY[0]; index: number; onClick: () => void; isMobile: boolean }) {
   const [active, setActive] = useState(false);
+  const show = isMobile ? active : active;
+
+  const handleClick = () => {
+    if (isMobile) { setActive(o => !o); }
+    else { onClick(); }
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: (index % 6) * 0.06 }}
-      style={{ position: "relative", overflow: "hidden", aspectRatio: "4/3", cursor: "pointer", background: "rgba(28,44,44,0.06)" }}
-      onClick={() => { if (isMobile) { setActive(o => !o); } else { onClick(); } }}
+      transition={{ duration: 0.6, delay: index * 0.04 }}
       onMouseEnter={() => { if (!isMobile) setActive(true); }}
       onMouseLeave={() => { if (!isMobile) setActive(false); }}
+      onClick={handleClick}
+      style={{ position: "relative", borderRadius: 2, overflow: "hidden", cursor: isMobile ? "pointer" : "zoom-in", marginBottom: isMobile ? 6 : 10, breakInside: "avoid" }}
     >
-      <img
-        src={img.src}
-        alt={img.caption}
-        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease", transform: active && !isMobile ? "scale(1.05)" : "scale(1)" }}
-      />
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%)", padding: "28px 14px 12px", opacity: active ? 1 : 0, transition: "opacity 0.3s ease", pointerEvents: "none" }}>
-        <p style={{ margin: 0, fontSize: 11, color: "rgba(255,255,255,0.92)", letterSpacing: "0.04em" }}>{img.caption}</p>
-      </div>
+      <img src={img.url} alt={img.caption} style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: (!isMobile && active) ? "scale(1.03)" : "scale(1)" }} />
+      <AnimatePresence>
+        {show && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 55%)", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: isMobile ? "12px 10px" : "20px 16px" }}
+          >
+            <div style={{ fontSize: isMobile ? 10 : 12, color: "rgba(255,255,255,0.9)", fontStyle: "italic", fontFamily: "Georgia, serif", lineHeight: 1.4 }}>{img.caption}</div>
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.45)", letterSpacing: "0.12em", marginTop: 3 }}>{img.location}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
@@ -177,37 +192,49 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
 }
 
 export default function Bohol() {
+  const [lightbox, setLightbox] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [lightbox, setLightbox] = useState<number | null>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  const col1 = [GALLERY[0], GALLERY[3], GALLERY[6], GALLERY[9]];
+  const col2 = [GALLERY[1], GALLERY[4], GALLERY[7], GALLERY[10]];
+  const col3 = [GALLERY[2], GALLERY[5], GALLERY[8], GALLERY[11]];
 
   return (
     <div style={{ minHeight: "100vh", background: BG, fontFamily: "-apple-system, 'Helvetica Neue', sans-serif", color: TEXT }}>
 
-      {/* Nav */}
-      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "16px 20px" : "18px 40px", background: "rgba(242,237,227,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(28,44,44,0.08)` }}>
-        {isMobile ? (
-          <a href="/" style={{ fontSize: 10, letterSpacing: "0.15em", color: MUTED, textDecoration: "none" }}>← BOHOL</a>
-        ) : (
-          <div style={{ fontSize: 10, letterSpacing: "0.2em", color: MUTED }}>
-            <a href="/" style={{ color: MUTED, textDecoration: "none" }}>MATT</a>
-            <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
-            <a href="/" style={{ color: MUTED, textDecoration: "none" }}>TRAVEL ARCHIVE</a>
-            <span style={{ margin: "0 10px", opacity: 0.4 }}>/</span>
-            <span style={{ color: TEXT }}>BOHOL</span>
-          </div>
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightbox(null)}
+            style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.95)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", cursor: "zoom-out" }}
+          >
+            <img src={lightbox} style={{ maxWidth: "90vw", maxHeight: "90vh", objectFit: "contain" }} />
+          </motion.div>
         )}
-        {!isMobile && <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.15em" }}>PHILIPPINES · 5 DAYS</div>}
+      </AnimatePresence>
+
+      {/* Nav */}
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "14px 20px" : "18px 40px", background: "rgba(242,237,227,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(28,44,44,0.08)` }}>
+        <div style={{ fontSize: 10, letterSpacing: "0.2em", color: MUTED }}>
+          {!isMobile && <><a href="/" style={{ color: MUTED, textDecoration: "none" }}>MATT</a><span style={{ margin: "0 10px", opacity: 0.4 }}>/</span><a href="/" style={{ color: MUTED, textDecoration: "none" }}>TRAVEL ARCHIVE</a><span style={{ margin: "0 10px", opacity: 0.4 }}>/</span></>}
+          {isMobile && <a href="/" style={{ color: MUTED, textDecoration: "none", marginRight: 10 }}>←</a>}
+          <span style={{ color: TEXT }}>BOHOL</span>
+        </div>
+        {!isMobile && <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.15em" }}>OCT 22 – 26, 2025</div>}
       </div>
 
       {/* Hero */}
@@ -221,12 +248,12 @@ export default function Bohol() {
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.02) 30%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.88) 100%)" }} />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 60%)" }} />
 
-        <motion.div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 48px" : "0 40px 60px", opacity: heroOpacity }}>
+        <motion.div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 32px" : "0 40px 48px", opacity: heroOpacity }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            style={{ fontSize: isMobile ? "clamp(52px, 14vw, 80px)" : "clamp(64px, 9vw, 120px)", fontWeight: 300, color: "#fff", lineHeight: 0.95, letterSpacing: "-0.02em", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 24 }}
+            style={{ fontSize: isMobile ? "clamp(52px, 14vw, 80px)" : "clamp(64px, 9vw, 120px)", fontWeight: 300, color: "#fff", lineHeight: 0.95, letterSpacing: "-0.02em", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 20 }}
           >
             Bohol
           </motion.div>
@@ -236,59 +263,33 @@ export default function Bohol() {
             transition={{ duration: 0.8, delay: 0.5 }}
             style={{ display: "flex", alignItems: "center", gap: isMobile ? 12 : 24, flexWrap: "wrap" }}
           >
-            <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>Philippines</span>
+            <span style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", letterSpacing: "0.05em" }}>Autumn 2025</span>
             <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} />
-            <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>5 Days</span>
+            <span style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", letterSpacing: "0.05em" }}>5 Days</span>
             {!isMobile && (
               <>
                 <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} />
-                <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>Amorita · Balicasag · Chocolate Hills</span>
+                <span style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", letterSpacing: "0.05em" }}>Philippines</span>
               </>
             )}
           </motion.div>
         </motion.div>
-      </div>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightbox !== null && (
+        {!isMobile && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 500, background: "rgba(0,0,0,0.93)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
-            onClick={() => setLightbox(null)}
+            transition={{ delay: 1.2 }}
+            style={{ position: "absolute", right: 40, bottom: 48, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
           >
-            <img src={GALLERY[lightbox].src} alt={GALLERY[lightbox].caption} style={{ maxWidth: "90vw", maxHeight: "85vh", objectFit: "contain" }} />
-            <div style={{ position: "absolute", bottom: 32, left: 0, right: 0, textAlign: "center", fontSize: 12, color: "rgba(255,255,255,0.55)", letterSpacing: "0.06em" }}>
-              {GALLERY[lightbox].caption}
-            </div>
-            <button onClick={e => { e.stopPropagation(); setLightbox(null); }} style={{ position: "absolute", top: 20, right: 24, background: "none", border: "none", color: "rgba(255,255,255,0.45)", fontSize: 28, cursor: "pointer", lineHeight: 1 }}>×</button>
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.2em", writingMode: "vertical-rl" }}>SCROLL</div>
+            <div style={{ width: 0.5, height: 40, background: "rgba(255,255,255,0.2)" }} />
           </motion.div>
         )}
-      </AnimatePresence>
+      </div>
 
       {/* Main content */}
       <div style={{ maxWidth: 860, margin: "0 auto", padding: isMobile ? "60px 20px" : "80px 40px" }}>
-
-        {/* Gallery */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          style={{ marginBottom: 96 }}
-        >
-          <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 32 }}>
-            <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>GALLERY</span>
-            <div style={{ flex: 1, height: 0.5, background: "rgba(27,128,128,0.2)" }} />
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(3, 1fr)", gap: isMobile ? 6 : 10 }}>
-            {GALLERY.map((img, i) => (
-              <GalleryImage key={i} img={img} index={i} isMobile={isMobile} onClick={() => setLightbox(i)} />
-            ))}
-          </div>
-        </motion.div>
 
         {/* Itinerary */}
         <motion.div
@@ -324,6 +325,28 @@ export default function Bohol() {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Photographs */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          style={{ marginBottom: 96 }}
+        >
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 32 }}>
+            <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>PHOTOGRAPHS</span>
+            <div style={{ flex: 1, height: 0.5, background: "rgba(27,128,128,0.2)" }} />
+          </div>
+          <div style={{ display: "flex", gap: isMobile ? 6 : 10 }}>
+            {[col1, col2, col3].map((col, ci) => (
+              <div key={ci} style={{ flex: 1 }}>
+                {col.map((img, i) => (
+                  <GalleryImage key={i} img={img} index={ci * 4 + i} onClick={() => setLightbox(img.url)} isMobile={isMobile} />
+                ))}
+              </div>
+            ))}
+          </div>
         </motion.div>
 
         {/* Metadata footer */}
