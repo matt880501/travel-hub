@@ -150,6 +150,28 @@ function GalleryImage({ img, index, onClick, isMobile }: { img: typeof GALLERY[0
   );
 }
 
+function ExtraItem({ e }: { e: { text: string; note: string } }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div onClick={() => setOpen(o => !o)} style={{ cursor: "pointer", padding: "14px 0", borderBottom: `0.5px solid rgba(47,43,39,0.1)`, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+      <div>
+        <div style={{ fontSize: 14, color: TEXT }}>{e.text}</div>
+        <AnimatePresence>
+          {open && (
+            <motion.p
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: "8px 0 0", fontStyle: "italic", overflow: "hidden" }}
+            >{e.note}</motion.p>
+          )}
+        </AnimatePresence>
+      </div>
+      <span style={{ fontSize: 10, color: MUTED, opacity: 0.5, paddingTop: 3 }}>{open ? "−" : "+"}</span>
+    </div>
+  );
+}
+
 function TimelineItem({ item, index }: { item: Item; index: number }) {
   const [open, setOpen] = useState(false);
   return (
@@ -256,7 +278,7 @@ export default function ChiangMai() {
       </div>
 
       {/* Hero */}
-      <div ref={heroRef} style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
+      <div ref={heroRef} style={{ position: "relative", height: "100vh", overflow: "hidden", background: "#2a1f1a" }}>
         <motion.div
           style={{ position: "absolute", inset: "-10% 0", backgroundImage: "url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg)", backgroundSize: "cover", backgroundPosition: "center 30%", y: heroY }}
         />
@@ -361,27 +383,7 @@ export default function ChiangMai() {
             <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>NOTES</span>
             <div style={{ flex: 1, height: 0.5, background: `rgba(156,124,90,0.2)` }} />
           </div>
-          {EXTRAS.map((e, i) => {
-            const [open, setOpen] = useState(false);
-            return (
-              <div key={i} onClick={() => setOpen(o => !o)} style={{ cursor: "pointer", padding: "14px 0", borderBottom: `0.5px solid rgba(47,43,39,0.1)`, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                <div>
-                  <div style={{ fontSize: 14, color: TEXT }}>{e.text}</div>
-                  <AnimatePresence>
-                    {open && (
-                      <motion.p
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: "8px 0 0", fontStyle: "italic", overflow: "hidden" }}
-                      >{e.note}</motion.p>
-                    )}
-                  </AnimatePresence>
-                </div>
-                <span style={{ fontSize: 10, color: MUTED, opacity: 0.5, paddingTop: 3 }}>{open ? "−" : "+"}</span>
-              </div>
-            );
-          })}
+          {EXTRAS.map((e, i) => <ExtraItem key={i} e={e} />)}
         </motion.div>
 
         {/* Gallery */}
