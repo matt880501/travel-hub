@@ -188,7 +188,7 @@ export default function SingaporeBintan() {
       {/* Hero */}
       <div ref={heroRef} style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
         <motion.div
-          style={{ position: "absolute", inset: "-10% 0", backgroundImage: "url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg)", backgroundSize: "cover", backgroundPosition: "center 40%", y: heroY }}
+          style={{ position: "absolute", top: "-10%", left: 0, right: 0, height: "120%", backgroundImage: "url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg)", backgroundSize: "cover", backgroundPosition: "center 40%", y: heroY }}
         />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.45) 70%, rgba(0,0,0,0.8) 100%)" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 60%)" }} />
