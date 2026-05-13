@@ -194,7 +194,7 @@ export default function Canada() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 60%)" }} />
 
         <motion.div
-          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 48px" : "0 40px 60px", opacity: heroOpacity, display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}
+          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 48px" : "0 40px 60px 40px", paddingRight: isMobile ? "20px" : "80px", opacity: heroOpacity, display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}
         >
           <div>
             <motion.div
@@ -228,6 +228,18 @@ export default function Canada() {
             </motion.div>
           )}
         </motion.div>
+
+        {!isMobile && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+            style={{ position: "absolute", right: 24, bottom: 60, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
+          >
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", letterSpacing: "0.2em", writingMode: "vertical-rl" }}>SCROLL</div>
+            <div style={{ width: 0.5, height: 40, background: "rgba(255,255,255,0.2)" }} />
+          </motion.div>
+        )}
 
       </div>
 
