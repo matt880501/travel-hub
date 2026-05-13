@@ -162,7 +162,7 @@ function WorldMap({ visited, onHover }: {
 }
 
 
-function Countdown({ targetDate }: { targetDate: Date }) {
+function Countdown({ targetDate, compact = false }: { targetDate: Date; compact?: boolean }) {
   const [time, setTime] = useState({ days: 0, hrs: 0, min: 0 });
   useEffect(() => {
     const calc = () => {
@@ -180,13 +180,13 @@ function Countdown({ targetDate }: { targetDate: Date }) {
   }, [targetDate]);
 
   return (
-    <div style={{ display: "flex", gap: 8, background: "rgba(15,15,15,0.7)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: "18px 24px" }}>
+    <div style={{ display: "flex", gap: compact ? 4 : 8, background: "rgba(15,15,15,0.7)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: compact ? 12 : 16, padding: compact ? "10px 14px" : "18px 24px" }}>
       {([["days", time.days], ["hrs", time.hrs], ["min", time.min]] as [string, number][]).map(([label, val]) => (
-        <div key={label} style={{ textAlign: "center", minWidth: 52 }}>
-          <div style={{ fontSize: 36, fontWeight: 300, color: "#f0ece4", lineHeight: 1, letterSpacing: "-0.02em", fontFamily: "Georgia, serif" }}>
+        <div key={label} style={{ textAlign: "center", minWidth: compact ? 34 : 52 }}>
+          <div style={{ fontSize: compact ? 22 : 36, fontWeight: 300, color: "#f0ece4", lineHeight: 1, letterSpacing: "-0.02em", fontFamily: "Georgia, serif" }}>
             {String(val).padStart(2, "0")}
           </div>
-          <div style={{ fontSize: 10, color: "#666", letterSpacing: "0.15em", marginTop: 5, textTransform: "uppercase" }}>{label}</div>
+          <div style={{ fontSize: compact ? 8 : 10, color: "#666", letterSpacing: "0.15em", marginTop: compact ? 3 : 5, textTransform: "uppercase" }}>{label}</div>
         </div>
       ))}
     </div>
@@ -199,6 +199,7 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [showMemories, setShowMemories] = useState(false);
   const [showMap, setShowMap] = useState(false);
+  const [showTrips, setShowTrips] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   const [showNext, setShowNext] = useState(true);
@@ -238,15 +239,78 @@ export default function Home() {
       {/* Mobile top bar */}
       {isMobile && (
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 200, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 20px", background: "rgba(22,22,22,0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-          <div>
-            <div style={{ fontSize: 16, fontWeight: 600, color: "#f0ece4", letterSpacing: "0.02em" }}>MATT</div>
-            <div style={{ fontSize: 9, color: "#c4a882", letterSpacing: "0.18em" }}>TRAVEL ARCHIVE</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <button onClick={() => setShowTrips(o => !o)} style={{ background: "none", border: "none", cursor: "pointer", color: "#888", padding: 0, display: "flex", flexDirection: "column", gap: 4 }}>
+              <span style={{ display: "block", width: 18, height: 1.5, background: "#888", borderRadius: 1 }} />
+              <span style={{ display: "block", width: 14, height: 1.5, background: "#888", borderRadius: 1 }} />
+              <span style={{ display: "block", width: 18, height: 1.5, background: "#888", borderRadius: 1 }} />
+            </button>
+            <div>
+              <div style={{ fontSize: 15, fontWeight: 600, color: "#f0ece4", letterSpacing: "0.02em" }}>MATT</div>
+              <div style={{ fontSize: 9, color: "#c4a882", letterSpacing: "0.18em" }}>TRAVEL ARCHIVE</div>
+            </div>
           </div>
           <div style={{ display: "flex", gap: 8 }}>
             <button onClick={() => setShowMemories(true)} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, padding: "6px 12px", cursor: "pointer", color: "#888", fontSize: 11 }}>Photos</button>
             <button onClick={() => setShowMap(true)} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, padding: "6px 12px", cursor: "pointer", color: "#888", fontSize: 11 }}>Map</button>
           </div>
         </div>
+      )}
+
+      {/* Mobile trips drawer */}
+      {isMobile && (
+        <>
+          {showTrips && (
+            <div onClick={() => setShowTrips(false)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)", zIndex: 250, backdropFilter: "blur(2px)" }} />
+          )}
+          <div style={{ position: "fixed", top: 0, left: 0, bottom: 0, width: 260, zIndex: 300, background: "#161616", borderRight: "1px solid rgba(255,255,255,0.06)", display: "flex", flexDirection: "column", transform: showTrips ? "translateX(0)" : "translateX(-100%)", transition: "transform 0.3s cubic-bezier(0.4,0,0.2,1)", overflowY: "auto" }}>
+            <div style={{ padding: "20px 20px 12px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+              <div>
+                <div style={{ fontSize: 15, fontWeight: 600, color: "#f0ece4" }}>MATT</div>
+                <div style={{ fontSize: 9, color: "#c4a882", letterSpacing: "0.18em" }}>TRAVEL ARCHIVE</div>
+              </div>
+              <button onClick={() => setShowTrips(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#555", fontSize: 20, lineHeight: 1, padding: 4 }}>×</button>
+            </div>
+            <div style={{ flex: 1, padding: "12px 8px", overflowY: "auto" }}>
+              {upcomingTrip && (
+                <>
+                  <div style={{ padding: "4px 8px 8px", fontSize: 11, color: "#555", letterSpacing: "0.12em" }}>Upcoming</div>
+                  <a href={upcomingTrip.href} onClick={() => setShowTrips(false)} style={{ textDecoration: "none", display: "block" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 10px", borderRadius: 8, marginBottom: 4, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                      <div style={{ width: 36, height: 36, borderRadius: 6, overflow: "hidden", flexShrink: 0, background: "#2a2a2a" }}>
+                        {upcomingTrip.img && <img src={upcomingTrip.img} style={{ width: "100%", height: "100%", objectFit: "cover" }} />}
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 12, color: "#e8e4dc", fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{upcomingTrip.title}</div>
+                        <div style={{ fontSize: 10, color: "#666", marginTop: 2 }}>{upcomingTrip.fullDate}</div>
+                      </div>
+                      <span style={{ fontSize: 9, padding: "2px 7px", borderRadius: 10, background: "rgba(122,158,126,0.15)", color: "#7a9e7e", flexShrink: 0 }}>next</span>
+                    </div>
+                  </a>
+                </>
+              )}
+              <div style={{ padding: "12px 8px 8px", fontSize: 11, color: "#555", letterSpacing: "0.12em" }}>Trips</div>
+              {TRIPS.map(({ year, list }) => (
+                <div key={year} style={{ marginBottom: 12 }}>
+                  <div style={{ fontSize: 10, color: "#3a3a3a", letterSpacing: "0.15em", padding: "2px 10px 6px", fontWeight: 600 }}>{year}</div>
+                  {list.map(trip => (
+                    <a key={trip.id} href={trip.href} onClick={() => setShowTrips(false)} style={{ textDecoration: "none", display: "block" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "7px 10px", borderRadius: 7, marginBottom: 1, borderLeft: trip.id === upcomingTrip?.id ? "2px solid #c4a882" : "2px solid transparent" }}>
+                        <div style={{ width: 30, height: 30, borderRadius: 5, overflow: "hidden", flexShrink: 0, background: "#222" }}>
+                          {trip.img && <img src={trip.img} style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.8 }} />}
+                        </div>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ fontSize: 12, color: "#aaa", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{trip.title}</div>
+                          <div style={{ fontSize: 10, color: "#444", marginTop: 1 }}>{trip.date}</div>
+                        </div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
       )}
 
       {/* Map Modal */}
@@ -417,9 +481,6 @@ export default function Home() {
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.3) 60%, rgba(10,10,10,0.1) 100%)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 50%)" }} />
 
-          <div style={{ position: "absolute", top: 20, right: 24, display: "flex", alignItems: "center", gap: 12, zIndex: 2 }}>
-            <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg, #c4a882, #8a7060)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 600, color: "#fff", border: "2px solid rgba(255,255,255,0.15)" }}>YC</div>
-          </div>
 
           <div style={{ position: "absolute", bottom: isMobile ? 28 : 36, left: isMobile ? 20 : 36, right: isMobile ? 20 : 36, zIndex: 2, display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "flex-end", justifyContent: "space-between", gap: isMobile ? 16 : 0 }}>
             <div>
@@ -434,7 +495,7 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            {showNext && <Countdown targetDate={heroCountdown} />}
+            {showNext && <Countdown targetDate={heroCountdown} compact={isMobile} />}
           </div>
         </div>
 
@@ -497,29 +558,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── MOBILE TRIP LIST ── */}
-        {isMobile && (
-          <div style={{ padding: "0 16px 32px" }}>
-            <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.18em", fontWeight: 600, marginBottom: 12 }}>ALL TRIPS</div>
-            {TRIPS.map(({ year, list }) => (
-              <div key={year} style={{ marginBottom: 16 }}>
-                <div style={{ fontSize: 10, color: "#3a3a3a", letterSpacing: "0.15em", marginBottom: 8, fontWeight: 600 }}>{year}</div>
-                {list.map(trip => (
-                  <a key={trip.id} href={trip.href} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 12, padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-                    <div style={{ width: 36, height: 36, borderRadius: 6, overflow: "hidden", flexShrink: 0, background: "#222" }}>
-                      {trip.img && <img src={trip.img} style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.85 }} />}
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 13, color: "#aaa" }}>{trip.title}</div>
-                      <div style={{ fontSize: 10, color: "#444", marginTop: 2 }}>{trip.date}</div>
-                    </div>
-                    {trip.status === "next" && <span style={{ fontSize: 9, padding: "2px 7px", borderRadius: 10, background: "rgba(122,158,126,0.15)", color: "#7a9e7e" }}>next</span>}
-                  </a>
-                ))}
-              </div>
-            ))}
-          </div>
-        )}
 
       </div>
     </div>
