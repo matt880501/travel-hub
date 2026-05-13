@@ -57,6 +57,7 @@ const TRIPS = [
 ];
 
 const MEMORIES = [
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669488/NG1_cfqqat.jpg", label: "Nagoya · Takayama" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg", label: "Chiang Mai" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg", label: "Bintan" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430033/NZ1_vuque7.jpg", label: "New Zealand" },
