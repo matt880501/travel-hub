@@ -30,13 +30,12 @@ const ITINERARY: Day[] = [
   {
     day: "DAY 1", date: "Oct 22, Wed", location: "Taipei → Cebu → Bohol",
     items: [
-      { time: "07:00", text: "STARLUX 起飛，台北飛宿霧", cat: "transit" },
-      { time: "09:50", text: "降落宿霧 CEB", cat: "transit", note: "Arrive" },
+      { time: "07:00", text: "Depart Taipei (TPE)", cat: "transit", note: "薄荷島沒有直飛滿可惜的，清晨從台北出發下午四點才 check in，明明很近的地方" },
+      { time: "09:50", text: "Arrive Cebu (CEB)", cat: "transit" },
       { time: "13:00", text: "OceanJet 渡輪出發", cat: "transit", note: "Ocean jet~ Ocean jet~" },
       { time: "15:00", text: "抵達薄荷島", cat: "transit" },
       { time: "16:00", text: "入住 Amorita Resort", cat: "stay", note: "薄荷島懸崖邊的度假村，先去看海。" },
       { time: "傍晚", text: "泳池、沙灘放空", cat: "sight" },
-      { time: "19:00", text: "晚餐", cat: "food" },
       { time: "21:00", text: "飯店按摩", cat: "spa" },
     ]
   },
@@ -46,17 +45,14 @@ const ITINERARY: Day[] = [
       { time: "06:30", text: "飯店接送出發", cat: "transit" },
       { time: "07:30", text: "前往 Balicasag Island 追海豚", cat: "dive" },
       { time: "08:00", text: "浮潛 & 潛水", cat: "dive" },
-      { time: "11:00", text: "海邊午餐", cat: "food" },
       { time: "15:00", text: "Alona Beach SUP & 獨木舟", cat: "dive" },
       { time: "17:30", text: "Ubeco 晚餐", cat: "food", mapUrl: "http://www.ubeco-bohol.com", note: "非常有名的餐廳，但薄荷島背後的老闆都是韓國人" },
-      { time: "20:00", text: "酪梨足療", cat: "spa", note: "王造博10分鐘開始打呼笑死" },
+      { time: "20:00", text: "Avocado massage", cat: "spa", note: "王造博10分鐘開始打呼笑死" },
     ]
   },
   {
     day: "DAY 3", date: "Oct 24, Fri", location: "Chocolate Hills · Tarsier · Bee Farm",
     items: [
-      { time: "07:30", text: "早餐", cat: "cafe" },
-      { time: "08:30", text: "出發，薄荷島陸地之旅", cat: "transit" },
       { time: "10:00", text: "巧克力山", cat: "sight", note: "1,268 座錐形小山，乾季會轉成棕色，像一顆顆巧克力。" },
       { time: "11:30", text: "拜訪眼鏡猴", cat: "sight", note: "聽說大聲講話他會嚇到，然後會不吃東西餓死= =" },
       { time: "13:00", text: "Bohol Bee Farm 午餐", cat: "food" },
@@ -67,8 +63,6 @@ const ITINERARY: Day[] = [
   {
     day: "DAY 4", date: "Oct 25, Sat", location: "Moalboal · Amorita Saffron",
     items: [
-      { time: "07:00", text: "晨間瑜珈", cat: "sight" },
-      { time: "08:00", text: "早餐", cat: "cafe" },
       { time: "10:00", text: "沙丁魚風暴", cat: "dive", note: "超多，還看到毒水母" },
       { time: "15:00", text: "按摩放鬆", cat: "spa" },
       { time: "19:00", text: "Amorita Saffron Restaurant — 烤肉晚餐", cat: "food", note: "日落、海風，Perfect night" },
@@ -81,8 +75,7 @@ const ITINERARY: Day[] = [
       { time: "11:40", text: "薄荷島渡輪出發", cat: "transit" },
       { time: "13:40", text: "抵達宿霧", cat: "transit" },
       { time: "14:30", text: "Alaya Mall", cat: "food" },
-      { time: "15:00", text: "前往宿霧機場", cat: "transit" },
-      { time: "19:45", text: "宿霧起飛，返台", cat: "transit", note: "Nothing beats a jet2 holiday" },
+      { time: "19:45", text: "Depart Cebu (CEB)", cat: "transit", note: "Nothing beats a jet2 holiday" },
     ]
   },
 ];
