@@ -419,7 +419,7 @@ export default function ChiangMai() {
           style={{ borderTop: `0.5px solid rgba(47,43,39,0.15)`, paddingTop: 40 }}
         >
           <div style={{ fontSize: 10, color: "#9a8f85", letterSpacing: "0.2em", marginBottom: 24 }}>ABOUT THIS TRIP</div>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(5, 1fr)", gap: isMobile ? 24 : 32 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(5, 1fr)", gap: isMobile ? 24 : 32, margin: isMobile ? "0" : "0 -80px" }}>
             {[
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "22°C — 31°C", sub: "Warm and pleasant" },
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>, label: "CURRENCY", value: "THB", sub: "Thai Baht" },

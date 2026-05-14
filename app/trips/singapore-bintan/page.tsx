@@ -291,7 +291,7 @@ export default function SingaporeBintan() {
           style={{ borderTop: `0.5px solid rgba(30,42,42,0.15)`, paddingTop: 40 }}
         >
           <div style={{ fontSize: 10, color: "#7a9090", letterSpacing: "0.2em", marginBottom: 24 }}>ABOUT THIS TRIP</div>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(5, 1fr)", gap: isMobile ? 24 : 32 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(5, 1fr)", gap: isMobile ? 24 : 32, margin: isMobile ? "0" : "0 -80px" }}>
             {[
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "28°C — 33°C", sub: "Hot and humid" },
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>, label: "CURRENCY", value: "SGD / IDR", sub: "Singapore · Indonesia" },
