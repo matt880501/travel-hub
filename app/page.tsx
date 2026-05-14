@@ -59,9 +59,8 @@ const TRIPS = [
 const MEMORIES = [
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669488/NG1_cfqqat.jpg", label: "Nagoya · Takayama" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg", label: "Chiang Mai" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg", label: "Bintan" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg", label: "Bohol Island" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430033/NZ1_vuque7.jpg", label: "New Zealand" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430733/BO1_lbvlfo.jpg", label: "Bohol Island" },
 ];
 
 const VISITED = ["Japan", "Philippines", "Australia", "New Zealand", "Thailand", "Egypt", "Austria", "Czechia", "Czech Republic"];
