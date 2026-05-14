@@ -47,7 +47,7 @@ const ITINERARY: Day[] = [
       { time: "08:00", text: "浮潛 & 潛水", cat: "dive" },
       { time: "15:00", text: "Alona Beach SUP & 獨木舟", cat: "dive", mapUrl: "https://www.google.com/maps/search/Alona+Beach+Panglao+Bohol" },
       { time: "17:30", text: "Ubeco 晚餐", cat: "food", mapUrl: "http://www.ubeco-bohol.com", note: "非常有名的餐廳，但薄荷島背後的老闆都是韓國人" },
-      { time: "20:00", text: "Avocado massage", cat: "spa", note: "王造博10分鐘開始打呼笑死" },
+      { time: "20:00", text: "Avocado massage", cat: "spa", mapUrl: "https://www.google.com/maps/place/Avocado+footspa+%EC%95%84%EB%B3%B4%EC%B9%B4%EB%8F%84+%ED%92%8B%EC%8A%A4%ED%8C%8C/@9.5535498,123.7730817,19z/data=!3m1!4b1!4m6!3m5!1s0x33abad0ee7b40a29:0xf242465d5baaf28a!8m2!3d9.5535498!4d123.7737268!16s%2Fg%2F11wc4cd1hr", note: "王造博10分鐘開始打呼笑死" },
     ]
   },
   {
