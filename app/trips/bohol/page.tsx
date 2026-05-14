@@ -31,12 +31,13 @@ const ITINERARY: Day[] = [
     day: "DAY 1", date: "Oct 22, Wed", location: "Taipei → Cebu → Bohol",
     items: [
       { time: "07:00", text: "STARLUX 起飛，台北飛宿霧", cat: "transit" },
-      { time: "09:50", text: "降落宿霧 CEB", cat: "transit", note: "抵達菲律賓。" },
-      { time: "13:00", text: "OceanJet 渡輪出發", cat: "transit", note: "Ocean jet~ Ocean jet~，兩小時海上風景。" },
+      { time: "09:50", text: "降落宿霧 CEB", cat: "transit", note: "Arrive" },
+      { time: "13:00", text: "OceanJet 渡輪出發", cat: "transit", note: "Ocean jet~ Ocean jet~" },
       { time: "15:00", text: "抵達薄荷島", cat: "transit" },
       { time: "16:00", text: "入住 Amorita Resort", cat: "stay", note: "薄荷島懸崖邊的度假村，先去看海。" },
       { time: "傍晚", text: "泳池、沙灘放空", cat: "sight" },
       { time: "19:00", text: "晚餐", cat: "food" },
+      { time: "21:00", text: "飯店按摩", cat: "spa" },
     ]
   },
   {
@@ -47,8 +48,8 @@ const ITINERARY: Day[] = [
       { time: "08:00", text: "浮潛 & 潛水", cat: "dive" },
       { time: "11:00", text: "海邊午餐", cat: "food" },
       { time: "15:00", text: "Alona Beach SUP & 獨木舟", cat: "dive" },
-      { time: "17:30", text: "Ubeco 晚餐", cat: "food", mapUrl: "http://www.ubeco-bohol.com", note: "非常有名的餐廳，但薄荷島背後的老闆都是韓國人QQ" },
-      { time: "20:00", text: "酪梨足療", cat: "spa", note: "Avacado massage" },
+      { time: "17:30", text: "Ubeco 晚餐", cat: "food", mapUrl: "http://www.ubeco-bohol.com", note: "非常有名的餐廳，但薄荷島背後的老闆都是韓國人" },
+      { time: "20:00", text: "酪梨足療", cat: "spa", note: "王造博10分鐘開始打呼笑死" },
     ]
   },
   {
@@ -57,7 +58,7 @@ const ITINERARY: Day[] = [
       { time: "07:30", text: "早餐", cat: "cafe" },
       { time: "08:30", text: "出發，薄荷島陸地之旅", cat: "transit" },
       { time: "10:00", text: "巧克力山", cat: "sight", note: "1,268 座錐形小山，乾季會轉成棕色，像一顆顆巧克力。" },
-      { time: "11:30", text: "拜訪眼鏡猴", cat: "sight", note: "聽說大聲講話他會嚇到，然後會去自殺= =" },
+      { time: "11:30", text: "拜訪眼鏡猴", cat: "sight", note: "聽說大聲講話他會嚇到，然後會不吃東西餓死= =" },
       { time: "13:00", text: "Bohol Bee Farm 午餐", cat: "food" },
       { time: "15:00", text: "回 Amorita，游泳 / 追夕陽", cat: "sight", note: "Chill & relax" },
       { time: "19:00", text: "晚餐", cat: "food" },
