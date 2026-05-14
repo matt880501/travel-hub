@@ -42,7 +42,7 @@ const ITINERARY: Day[] = [
       { time: "10:30", text: "Mae Kampong Village & Waterfall", mapUrl: "https://www.google.com/maps/search/Mae+Kampong+Chiang+Mai", note: "溪流與森林包圍的百年木造村落，這裡滿不錯的。", cat: "sight" },
       { time: "13:00", text: "The Giant Chiang Mai", mapUrl: "https://www.google.com/maps/search/The+Giant+Chiang+Mai", note: "就是一棵大樹。", cat: "sight" },
       { time: "18:00", text: "Tong Tem Toh", mapUrl: "https://www.google.com/maps/search/Tong+Tem+Toh+Chiang+Mai", note: "尼曼路超人氣泰北料理，烤豬肉好吃。", cat: "food" },
-      { time: "20:00", text: "Sum Bamboo Massage", mapUrl: "https://www.google.com/maps/place/sum+bamboo+massage+(Nimman)", note: "Threads 上非常推的泰式按摩，很道地但很痛，想體驗可以去哈哈。", cat: "onsen" },
+      { time: "20:00", text: "Sum Bamboo Massage", mapUrl: "https://www.google.com/maps/place/sum+bamboo+massage+(Nimman)+%E0%B8%8B%E0%B8%B8%E0%B9%89%E0%B8%A1%E0%B9%84%E0%B8%9C%E0%B9%88+%E0%B8%A1%E0%B8%B2%E0%B8%AA%E0%B8%AA%E0%B8%B2%E0%B8%88+%E0%B8%AA%E0%B8%B2%E0%B8%82%E0%B8%B2%E0%B8%99%E0%B8%B4%E0%B8%A1%E0%B8%A1%E0%B8%B2%E0%B8%99/@18.796369,98.9668202,17.01z/data=!4m6!3m5!1s0x30da3b0e0f6a806f:0xbd51aa91ead11569!8m2!3d18.7955664!4d98.9685008!16s%2Fg%2F11ldg28_5s", note: "Threads 上非常推的泰式按摩，很道地但很痛，想體驗可以去哈哈。", cat: "onsen" },
     ]
   },
   {
