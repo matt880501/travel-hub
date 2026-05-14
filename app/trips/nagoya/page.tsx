@@ -13,7 +13,7 @@ const MUTED = "#7b8c9e";
 
 const GALLERY: { url: string; caption: string; location: string; }[] = [
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669510/NGs1_urilkf.jpg", caption: "Shirakawago viewpoint", location: "Shirakawago" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669512/NGs2_odfg7m.jpg", caption: "Snow-covered gasshō-zukuri", location: "Shirakawago" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669512/NGs2_odfg7m.jpg", caption: "合掌屋＆樹", location: "Shirakawago" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669508/NGs3_ow4lyu.jpg", caption: "麵屋優光", location: "Nagoya" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669506/NGs4_uhdwbt.jpg", caption: "Mont-bell, Chunichi Building", location: "Nagoya" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669504/NGs5_kzw07l.jpg", caption: "Sakae skyline", location: "Nagoya" },
@@ -22,7 +22,7 @@ const GALLERY: { url: string; caption: string; location: string; }[] = [
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669497/NGs8_nrritk.jpg", caption: "Tonkatsu MATUMURA", location: "Chunichi Building" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669494/NGs9_lqbzuk.jpg", caption: "Limited Express Hida", location: "en route to Takayama" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669494/NGs10_nelfn3.jpg", caption: "Snoopy Tea House", location: "Takayama Old Town" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669490/NGs11_yvyeu4.jpg", caption: "Gasshō farmhouse in snow", location: "Shirakawago" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669490/NGs11_yvyeu4.jpg", caption: "合掌屋，黃昏", location: "Shirakawago" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669487/NGs12_u85hrv.jpg", caption: "Main road, winter morning", location: "Shirakawago" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669485/NGs13_kvzczc.jpg", caption: "Matsuki-Ushi 松喜うし", location: "Takayama" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669481/NGs14_swkmns.jpg", caption: "Takayama Jinya", location: "Takayama" },
