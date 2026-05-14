@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: "Spring 2026 — 清邁七天，春節氣氛、大象公園、Doi Inthanon 健行、尼曼區漫步。",
     images: [
       {
-        url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg",
+        url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg",
         width: 1200,
         height: 630,
         alt: "Chiang Mai",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Chiang Mai",
     description: "Spring 2026 — 清邁七天。",
-    images: ["https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg"],
+    images: ["https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg"],
   },
 };
 

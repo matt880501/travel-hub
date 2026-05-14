@@ -12,18 +12,18 @@ const TEXT = "#1c2c2c";
 const MUTED = "#7a9898";
 
 const GALLERY: { url: string; caption: string; location: string; }[] = [
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682135/BOs1_c10ey9.jpg", caption: "Welcome cocktail", location: "Amorita Resort" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682136/BOs2_qlgxli.jpg", caption: "章魚，Day 1 dinner", location: "Amorita" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682136/BOs3_qmavdd.jpg", caption: "Chasing dolphins", location: "Balicasag Island" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682137/BOs4_gz4cd6.jpg", caption: "Our ride for the day", location: "Bohol Sea" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682143/BOs5_scqgut.jpg", caption: "Ubeco pasta & wine", location: "Alona, Panglao" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682136/BOs6_uagkz4.jpg", caption: "Chocolate Hills", location: "Carmen, Bohol" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682136/BOs7_vicepb.jpg", caption: "Goodbye Amorita", location: "Panglao" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682141/BOs8_szrdgw.jpg", caption: "Best dinner of the trip", location: "Saffron, Amorita" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682146/BOs9_jvpq3m.jpg", caption: "超可怕水母", location: "Moalboal" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682143/BOs10_gmt3jk.jpg", caption: "Bohol's sky", location: "Panglao" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682142/BOs11_osze22.jpg", caption: "Tarsier，眼鏡猴", location: "Tarsier Sanctuary" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682145/BOs12_a50luk.jpg", caption: "Morning at Amorita", location: "Amorita Resort" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BOs1_c10ey9.jpg", caption: "Welcome cocktail", location: "Amorita Resort" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682136/BOs2_qlgxli.jpg", caption: "章魚，Day 1 dinner", location: "Amorita" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682136/BOs3_qmavdd.jpg", caption: "Chasing dolphins", location: "Balicasag Island" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682137/BOs4_gz4cd6.jpg", caption: "Our ride for the day", location: "Bohol Sea" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682143/BOs5_scqgut.jpg", caption: "Ubeco pasta & wine", location: "Alona, Panglao" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682136/BOs6_uagkz4.jpg", caption: "Chocolate Hills", location: "Carmen, Bohol" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682136/BOs7_vicepb.jpg", caption: "Goodbye Amorita", location: "Panglao" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682141/BOs8_szrdgw.jpg", caption: "Best dinner of the trip", location: "Saffron, Amorita" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682146/BOs9_jvpq3m.jpg", caption: "超可怕水母", location: "Moalboal" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682143/BOs10_gmt3jk.jpg", caption: "Bohol's sky", location: "Panglao" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682142/BOs11_osze22.jpg", caption: "Tarsier，眼鏡猴", location: "Tarsier Sanctuary" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682145/BOs12_a50luk.jpg", caption: "Morning at Amorita", location: "Amorita Resort" },
 ];
 
 const ITINERARY: Day[] = [
@@ -235,7 +235,7 @@ export default function Bohol() {
       <div ref={heroRef} style={{ position: "relative", height: isMobile ? "auto" : "100vh", overflow: "hidden", background: "#061818" }}>
         <motion.div style={isMobile ? { y: 0 } : { position: "absolute", top: "-10%", left: 0, right: 0, height: "120%", y: heroY }}>
           <img
-            src="https://res.cloudinary.com/dydhvvubl/image/upload/v1778682135/BO1_flckks.jpg"
+            src="https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg"
             style={{ width: "100%", height: isMobile ? "auto" : "100%", objectFit: isMobile ? undefined : "cover", objectPosition: "center center", display: "block" }}
           />
         </motion.div>

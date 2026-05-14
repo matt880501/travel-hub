@@ -12,15 +12,15 @@ const TEXT = "#2f2b27";
 const MUTED = "#9a8f85";
 
 const GALLERY: { url: string; caption: string; location: string; }[] = [
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778587721/CMs2_kxovon.jpg", caption: "Tempo", location: "Nimman" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778587722/CMs3_ihos9b.jpg", caption: "The House by Ginger", location: "Chiang Mai Old City" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778587723/CMs4_ibgozt.jpg", caption: "KaPaO Thai Kaprao", location: "Nimman" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778587724/CMs6_xsqf9w.jpg", caption: "Elephant river crossing", location: "Elephant Nature Park" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778587724/CMs5_nbru3r.jpg", caption: "Wachirathan Falls, late afternoon", location: "Doi Inthanon" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778587725/CMs7_tlhwhg.jpg", caption: "Sunday morning at Jing Jai", location: "Jing Jai Market" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778587727/CMs8_qthurk.jpg", caption: "Phra Mahathat Naphamethanidon", location: "Doi Inthanon National Park" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778587729/CMs9_dcixzq.jpg", caption: "Mae Kampong village", location: "East Mountains" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778587736/CMs1_r4l0pn.jpg", caption: "Thai milk tea", location: "Nimman" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778587721/CMs2_kxovon.jpg", caption: "Tempo", location: "Nimman" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778587722/CMs3_ihos9b.jpg", caption: "The House by Ginger", location: "Chiang Mai Old City" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778587723/CMs4_ibgozt.jpg", caption: "KaPaO Thai Kaprao", location: "Nimman" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778587724/CMs6_xsqf9w.jpg", caption: "Elephant river crossing", location: "Elephant Nature Park" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778587724/CMs5_nbru3r.jpg", caption: "Wachirathan Falls, late afternoon", location: "Doi Inthanon" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778587725/CMs7_tlhwhg.jpg", caption: "Sunday morning at Jing Jai", location: "Jing Jai Market" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778587727/CMs8_qthurk.jpg", caption: "Phra Mahathat Naphamethanidon", location: "Doi Inthanon National Park" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778587729/CMs9_dcixzq.jpg", caption: "Mae Kampong village", location: "East Mountains" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778587736/CMs1_r4l0pn.jpg", caption: "Thai milk tea", location: "Nimman" },
 ];
 
 const ITINERARY: Day[] = [
@@ -281,7 +281,7 @@ export default function ChiangMai() {
       <div ref={heroRef} style={{ position: "relative", height: isMobile ? "auto" : "100vh", overflow: "hidden", background: "#2a1f1a" }}>
         <motion.div style={isMobile ? { y: 0 } : { position: "absolute", top: "-10%", left: 0, right: 0, height: "120%", y: heroY }}>
           <img
-            src="https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg"
+            src="https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg"
             style={{ width: "100%", height: isMobile ? "auto" : "100%", objectFit: isMobile ? undefined : "cover", objectPosition: "center 30%", display: "block" }}
           />
         </motion.div>

@@ -12,24 +12,24 @@ const TEXT = "#1b2535";
 const MUTED = "#7b8c9e";
 
 const GALLERY: { url: string; caption: string; location: string; }[] = [
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669510/NGs1_urilkf.jpg", caption: "Shirakawago viewpoint", location: "Shirakawago" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669512/NGs2_odfg7m.jpg", caption: "合掌屋，針葉林", location: "Shirakawago" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669508/NGs3_ow4lyu.jpg", caption: "麵屋優光", location: "Nagoya" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669506/NGs4_uhdwbt.jpg", caption: "Mont-bell, Chunichi Building", location: "Nagoya" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669504/NGs5_kzw07l.jpg", caption: "Sakae skyline", location: "Nagoya" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669501/NGs6_v4o9as.jpg", caption: "Onitsuka Tiger Nagoya", location: "Nagoya" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669499/NGs7_gii6og.jpg", caption: "大須大福", location: "Osu" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669497/NGs8_nrritk.jpg", caption: "Tonkatsu MATUMURA", location: "Chunichi Building" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669494/NGs9_lqbzuk.jpg", caption: "Limited Express Hida", location: "en route to Takayama" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669494/NGs10_nelfn3.jpg", caption: "Snoopy Tea House", location: "Takayama Old Town" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669490/NGs11_yvyeu4.jpg", caption: "合掌屋，雪", location: "Shirakawago" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669487/NGs12_u85hrv.jpg", caption: "Main road, winter morning", location: "Shirakawago" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669485/NGs13_kvzczc.jpg", caption: "Matsuki-Ushi 松喜うし", location: "Takayama" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669481/NGs14_swkmns.jpg", caption: "Takayama Jinya", location: "Takayama" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669478/NGs15_ror5j0.jpg", caption: "Hida bound for Nagoya", location: "Takayama Station" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669476/NGs16_f9qtav.jpg", caption: "Inuyama Castle", location: "Inuyama" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669475/NGs17_dz0znl.jpg", caption: "Hids' Cafe & Bar", location: "Takayama" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669474/NGs18_baz3jv.jpg", caption: "Takayama Station, after dark", location: "Takayama" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669510/NGs1_urilkf.jpg", caption: "Shirakawago viewpoint", location: "Shirakawago" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669512/NGs2_odfg7m.jpg", caption: "合掌屋，針葉林", location: "Shirakawago" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669508/NGs3_ow4lyu.jpg", caption: "麵屋優光", location: "Nagoya" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669506/NGs4_uhdwbt.jpg", caption: "Mont-bell, Chunichi Building", location: "Nagoya" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669504/NGs5_kzw07l.jpg", caption: "Sakae skyline", location: "Nagoya" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669501/NGs6_v4o9as.jpg", caption: "Onitsuka Tiger Nagoya", location: "Nagoya" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669499/NGs7_gii6og.jpg", caption: "大須大福", location: "Osu" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669497/NGs8_nrritk.jpg", caption: "Tonkatsu MATUMURA", location: "Chunichi Building" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669494/NGs9_lqbzuk.jpg", caption: "Limited Express Hida", location: "en route to Takayama" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669494/NGs10_nelfn3.jpg", caption: "Snoopy Tea House", location: "Takayama Old Town" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669490/NGs11_yvyeu4.jpg", caption: "合掌屋，雪", location: "Shirakawago" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669487/NGs12_u85hrv.jpg", caption: "Main road, winter morning", location: "Shirakawago" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669485/NGs13_kvzczc.jpg", caption: "Matsuki-Ushi 松喜うし", location: "Takayama" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669481/NGs14_swkmns.jpg", caption: "Takayama Jinya", location: "Takayama" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669478/NGs15_ror5j0.jpg", caption: "Hida bound for Nagoya", location: "Takayama Station" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669476/NGs16_f9qtav.jpg", caption: "Inuyama Castle", location: "Inuyama" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669475/NGs17_dz0znl.jpg", caption: "Hids' Cafe & Bar", location: "Takayama" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669474/NGs18_baz3jv.jpg", caption: "Takayama Station, after dark", location: "Takayama" },
 ];
 
 const ITINERARY: Day[] = [
@@ -259,7 +259,7 @@ export default function Nagoya() {
       <div ref={heroRef} style={{ position: "relative", overflow: "hidden", backgroundColor: "#0d1a28" }}>
         <motion.div style={{ y: heroY }}>
           <img
-            src="https://res.cloudinary.com/dydhvvubl/image/upload/v1778669488/NG1_cfqqat.jpg"
+            src="https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669488/NG1_cfqqat.jpg"
             style={{ width: "100%", height: "auto", display: "block" }}
           />
         </motion.div>

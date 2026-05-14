@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "Matt Travels",
     images: [
       {
-        url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430033/NZ1_vuque7.jpg",
+        url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430033/NZ1_vuque7.jpg",
         width: 1200,
         height: 630,
         alt: "Matt Travels",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Matt Travels",
     description: "Matt's personal travel archive — trips, memories, and adventures around the world.",
-    images: ["https://res.cloudinary.com/dydhvvubl/image/upload/v1778430033/NZ1_vuque7.jpg"],
+    images: ["https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430033/NZ1_vuque7.jpg"],
   },
 };
 

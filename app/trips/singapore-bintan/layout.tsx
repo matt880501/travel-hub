@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: "Summer 2026 — 新加坡城市探索，接著渡輪前往民丹島 Club Med，六天的熱帶輕旅行。",
     images: [
       {
-        url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg",
+        url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg",
         width: 1200,
         height: 630,
         alt: "Bintan Island",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Singapore & Bintan",
     description: "Summer 2026 — 六天的熱帶輕旅行。",
-    images: ["https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg"],
+    images: ["https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg"],
   },
 };
 

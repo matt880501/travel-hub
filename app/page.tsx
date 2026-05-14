@@ -10,16 +10,16 @@ const TRIPS = [
   {
     year: "2026",
     list: [
-      { id: "canada", title: "Canada", sub: "加拿大", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "upcoming", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778680358/CA1_c2rier.jpg", href: "/trips/canada" },
-      { id: "singapore-bintan", title: "Singapore & Bintan", sub: "新加坡 · 民丹島", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "next", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg", href: "/trips/singapore-bintan" },
-      { id: "nagoya", title: "Nagoya", sub: "名古屋 · 飛驒高山 · 犬山", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669488/NG1_cfqqat.jpg", href: "/trips/nagoya" },
-      { id: "chiang-mai", title: "Chiang Mai", sub: "清邁 · 春節", date: "Feb, 2026", fullDate: "Feb 13 – Feb 19, 2026", startDate: "2026-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg", href: "/trips/chiang-mai" },
+      { id: "canada", title: "Canada", sub: "加拿大", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "upcoming", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778680358/CA1_c2rier.jpg", href: "/trips/canada" },
+      { id: "singapore-bintan", title: "Singapore & Bintan", sub: "新加坡 · 民丹島", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "next", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg", href: "/trips/singapore-bintan" },
+      { id: "nagoya", title: "Nagoya", sub: "名古屋 · 飛驒高山 · 犬山", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669488/NG1_cfqqat.jpg", href: "/trips/nagoya" },
+      { id: "chiang-mai", title: "Chiang Mai", sub: "清邁 · 春節", date: "Feb, 2026", fullDate: "Feb 13 – Feb 19, 2026", startDate: "2026-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg", href: "/trips/chiang-mai" },
     ],
   },
   {
     year: "2025",
     list: [
-      { id: "bohol", title: "Bohol Island", sub: "薄荷島", date: "Oct, 2025", fullDate: "Oct 22 – Oct 26, 2025", startDate: "2025-10-22", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682135/BO1_flckks.jpg", href: "/trips/bohol" },
+      { id: "bohol", title: "Bohol Island", sub: "薄荷島", date: "Oct, 2025", fullDate: "Oct 22 – Oct 26, 2025", startDate: "2025-10-22", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg", href: "/trips/bohol" },
       { id: "okinawa", title: "Okinawa", sub: "沖繩", date: "Apr, 2025", fullDate: "Apr 11 – Apr 15, 2025", startDate: "2025-04-11", status: "done", img: null, href: "#" },
     ],
   },
@@ -51,17 +51,17 @@ const TRIPS = [
   {
     year: "2018",
     list: [
-      { id: "new-zealand", title: "New Zealand", sub: "紐西蘭", date: "Feb, 2018", fullDate: "Feb 13 – Mar 1, 2018", startDate: "2018-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430033/NZ1_vuque7.jpg", href: "#" },
+      { id: "new-zealand", title: "New Zealand", sub: "紐西蘭", date: "Feb, 2018", fullDate: "Feb 13 – Mar 1, 2018", startDate: "2018-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430033/NZ1_vuque7.jpg", href: "#" },
     ],
   },
 ];
 
 const MEMORIES = [
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778669488/NG1_cfqqat.jpg", label: "Nagoya · Takayama" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430032/CM1_syxfa2.jpg", label: "Chiang Mai" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg", label: "Bintan" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430033/NZ1_vuque7.jpg", label: "New Zealand" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778430733/BO1_lbvlfo.jpg", label: "Bohol Island" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669488/NG1_cfqqat.jpg", label: "Nagoya · Takayama" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg", label: "Chiang Mai" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg", label: "Bintan" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430033/NZ1_vuque7.jpg", label: "New Zealand" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430733/BO1_lbvlfo.jpg", label: "Bohol Island" },
 ];
 
 const VISITED = ["Japan", "Philippines", "Australia", "New Zealand", "Thailand", "Egypt", "Austria", "Czechia", "Czech Republic"];
@@ -223,7 +223,7 @@ export default function Home() {
     .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime())[0];
 
   const activeTrip = showNext ? upcomingTrip : lastTrip;
-  const heroImg = activeTrip?.img || "https://res.cloudinary.com/dydhvvubl/image/upload/v1778602513/Bin1_pjzspe.jpg";
+  const heroImg = activeTrip?.img || "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg";
   const heroTitle = activeTrip?.title || "Singapore & Bintan";
   const heroFullDate = activeTrip?.fullDate || "Jul 23 – Jul 28, 2026";
   const heroHref = activeTrip?.href || "/trips/singapore-bintan";
@@ -550,7 +550,7 @@ export default function Home() {
         </div>
 
         {/* ── QUOTE ── */}
-        <div style={{ margin: isMobile ? "0 16px 16px" : "0 20px 20px", background: "#1c1c1c", borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", padding: isMobile ? "20px 24px" : "24px 32px", backgroundImage: "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(https://res.cloudinary.com/dydhvvubl/image/upload/v1778591728/Quote_xmqyit.jpg)", backgroundSize: "cover", backgroundPosition: "center 65%", display: "flex", alignItems: "center", gap: 20 }}>
+        <div style={{ margin: isMobile ? "0 16px 16px" : "0 20px 20px", background: "#1c1c1c", borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", padding: isMobile ? "20px 24px" : "24px 32px", backgroundImage: "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778591728/Quote_xmqyit.jpg)", backgroundSize: "cover", backgroundPosition: "center 65%", display: "flex", alignItems: "center", gap: 20 }}>
           <span style={{ fontSize: 48, color: "#c4a882", opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginTop: -8 }}>&ldquo;</span>
           <div>
             <div style={{ fontSize: 15, color: "#c4a882", fontStyle: "italic", fontFamily: "Georgia, serif" }}>For the moments that stayed.</div>

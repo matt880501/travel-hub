@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: "薄荷島 5 天，追海豚、浮潛、巧克力山、眼鏡猴，和 Amorita Resort 的南洋假期。",
     images: [
       {
-        url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1778682135/BO1_flckks.jpg",
+        url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg",
         width: 1200,
         height: 630,
         alt: "Bohol, Philippines",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Bohol",
     description: "薄荷島 5 天，追海豚、浮潛、巧克力山、眼鏡猴。",
-    images: ["https://res.cloudinary.com/dydhvvubl/image/upload/v1778682135/BO1_flckks.jpg"],
+    images: ["https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg"],
   },
 };
 

@@ -186,7 +186,7 @@ export default function Canada() {
       <div ref={heroRef} style={{ position: "relative", overflow: "hidden", backgroundColor: "#0a150a" }}>
         <motion.div style={{ y: heroY }}>
           <img
-            src="https://res.cloudinary.com/dydhvvubl/image/upload/v1778680358/CA1_c2rier.jpg"
+            src="https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778680358/CA1_c2rier.jpg"
             style={{ width: "100%", height: "auto", display: "block" }}
           />
         </motion.div>
