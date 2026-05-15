@@ -103,7 +103,9 @@ const ITINERARY: Day[] = [
   },
 ];
 
-const EXTRAS: { text: string; note: string }[] = [];
+const EXTRAS: { text: string; note: string }[] = [
+  { text: "Overall", note: "合掌村就是想像中的樣子，雪地裡的茅草屋頂，沉默又美。日本中部山區這種慢步調很對味——下次想再去新穗高跟上高地走走。" },
+];
 
 function CatIcon({ cat }: { cat?: Category }) {
   const p = { width: 13, height: 13, viewBox: "0 0 24 24", fill: "none" as const, stroke: MUTED, strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, style: { flexShrink: 0, opacity: 0.7 } };
