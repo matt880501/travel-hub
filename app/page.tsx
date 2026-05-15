@@ -65,6 +65,7 @@ const MEMORIES = [
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg", label: "Bohol Island" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430033/NZ1_vuque7.jpg", label: "New Zealand" },
 ];
+const shuffled = [...MEMORIES].sort(() => Math.random() - 0.5);
 
 const VISITED = ["Japan", "Philippines", "Australia", "New Zealand", "Thailand", "Egypt", "Austria", "Czechia", "Czech Republic"];
 
@@ -542,7 +543,7 @@ export default function Home() {
               <span style={{ fontSize: 11, color: "#c4a882", cursor: "pointer" }} onClick={() => setShowMemories(true)}>View all →</span>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "160px 160px", gap: 6 }}>
-              {MEMORIES.slice(0, 4).map((m, i) => (
+              {shuffled.slice(0, 4).map((m, i) => (
                 <div key={i} style={{ borderRadius: 8, overflow: "hidden", minHeight: 0 }}>
                   <img src={m.url} alt={m.label} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
