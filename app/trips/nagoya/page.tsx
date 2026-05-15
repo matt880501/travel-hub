@@ -104,7 +104,7 @@ const ITINERARY: Day[] = [
 ];
 
 const EXTRAS: { text: string; note: string }[] = [
-  { text: "Overall", note: "合掌村就是想像中的樣子，雪地裡的茅草屋頂，沉默又美。日本中部山區這種慢步調很對味——下次想再去新穗高跟上高地走走。" },
+  { text: "", note: "合掌村就是想像中的樣子，雪地裡的茅草屋頂，沉默又美。非常喜歡中部山區這種慢步調——下次想再去新穗高跟上高地走走。" },
 ];
 
 function CatIcon({ cat }: { cat?: Category }) {
@@ -359,27 +359,11 @@ export default function Nagoya() {
             <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>NOTES</span>
             <div style={{ flex: 1, height: 0.5, background: `rgba(77,111,142,0.2)` }} />
           </div>
-          {EXTRAS.map((e, i) => {
-            const [open, setOpen] = useState(false);
-            return (
-              <div key={i} onClick={() => setOpen(o => !o)} style={{ cursor: "pointer", padding: "14px 0", borderBottom: `0.5px solid rgba(27,37,53,0.1)`, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                <div>
-                  <div style={{ fontSize: 14, color: TEXT }}>{e.text}</div>
-                  <AnimatePresence>
-                    {open && (
-                      <motion.p
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: "8px 0 0", fontStyle: "italic", overflow: "hidden" }}
-                      >{e.note}</motion.p>
-                    )}
-                  </AnimatePresence>
-                </div>
-                <span style={{ fontSize: 10, color: MUTED, opacity: 0.5, paddingTop: 3 }}>{open ? "−" : "+"}</span>
-              </div>
-            );
-          })}
+          {EXTRAS.map((e, i) => (
+            <div key={i} style={{ padding: "14px 0", borderBottom: `0.5px solid rgba(27,37,53,0.1)` }}>
+              <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: 0, fontStyle: "italic" }}>{e.note}</p>
+            </div>
+          ))}
         </motion.div>
 
         {/* Gallery */}
