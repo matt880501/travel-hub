@@ -115,10 +115,10 @@ function CatIcon({ cat }: { cat?: Category }) {
   return <span style={{ width: 13 }} />;
 }
 
-function GalleryImage({ img, index, onClick, isMobile }: { img: typeof GALLERY[0]; index: number; onClick: () => void; isMobile: boolean }) {
+function GalleryImage({ img, index, onClick, isMobile, isTouch }: { img: typeof GALLERY[0]; index: number; onClick: () => void; isMobile: boolean; isTouch: boolean }) {
   const [active, setActive] = useState(false);
   const handleClick = () => {
-    if (isMobile) { setActive(o => !o); }
+    if (isTouch) { setActive(o => !o); }
     else { onClick(); }
   };
   return (
@@ -127,12 +127,12 @@ function GalleryImage({ img, index, onClick, isMobile }: { img: typeof GALLERY[0
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.05 }}
-      onMouseEnter={() => { if (!isMobile) setActive(true); }}
-      onMouseLeave={() => { if (!isMobile) setActive(false); }}
+      onMouseEnter={() => { if (!isTouch) setActive(true); }}
+      onMouseLeave={() => { if (!isTouch) setActive(false); }}
       onClick={handleClick}
-      style={{ position: "relative", borderRadius: 2, overflow: "hidden", cursor: isMobile ? "pointer" : "zoom-in", marginBottom: isMobile ? 6 : 10, breakInside: "avoid" }}
+      style={{ position: "relative", borderRadius: 2, overflow: "hidden", cursor: "pointer", marginBottom: isMobile ? 6 : 10, breakInside: "avoid" }}
     >
-      <img src={img.url} style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: (!isMobile && active) ? "scale(1.03)" : "scale(1)" }} />
+      <img src={img.url} style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: (!isTouch && active) ? "scale(1.03)" : "scale(1)" }} />
       <AnimatePresence>
         {active && (
           <motion.div
@@ -229,6 +229,7 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
 export default function ChiangMai() {
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
@@ -240,6 +241,7 @@ export default function ChiangMai() {
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+  useEffect(() => { setIsTouch(navigator.maxTouchPoints > 0); }, []);
 
   const col1 = [GALLERY[0], GALLERY[3], GALLERY[6]];
   const col2 = [GALLERY[1], GALLERY[4], GALLERY[7]];
@@ -401,11 +403,12 @@ export default function ChiangMai() {
             <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>PHOTOGRAPHS</span>
             <div style={{ flex: 1, height: 0.5, background: `rgba(156,124,90,0.2)` }} />
           </div>
+          {isTouch && <p style={{ fontSize: 11, color: MUTED, fontStyle: "italic", margin: "0 0 20px", opacity: 0.7 }}>tap to view</p>}
           <div style={{ display: "flex", gap: isMobile ? 6 : 10 }}>
             {[col1, col2, col3].map((col, ci) => (
               <div key={ci} style={{ flex: 1 }}>
                 {col.map((img, i) => (
-                  <GalleryImage key={i} img={img} index={ci * 3 + i} onClick={() => setLightbox(img.url)} isMobile={isMobile} />
+                  <GalleryImage key={i} img={img} index={ci * 3 + i} onClick={() => setLightbox(img.url)} isMobile={isMobile} isTouch={isTouch} />
                 ))}
               </div>
             ))}
