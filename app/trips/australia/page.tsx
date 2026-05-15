@@ -115,7 +115,7 @@ const ITINERARY: Day[] = [
     day: 5, date: "Aug 21, Wed", location: "雪梨市區",
     items: [
       { time: "10:00", text: "The University of Sydney", mapUrl: "https://www.google.com/maps/search/University+of+Sydney", cat: "sight" },
-      { time: "10:30", text: "Sydney Fish Market", mapUrl: "https://www.google.com/maps/search/Sydney+Fish+Market", cat: "sight" },
+      { time: "12:00", text: "Sydney Fish Market", mapUrl: "https://www.google.com/maps/search/Sydney+Fish+Market", cat: "sight" },
       { time: "14:00", text: "Taronga Zoo 塔龍加動物園", mapUrl: "https://www.google.com/maps/search/Taronga+Zoo+Sydney", cat: "sight" },
     ]
   },
@@ -332,8 +332,10 @@ function ExtraItem({ e }: { e: typeof EXTRAS[0] }) {
 
 function GalleryRow({ photos, rowIndex, onOpen, isMobile }: { photos: GalleryPhoto[]; rowIndex: number; onOpen: (url: string) => void; isMobile: boolean }) {
   const [hovered, setHovered] = useState<number | null>(null);
+  const [tapped, setTapped] = useState<number | null>(null);
   const allPortrait = photos.every(p => !p.wide);
   const ROW_H = isMobile ? (allPortrait ? 200 : 130) : (allPortrait ? 360 : 220);
+  const active = isMobile ? tapped : hovered;
   return (
     <div style={{ display: "flex", gap: isMobile ? 4 : 6, marginBottom: isMobile ? 4 : 6 }}>
       {photos.map((photo, pi) => (
@@ -343,18 +345,18 @@ function GalleryRow({ photos, rowIndex, onOpen, isMobile }: { photos: GalleryPho
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55, delay: (rowIndex * photos.length + pi) * 0.04 }}
-          onClick={() => onOpen(photo.url)}
-          onMouseEnter={() => setHovered(pi)}
-          onMouseLeave={() => setHovered(null)}
-          style={{ flex: photo.wide ? 2 : 1, height: ROW_H, position: "relative", overflow: "hidden", borderRadius: 2, cursor: "zoom-in", flexShrink: 0 }}
+          onClick={() => isMobile ? setTapped(t => t === pi ? null : pi) : onOpen(photo.url)}
+          onMouseEnter={() => !isMobile && setHovered(pi)}
+          onMouseLeave={() => !isMobile && setHovered(null)}
+          style={{ flex: photo.wide ? 2 : 1, height: ROW_H, position: "relative", overflow: "hidden", borderRadius: 2, cursor: "pointer", flexShrink: 0 }}
         >
           <img
             src={photo.url}
             alt={photo.caption}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: hovered === pi ? "scale(1.04)" : "scale(1)" }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: active === pi ? "scale(1.04)" : "scale(1)" }}
           />
           <AnimatePresence>
-            {hovered === pi && (
+            {active === pi && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -525,10 +527,13 @@ export default function Australia() {
             viewport={{ once: true }}
             style={{ marginBottom: 96 }}
           >
-            <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 32 }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: isMobile ? 12 : 32 }}>
               <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>PHOTOGRAPHS</span>
               <div style={{ flex: 1, height: 0.5, background: `rgba(192,120,53,0.25)` }} />
             </div>
+            {isMobile && (
+              <p style={{ fontSize: 11, color: MUTED, fontStyle: "italic", margin: "0 0 20px", opacity: 0.7 }}>tap to view</p>
+            )}
             {GALLERY_ROWS.map((row, ri) => (
               <GalleryRow key={ri} photos={row} rowIndex={ri} onOpen={setLightbox} isMobile={isMobile} />
             ))}

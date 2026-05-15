@@ -45,7 +45,7 @@ ITINERARY = [
         "day": 5, "date": "Aug 21, Wed", "location": "雪梨市區",
         "items": [
             {"time": "10:00", "text": "The University of Sydney", "map": "https://www.google.com/maps/search/University+of+Sydney", "cat": "sight"},
-            {"time": "10:30", "text": "Sydney Fish Market", "map": "https://www.google.com/maps/search/Sydney+Fish+Market", "cat": "sight"},
+            {"time": "12:00", "text": "Sydney Fish Market", "map": "https://www.google.com/maps/search/Sydney+Fish+Market", "cat": "sight"},
             {"time": "14:00", "text": "Taronga Zoo 塔龍加動物園", "map": "https://www.google.com/maps/search/Taronga+Zoo+Sydney", "cat": "sight"},
         ]
     },

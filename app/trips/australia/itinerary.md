@@ -45,7 +45,7 @@
 ## Day 5 — Aug 21, Wed｜雪梨市區 
 
 10:00  雪梨大學
-10:30  Sydney Fish Market
+12:00  Sydney Fish Market
 14:00  塔加龍動物園
 
 ---
