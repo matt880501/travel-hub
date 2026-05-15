@@ -6,76 +6,66 @@ type Category = "food" | "transit" | "flight" | "stay" | "sight" | "cafe" | "div
 type Item = { time: string; text: string; note?: string; mapUrl?: string; cat?: Category; };
 type Day = { day: string; date: string; location: string; items: Item[]; };
 
-const ACCENT = "#1b8080";
-const BG = "#f2ede3";
-const TEXT = "#1c2c2c";
-const MUTED = "#7a9898";
+const ACCENT = "#1480b0";
+const BG = "#eef5f9";
+const TEXT = "#1c2c35";
+const MUTED = "#6595b0";
 
 const GALLERY: { url: string; caption: string; location: string; }[] = [
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BOs1_c10ey9.jpg", caption: "Welcome cocktail", location: "Amorita Resort" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682136/BOs2_qlgxli.jpg", caption: "章魚，Day 1 dinner", location: "Amorita" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682136/BOs3_qmavdd.jpg", caption: "Chasing dolphins", location: "Balicasag Island" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682137/BOs4_gz4cd6.jpg", caption: "Our ride for the day", location: "Bohol Sea" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682143/BOs5_scqgut.jpg", caption: "Ubeco pasta & wine", location: "Alona, Panglao" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682136/BOs6_uagkz4.jpg", caption: "Chocolate Hills", location: "Carmen, Bohol" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682136/BOs7_vicepb.jpg", caption: "Goodbye Amorita", location: "Panglao" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682141/BOs8_szrdgw.jpg", caption: "Best dinner of the trip", location: "Saffron, Amorita" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682146/BOs9_jvpq3m.jpg", caption: "超可怕水母", location: "Moalboal" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682143/BOs10_gmt3jk.jpg", caption: "Bohol's sky", location: "Panglao" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682142/BOs11_osze22.jpg", caption: "Tarsier，眼鏡猴", location: "Tarsier Sanctuary" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682145/BOs12_a50luk.jpg", caption: "Morning at Amorita", location: "Amorita Resort" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843905/OKIs1_hbdhtw.jpg", caption: "深夜到，通堂拉麵", location: "Tondou, Naha" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843906/OKIs2_hulunb.jpg", caption: "名城ビーチ", location: "Nanjo, South Okinawa" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843905/OKIs3_eciko5.jpg", caption: "Okinawa sky", location: "North Okinawa" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843903/OKIs4_amjost.jpg", caption: "Diver's steak", location: "Motobu, North Okinawa" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843905/OKIs5_llckn6.jpg", caption: "玉泉洞鐘乳石", location: "Gyokusendo, Nanjo" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843905/OKIs6_ue2p2l.jpg", caption: "波上宮", location: "Naha" },
 ];
 
 const ITINERARY: Day[] = [
   {
-    day: "DAY 1", date: "Oct 22, Wed", location: "Taipei → Cebu → Bohol",
+    day: "DAY 1", date: "Apr 11, Fri", location: "Taipei → Okinawa",
     items: [
-      { time: "07:00", text: "Depart Taipei (TPE)", cat: "flight", note: "薄荷島沒有直飛滿可惜的，清晨從台北出發下午四點才 check in，明明很近的地方" },
-      { time: "09:50", text: "Arrive Cebu (CEB)", cat: "flight" },
-      { time: "13:00", text: "OceanJet 渡輪出發", cat: "transit", note: "Ocean jet~ Ocean jet~" },
-      { time: "15:00", text: "抵達薄荷島", cat: "transit" },
-      { time: "16:00", text: "入住 Amorita Resort", cat: "stay", mapUrl: "https://www.google.com/maps/search/Amorita+Resort+Panglao+Bohol", note: "薄荷島懸崖邊的度假村，先去看海。" },
-      { time: "傍晚", text: "泳池、沙灘放空", cat: "sight" },
-      { time: "21:00", text: "飯店按摩", cat: "spa" },
+      { time: "17:05", text: "Depart Taipei (TPE)", cat: "flight" },
+      { time: "19:45", text: "Arrive Okinawa (OKA)", cat: "flight" },
+      { time: "20:30", text: "取車出發", cat: "transit", note: "ヴァケーション レンタカー 那覇空港店" },
+      { time: "21:00", text: "琉球新麵 通堂 本店", cat: "food", mapUrl: "https://www.google.com/maps/search/琉球新麵+通堂+本店+那霸", note: "都幾點了還排一堆人..." },
+      { time: "22:30", text: "入住 REF Okinawa Arena by Vessel Hotels", cat: "stay" },
     ]
   },
   {
-    day: "DAY 2", date: "Oct 23, Thu", location: "Balicasag Island · Alona Beach",
+    day: "DAY 2", date: "Apr 12, Sat", location: "North Okinawa",
     items: [
-      { time: "06:30", text: "飯店接送出發", cat: "transit" },
-      { time: "07:30", text: "前往 Balicasag Island 追海豚", cat: "dive", mapUrl: "https://www.google.com/maps/search/Balicasag+Island+Bohol" },
-      { time: "08:00", text: "浮潛 & 潛水", cat: "dive" },
-      { time: "15:00", text: "Alona Beach SUP & 獨木舟", cat: "dive", mapUrl: "https://www.google.com/maps/search/Alona+Beach+Panglao+Bohol" },
-      { time: "17:30", text: "Ubeco 晚餐", cat: "food", mapUrl: "http://www.ubeco-bohol.com", note: "非常有名的餐廳，但薄荷島背後的老闆都是韓國人" },
-      { time: "20:00", text: "Avocado massage", cat: "spa", mapUrl: "https://www.google.com/maps/place/Avocado+footspa+%EC%95%84%EB%B3%B4%EC%B9%B4%EB%8F%84+%ED%92%8B%EC%8A%A4%ED%8C%8C/@9.5535498,123.7730817,19z/data=!3m1!4b1!4m6!3m5!1s0x33abad0ee7b40a29:0xf242465d5baaf28a!8m2!3d9.5535498!4d123.7737268!16s%2Fg%2F11wc4cd1hr", note: "王造博10分鐘開始打呼笑死" },
+      { time: "09:30", text: "青之洞窟浮潛", cat: "dive", mapUrl: "https://www.google.com/maps/search/青の洞窟+真栄田岬+沖縄", note: "很漂亮！！" },
+      { time: "10:30", text: "万座毛", cat: "sight", mapUrl: "https://www.google.com/maps/search/万座毛+沖縄" },
+      { time: "11:30", text: "潛水員牛排", cat: "food", mapUrl: "https://www.google.com/maps/place/%E6%BD%9B%E6%B0%B4%E5%93%A1%E7%89%9B%E6%8E%92/@26.4373497,127.5740051,9.46z/data=!4m6!3m5!1s0x34e4ff6d0f7340ff:0x9dd6ffcd2a4c5e4d!8m2!3d26.5947861!4d127.9594444!16s%2Fg%2F1tj82lxm", note: "日本牛排是配飯，這間好吃。" },
+      { time: "13:00", text: "沖縄美ら海水族館", cat: "sight", mapUrl: "https://www.google.com/maps/search/沖縄美ら海水族館" },
+      { time: "15:00", text: "古宇利島 — 海洋塔 & 沙灘", cat: "sight", mapUrl: "https://www.google.com/maps/search/古宇利島+沖縄" },
     ]
   },
   {
-    day: "DAY 3", date: "Oct 24, Fri", location: "Chocolate Hills · Tarsier · Bee Farm",
+    day: "DAY 3", date: "Apr 13, Sun", location: "Central Okinawa · Naha",
     items: [
-      { time: "10:00", text: "巧克力山", cat: "sight", mapUrl: "https://www.google.com/maps/search/Chocolate+Hills+Complex+Carmen+Bohol", note: "1,268 座錐形小山，乾季會轉成棕色，像一顆顆巧克力。" },
-      { time: "11:30", text: "拜訪眼鏡猴", cat: "sight", mapUrl: "https://www.google.com/maps/search/Philippine+Tarsier+Sanctuary+Bohol", note: "聽說大聲講話他會嚇到，然後會不吃東西餓死= =" },
-      { time: "13:00", text: "Bohol Bee Farm 午餐", cat: "food", mapUrl: "https://www.google.com/maps/search/Bohol+Bee+Farm+Panglao" },
-      { time: "15:00", text: "回 Amorita，游泳 / 追夕陽", cat: "sight", note: "Chill & relax" },
-      { time: "19:00", text: "晚餐", cat: "food" },
+      { time: "10:00", text: "永旺夢樂城 沖縄 · 寶可夢中心", cat: "sight", mapUrl: "https://www.google.com/maps/search/イオンモール沖縄ライカム" },
+      { time: "13:00", text: "美國村 · Blueseal", cat: "cafe", mapUrl: "https://www.google.com/maps/search/American+Village+Okinawa", note: "吃了一堆冰" },
+      { time: "16:00", text: "國際通", cat: "sight", mapUrl: "https://www.google.com/maps/search/国際通り+那覇" },
+      { time: "19:00", text: "入住 琉球ホテル＆リゾート 名城ビーチ", cat: "stay", mapUrl: "https://www.google.com/maps/search/琉球ホテル+名城ビーチ" },
     ]
   },
   {
-    day: "DAY 4", date: "Oct 25, Sat", location: "Moalboal · Amorita Saffron",
+    day: "DAY 4", date: "Apr 14, Mon", location: "South Okinawa",
     items: [
-      { time: "10:00", text: "沙丁魚風暴", cat: "dive", note: "超多，還看到毒水母" },
-      { time: "15:00", text: "按摩放鬆", cat: "spa" },
-      { time: "19:00", text: "Amorita Saffron Restaurant — 烤肉晚餐", cat: "food", note: "日落、海風，Perfect night" },
+      { time: "12:00", text: "系滿魚市", cat: "food", mapUrl: "https://www.google.com/maps/search/糸満漁民食堂+沖縄" },
+      { time: "14:00", text: "OUTLET ASHIBINAA · SPORTS DEPO Toyosaki", cat: "sight" },
+      { time: "16:00", text: "沙灘 / 泳池", cat: "dive" },
     ]
   },
   {
-    day: "DAY 5", date: "Oct 26, Sun", location: "Bohol → Cebu → Taipei",
+    day: "DAY 5", date: "Apr 15, Tue", location: "Naha → Taipei",
     items: [
-      { time: "早上", text: "Amorita 最後時光", cat: "sight" },
-      { time: "11:40", text: "薄荷島渡輪出發", cat: "transit" },
-      { time: "13:40", text: "抵達宿霧", cat: "transit" },
-      { time: "14:30", text: "Alaya Mall", cat: "food" },
-      { time: "19:45", text: "Depart Cebu (CEB)", cat: "flight", note: "Nothing beats a jet2 holiday" },
+      { time: "12:00", text: "玉泉洞", cat: "sight", mapUrl: "https://www.google.com/maps/search/玉泉洞+沖縄" },
+      { time: "13:30", text: "瀨長島", cat: "sight", mapUrl: "https://www.google.com/maps/search/瀬長島+沖縄", note: "看很多飛機起降～" },
+      { time: "16:00", text: "波上宮", cat: "sight", mapUrl: "https://www.google.com/maps/search/波上宮+那覇" },
+      { time: "17:30", text: "Return car", cat: "transit" },
+      { time: "20:55", text: "Depart Okinawa (OKA)", cat: "flight" },
     ]
   },
 ];
@@ -96,7 +86,6 @@ function CatIcon({ cat }: { cat?: Category }) {
 
 function GalleryImage({ img, index, onClick, isMobile }: { img: typeof GALLERY[0]; index: number; onClick: () => void; isMobile: boolean }) {
   const [active, setActive] = useState(false);
-  const show = isMobile ? active : active;
 
   const handleClick = () => {
     if (isMobile) { setActive(o => !o); }
@@ -116,7 +105,7 @@ function GalleryImage({ img, index, onClick, isMobile }: { img: typeof GALLERY[0
     >
       <img src={img.url} alt={img.caption} style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: (!isMobile && active) ? "scale(1.03)" : "scale(1)" }} />
       <AnimatePresence>
-        {show && (
+        {active && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -144,7 +133,7 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
     >
       <div
         onClick={() => item.note && setOpen(o => !o)}
-        style={{ display: "flex", gap: 16, padding: "14px 0", borderBottom: `0.5px solid rgba(28,44,44,0.1)`, cursor: item.note ? "pointer" : "default", alignItems: "center" }}
+        style={{ display: "flex", gap: 16, padding: "14px 0", borderBottom: `0.5px solid rgba(28,44,53,0.1)`, cursor: item.note ? "pointer" : "default", alignItems: "center" }}
       >
         <span style={{ fontSize: 11, color: MUTED, letterSpacing: "0.08em", minWidth: 40, fontVariantNumeric: "tabular-nums" }}>{item.time}</span>
         <CatIcon cat={item.cat} />
@@ -186,7 +175,7 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
   );
 }
 
-export default function Bohol() {
+export default function Okinawa() {
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -200,9 +189,9 @@ export default function Bohol() {
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  const col1 = [GALLERY[0], GALLERY[3], GALLERY[6], GALLERY[9]];
-  const col2 = [GALLERY[1], GALLERY[4], GALLERY[7], GALLERY[10]];
-  const col3 = [GALLERY[2], GALLERY[5], GALLERY[8], GALLERY[11]];
+  const col1 = [GALLERY[0], GALLERY[3]];
+  const col2 = [GALLERY[1], GALLERY[4]];
+  const col3 = [GALLERY[2], GALLERY[5]];
 
   return (
     <div style={{ minHeight: "100vh", background: BG, fontFamily: "-apple-system, 'Helvetica Neue', sans-serif", color: TEXT }}>
@@ -223,20 +212,20 @@ export default function Bohol() {
       </AnimatePresence>
 
       {/* Nav */}
-      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "14px 20px" : "18px 40px", background: "rgba(242,237,227,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(28,44,44,0.08)` }}>
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "14px 20px" : "18px 40px", background: "rgba(238,245,249,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(28,44,53,0.08)` }}>
         <div style={{ fontSize: 10, letterSpacing: "0.2em", color: MUTED }}>
           {!isMobile && <><a href="/" style={{ color: MUTED, textDecoration: "none" }}>MATT</a><span style={{ margin: "0 10px", opacity: 0.4 }}>/</span><a href="/" style={{ color: MUTED, textDecoration: "none" }}>TRAVEL ARCHIVE</a><span style={{ margin: "0 10px", opacity: 0.4 }}>/</span></>}
           {isMobile && <a href="/" style={{ color: MUTED, textDecoration: "none", marginRight: 10 }}>←</a>}
-          <span style={{ color: TEXT }}>BOHOL</span>
+          <span style={{ color: TEXT }}>OKINAWA</span>
         </div>
-        {!isMobile && <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.15em" }}>OCT 22 – 26, 2025</div>}
+        {!isMobile && <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.15em" }}>APR 11 – 15, 2025</div>}
       </div>
 
       {/* Hero */}
-      <div ref={heroRef} style={{ position: "relative", height: isMobile ? "auto" : "100vh", overflow: "hidden", background: "#061818" }}>
+      <div ref={heroRef} style={{ position: "relative", height: isMobile ? "auto" : "100vh", overflow: "hidden", background: "#010c18" }}>
         <motion.div style={isMobile ? { y: 0 } : { position: "absolute", top: "-10%", left: 0, right: 0, height: "120%", y: heroY }}>
           <img
-            src="https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg"
+            src="https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843907/OKI1_kvpgjq.jpg"
             style={{ width: "100%", height: isMobile ? "auto" : "100%", objectFit: isMobile ? undefined : "cover", objectPosition: "center center", display: "block" }}
           />
         </motion.div>
@@ -250,7 +239,7 @@ export default function Bohol() {
             transition={{ duration: 1, delay: 0.3 }}
             style={{ fontSize: isMobile ? "clamp(52px, 14vw, 80px)" : "clamp(64px, 9vw, 120px)", fontWeight: 300, color: "#fff", lineHeight: 0.95, letterSpacing: "-0.02em", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 20 }}
           >
-            Bohol
+            Okinawa
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -258,13 +247,13 @@ export default function Bohol() {
             transition={{ duration: 0.8, delay: 0.5 }}
             style={{ display: "flex", alignItems: "center", gap: isMobile ? 12 : 24, flexWrap: "wrap" }}
           >
-            <span style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", letterSpacing: "0.05em" }}>Autumn 2025</span>
+            <span style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", letterSpacing: "0.05em" }}>Spring 2025</span>
             <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} />
             <span style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", letterSpacing: "0.05em" }}>5 Days</span>
             {!isMobile && (
               <>
                 <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} />
-                <span style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", letterSpacing: "0.05em" }}>Philippines</span>
+                <span style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", letterSpacing: "0.05em" }}>Japan</span>
               </>
             )}
           </motion.div>
@@ -296,7 +285,7 @@ export default function Bohol() {
         >
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 48 }}>
             <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>ITINERARY</span>
-            <div style={{ flex: 1, height: 0.5, background: "rgba(27,128,128,0.2)" }} />
+            <div style={{ flex: 1, height: 0.5, background: `rgba(20,128,176,0.2)` }} />
           </div>
 
           {ITINERARY.map((day, di) => (
@@ -331,13 +320,13 @@ export default function Bohol() {
         >
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 32 }}>
             <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>PHOTOGRAPHS</span>
-            <div style={{ flex: 1, height: 0.5, background: "rgba(27,128,128,0.2)" }} />
+            <div style={{ flex: 1, height: 0.5, background: `rgba(20,128,176,0.2)` }} />
           </div>
           <div style={{ display: "flex", gap: isMobile ? 6 : 10 }}>
             {[col1, col2, col3].map((col, ci) => (
               <div key={ci} style={{ flex: 1 }}>
                 {col.map((img, i) => (
-                  <GalleryImage key={i} img={img} index={ci * 4 + i} onClick={() => setLightbox(img.url)} isMobile={isMobile} />
+                  <GalleryImage key={i} img={img} index={ci * 2 + i} onClick={() => setLightbox(img.url)} isMobile={isMobile} />
                 ))}
               </div>
             ))}
@@ -349,15 +338,15 @@ export default function Bohol() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          style={{ borderTop: `0.5px solid rgba(28,44,44,0.15)`, paddingTop: 40 }}
+          style={{ borderTop: `0.5px solid rgba(28,44,53,0.15)`, paddingTop: 40 }}
         >
           <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.2em", marginBottom: 24 }}>ABOUT THIS TRIP</div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? 24 : 32 }}>
             {[
-              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "27°C — 32°C", sub: "Tropical warmth" },
-              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, label: "MOOD", value: "Tropical / Marine / Chill", sub: "Ocean life & slow days" },
-              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M3 9.5L12 4l9 5.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>, label: "STAY", value: "Amorita Resort", sub: "Panglao Island, Bohol" },
-              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, label: "WITH", value: "Middle School Friends", sub: "Good old days" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "20°C — 26°C", sub: "Subtropical spring" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, label: "MOOD", value: "Blue / Open Road / Island", sub: "5-day self-drive" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>, label: "SEASON", value: "Spring", sub: "April in the Ryukyus" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, label: "WITH", value: "Charlotte", sub: "Island road trip" },
             ].map((m, i) => (
               <div key={i}>
                 <div style={{ color: MUTED, marginBottom: 10 }}>{m.icon}</div>

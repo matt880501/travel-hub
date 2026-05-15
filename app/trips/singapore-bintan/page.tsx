@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
-type Category = "food" | "transit" | "stay" | "sight" | "shop" | "onsen" | "cafe";
+type Category = "food" | "transit" | "flight" | "stay" | "sight" | "shop" | "onsen" | "cafe";
 type Item = { time: string; text: string; note?: string; mapUrl?: string; cat?: Category; };
 type Day = { day: string; date: string; location: string; items: Item[]; };
 
@@ -15,8 +15,8 @@ const ITINERARY: Day[] = [
   {
     day: "DAY 1", date: "Jul 23, Thu", location: "Singapore",
     items: [
-      { time: "08:05", text: "Depart Taipei — CI 0753", cat: "transit" },
-      { time: "12:35", text: "Arrive Singapore", cat: "transit" },
+      { time: "08:05", text: "Depart Taipei — CI 0753", cat: "flight" },
+      { time: "12:35", text: "Arrive Singapore", cat: "flight" },
       { time: "15:00", text: "Check-in · Mercure ICON Singapore City Centre", cat: "stay" },
       { time: "16:00", text: "魚尾獅公園", mapUrl: "https://maps.google.com/?q=Merlion+Park+Singapore", note: "肯定要來當觀光客。", cat: "sight" },
       { time: "17:30", text: "Marina Bay Sands", mapUrl: "https://maps.google.com/?q=Marina+Bay+Sands+Singapore", cat: "sight" },
@@ -43,8 +43,8 @@ const ITINERARY: Day[] = [
     day: "DAY 6", date: "Jul 28, Tue", location: "Bintan → Taipei",
     items: [
       { time: "08:35", text: "Ferry · Bintan → Singapore (Business Class)", note: "Bintan掰掰", cat: "transit" },
-      { time: "13:45", text: "Depart Singapore — CI 0754", cat: "transit" },
-      { time: "18:35", text: "Arrive Taipei", cat: "transit" },
+      { time: "13:45", text: "Depart Singapore — CI 0754", cat: "flight" },
+      { time: "18:35", text: "Arrive Taipei", cat: "flight" },
     ]
   },
 ];
@@ -61,6 +61,7 @@ function CatIcon({ cat }: { cat?: Category }) {
   if (!cat) return <span style={{ width: 13 }} />;
   if (cat === "food") return <svg {...p}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="21" y1="15" x2="21" y2="22"/><path d="M21 2a5 5 0 0 1 0 10V2z"/></svg>;
   if (cat === "transit") return <svg {...p}><rect x="4" y="3" width="16" height="15" rx="3"/><line x1="4" y1="11" x2="20" y2="11"/><line x1="12" y1="3" x2="12" y2="11"/><path d="M8 19l-1 3M16 19l1 3"/></svg>;
+  if (cat === "flight") return <svg {...p}><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>;
   if (cat === "stay") return <svg {...p}><path d="M3 9.5L12 4l9 5.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>;
   if (cat === "sight") return <svg {...p}><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>;
   if (cat === "shop") return <svg {...p}><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>;

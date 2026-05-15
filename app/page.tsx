@@ -6,7 +6,8 @@ import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps
 import * as d3geo from "d3-geo";
 import * as topojson from "topojson-client";
 
-const TRIPS = [
+type Trip = { id: string; title: string; sub: string; date: string; fullDate: string; startDate: string; status: string; img: string | null; href: string; };
+const TRIPS: { year: string; list: Trip[] }[] = [
   {
     year: "2026",
     list: [
@@ -20,7 +21,7 @@ const TRIPS = [
     year: "2025",
     list: [
       { id: "bohol", title: "Bohol Island", sub: "薄荷島", date: "Oct, 2025", fullDate: "Oct 22 – Oct 26, 2025", startDate: "2025-10-22", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg", href: "/trips/bohol" },
-      { id: "okinawa", title: "Okinawa", sub: "沖繩", date: "Apr, 2025", fullDate: "Apr 11 – Apr 15, 2025", startDate: "2025-04-11", status: "done", img: null, href: "#" },
+      { id: "okinawa", title: "Okinawa", sub: "沖繩", date: "Apr, 2025", fullDate: "Apr 11 – Apr 15, 2025", startDate: "2025-04-11", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843907/OKI1_kvpgjq.jpg", href: "/trips/okinawa" },
     ],
   },
   {

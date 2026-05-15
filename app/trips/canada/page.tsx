@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
-type Category = "food" | "transit" | "stay" | "sight" | "shop" | "onsen" | "cafe";
+type Category = "food" | "transit" | "flight" | "stay" | "sight" | "shop" | "onsen" | "cafe";
 type Item = { time: string; text: string; note?: string; mapUrl?: string; cat?: Category; };
 type Day = { day: string; date: string; location: string; items: Item[]; };
 
@@ -15,15 +15,15 @@ const ITINERARY: Day[] = [
   {
     day: "DAY 1", date: "Sep 17, Thu", location: "Depart Taipei",
     items: [
-      { time: "23:35", text: "Depart Taipei — CI 0032", cat: "transit" },
-      { time: "19:20", text: "Arrive Vancouver — YVR", cat: "transit" },
+      { time: "23:35", text: "Depart Taipei — CI 0032", cat: "flight" },
+      { time: "19:20", text: "Arrive Vancouver — YVR", cat: "flight" },
       { time: "22:15", text: "Vancouver → Calgary — CI 9314", cat: "transit" },
     ]
   },
   {
     day: "DAY 2", date: "Sep 18, Fri", location: "Arrive Calgary",
     items: [
-      { time: "00:44", text: "Arrive Calgary — YYC", cat: "transit" },
+      { time: "00:44", text: "Arrive Calgary — YYC", cat: "flight" },
     ]
   },
   {
@@ -41,14 +41,14 @@ const ITINERARY: Day[] = [
   {
     day: "DAY 12", date: "Sep 28, Mon", location: "Vancouver",
     items: [
-      { time: "00:15", text: "Arrive Vancouver — YVR", cat: "transit" },
-      { time: "02:00", text: "Depart Vancouver — CI 0031", cat: "transit" },
+      { time: "00:15", text: "Arrive Vancouver — YVR", cat: "flight" },
+      { time: "02:00", text: "Depart Vancouver — CI 0031", cat: "flight" },
     ]
   },
   {
     day: "DAY 13", date: "Sep 29, Tue", location: "Arrive Taipei",
     items: [
-      { time: "05:30", text: "Arrive Taipei", cat: "transit" },
+      { time: "05:30", text: "Arrive Taipei", cat: "flight" },
     ]
   },
 ];
@@ -58,6 +58,7 @@ function CatIcon({ cat }: { cat?: Category }) {
   if (!cat) return <span style={{ width: 13 }} />;
   if (cat === "food") return <svg {...p}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="21" y1="15" x2="21" y2="22"/><path d="M21 2a5 5 0 0 1 0 10V2z"/></svg>;
   if (cat === "transit") return <svg {...p}><rect x="4" y="3" width="16" height="15" rx="3"/><line x1="4" y1="11" x2="20" y2="11"/><line x1="12" y1="3" x2="12" y2="11"/><path d="M8 19l-1 3M16 19l1 3"/></svg>;
+  if (cat === "flight") return <svg {...p}><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>;
   if (cat === "stay") return <svg {...p}><path d="M3 9.5L12 4l9 5.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>;
   if (cat === "sight") return <svg {...p}><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>;
   if (cat === "shop") return <svg {...p}><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>;

@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
-type Category = "food" | "transit" | "stay" | "sight" | "shop" | "onsen" | "cafe";
+type Category = "food" | "transit" | "flight" | "stay" | "sight" | "shop" | "onsen" | "cafe";
 type Item = { time: string; text: string; note?: string; mapUrl?: string; cat?: Category; };
 type Day = { day: number; date: string; location: string; items: Item[]; };
 
@@ -36,8 +36,8 @@ const ITINERARY: Day[] = [
   {
     day: 1, date: "Feb 27, Fri", location: "抵達名古屋 — 榮區",
     items: [
-      { time: "14:55", text: "Depart Taipei (TPE)", cat: "transit" },
-      { time: "18:30", text: "Arrive Nagoya (NGO)", cat: "transit" },
+      { time: "14:55", text: "Depart Taipei (TPE)", cat: "flight" },
+      { time: "18:30", text: "Arrive Nagoya (NGO)", cat: "flight" },
       { time: "20:25", text: "Check-in · Nishitetsu Hotel Croom Nagoya", mapUrl: "https://www.google.com/maps/search/Nishitetsu+Hotel+Croom+Nagoya", cat: "stay" },
       { time: "20:50", text: "麵屋優光", mapUrl: "https://www.google.com/maps/search/%E9%BA%BA%E5%B1%8B%E5%84%AA%E5%85%89+%E5%90%8D%E5%8F%A4%E5%B1%8B", note: "京都風格貝類高湯拉麵，湯底清澈，第一餐！", cat: "food" },
     ]
@@ -97,8 +97,8 @@ const ITINERARY: Day[] = [
       { time: "09:00", text: "慢食早餐 — 飯店內", cat: "food" },
       { time: "11:30", text: "國寶犬山城 · 三光稻荷神社 · 城下町街道", mapUrl: "https://www.google.com/maps/search/%E7%8A%AC%E5%B1%B1%E5%9F%8E+%E5%9C%8B%E5%AF%B6", cat: "sight" },
       { time: "15:00", text: "名鐵 μ-SKY → 中部國際機場 NGO", mapUrl: "https://www.google.com/maps/search/%E4%B8%AD%E9%83%A8%E5%9C%8B%E9%9A%9B%E6%A9%9F%E5%A0%B4", cat: "transit" },
-      { time: "19:40", text: "Depart Nagoya (NGO)", cat: "transit" },
-      { time: "22:15", text: "Arrive Taipei (TPE)", cat: "transit" },
+      { time: "19:40", text: "Depart Nagoya (NGO)", cat: "flight" },
+      { time: "22:15", text: "Arrive Taipei (TPE)", cat: "flight" },
     ]
   },
 ];
@@ -110,6 +110,7 @@ function CatIcon({ cat }: { cat?: Category }) {
   if (!cat) return <span style={{ width: 13 }} />;
   if (cat === "food") return <svg {...p}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="21" y1="15" x2="21" y2="22"/><path d="M21 2a5 5 0 0 1 0 10V2z"/></svg>;
   if (cat === "transit") return <svg {...p}><rect x="4" y="3" width="16" height="15" rx="3"/><line x1="4" y1="11" x2="20" y2="11"/><line x1="12" y1="3" x2="12" y2="11"/><path d="M8 19l-1 3M16 19l1 3"/></svg>;
+  if (cat === "flight") return <svg {...p}><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>;
   if (cat === "stay") return <svg {...p}><path d="M3 9.5L12 4l9 5.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>;
   if (cat === "sight") return <svg {...p}><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>;
   if (cat === "shop") return <svg {...p}><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>;
