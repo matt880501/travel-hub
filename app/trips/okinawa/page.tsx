@@ -53,7 +53,7 @@ const ITINERARY: Day[] = [
   {
     day: "DAY 4", date: "Apr 14, Mon", location: "South Okinawa",
     items: [
-      { time: "12:00", text: "系滿魚市", cat: "food", mapUrl: "https://www.google.com/maps/search/糸満漁民食堂+沖縄" },
+      { time: "12:00", text: "系滿魚市", cat: "food", mapUrl: "https://www.google.com/maps/place/%E7%B3%B8%E6%BB%BF%E9%AD%9A%E5%B8%82%E5%A0%B4/@26.1380635,127.6610395,16z/data=!4m6!3m5!1s0x34e567c221f4f19d:0x58162367592c3315!8m2!3d26.1380987!4d127.6613785!16s%2Fg%2F1td2k73b?entry=ttu&g_ep=EgoyMDI2MDUxMi4wIKXMDSoASAFQAw%3D%3D" },
       { time: "14:00", text: "OUTLET ASHIBINAA · SPORTS DEPO Toyosaki", cat: "sight" },
       { time: "16:00", text: "沙灘 / 泳池", cat: "dive" },
     ]
@@ -69,6 +69,36 @@ const ITINERARY: Day[] = [
     ]
   },
 ];
+
+const EXTRAS = [
+  { text: "Okinawa Vibe", note: "不是東南亞那種無所事事的慵懶，是日式的整潔 chill——海灘乾淨、路上安靜、服務到位，連便利商店都讓人很安心。" },
+  { text: "為什麼四月", note: "四月關稅大戰打得正激烈，股票跌得七零八落——剛好藉這個機會來散心，timing 其實超剛好（吧）。" },
+];
+
+function ExtraItem({ e }: { e: { text: string; note: string } }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div onClick={() => setOpen(o => !o)} style={{ cursor: "pointer", padding: "14px 0", borderBottom: `0.5px solid rgba(28,44,53,0.1)`, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 14, color: TEXT }}>{e.text}</div>
+        <AnimatePresence>
+          {open && (
+            <motion.p
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: "8px 0 0", fontStyle: "italic", overflow: "hidden" }}
+            >
+              {e.note}
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </div>
+      <span style={{ fontSize: 10, color: MUTED, opacity: 0.5, paddingTop: 2, marginLeft: 16 }}>{open ? "−" : "+"}</span>
+    </div>
+  );
+}
 
 function CatIcon({ cat }: { cat?: Category }) {
   const p = { width: 13, height: 13, viewBox: "0 0 24 24", fill: "none" as const, stroke: MUTED, strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, style: { flexShrink: 0, opacity: 0.7 } };
@@ -309,6 +339,20 @@ export default function Okinawa() {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Notes */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          style={{ marginBottom: 96 }}
+        >
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 32 }}>
+            <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>NOTES</span>
+            <div style={{ flex: 1, height: 0.5, background: `rgba(20,128,176,0.2)` }} />
+          </div>
+          {EXTRAS.map((e, i) => <ExtraItem key={i} e={e} />)}
         </motion.div>
 
         {/* Photographs */}
