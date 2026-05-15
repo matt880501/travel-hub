@@ -330,12 +330,12 @@ function ExtraItem({ e }: { e: typeof EXTRAS[0] }) {
   );
 }
 
-function GalleryRow({ photos, rowIndex, onOpen, isMobile }: { photos: GalleryPhoto[]; rowIndex: number; onOpen: (url: string) => void; isMobile: boolean }) {
+function GalleryRow({ photos, rowIndex, onOpen, isMobile, isTouch }: { photos: GalleryPhoto[]; rowIndex: number; onOpen: (url: string) => void; isMobile: boolean; isTouch: boolean }) {
   const [hovered, setHovered] = useState<number | null>(null);
   const [tapped, setTapped] = useState<number | null>(null);
   const allPortrait = photos.every(p => !p.wide);
   const ROW_H = isMobile ? (allPortrait ? 200 : 130) : (allPortrait ? 360 : 220);
-  const active = isMobile ? tapped : hovered;
+  const active = isTouch ? tapped : hovered;
   return (
     <div style={{ display: "flex", gap: isMobile ? 4 : 6, marginBottom: isMobile ? 4 : 6 }}>
       {photos.map((photo, pi) => (
@@ -345,9 +345,9 @@ function GalleryRow({ photos, rowIndex, onOpen, isMobile }: { photos: GalleryPho
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55, delay: (rowIndex * photos.length + pi) * 0.04 }}
-          onClick={() => isMobile ? setTapped(t => t === pi ? null : pi) : onOpen(photo.url)}
-          onMouseEnter={() => !isMobile && setHovered(pi)}
-          onMouseLeave={() => !isMobile && setHovered(null)}
+          onClick={() => isTouch ? setTapped(t => t === pi ? null : pi) : onOpen(photo.url)}
+          onMouseEnter={() => !isTouch && setHovered(pi)}
+          onMouseLeave={() => !isTouch && setHovered(null)}
           style={{ flex: photo.wide ? 2 : 1, height: ROW_H, position: "relative", overflow: "hidden", borderRadius: 2, cursor: "pointer", flexShrink: 0 }}
         >
           <img
@@ -378,11 +378,15 @@ function GalleryRow({ photos, rowIndex, onOpen, isMobile }: { photos: GalleryPho
 export default function Australia() {
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
+  }, []);
+  useEffect(() => {
+    setIsTouch(navigator.maxTouchPoints > 0);
   }, []);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -531,11 +535,11 @@ export default function Australia() {
               <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>PHOTOGRAPHS</span>
               <div style={{ flex: 1, height: 0.5, background: `rgba(192,120,53,0.25)` }} />
             </div>
-            {isMobile && (
+            {isTouch && (
               <p style={{ fontSize: 11, color: MUTED, fontStyle: "italic", margin: "0 0 20px", opacity: 0.7 }}>tap to view</p>
             )}
             {GALLERY_ROWS.map((row, ri) => (
-              <GalleryRow key={ri} photos={row} rowIndex={ri} onOpen={setLightbox} isMobile={isMobile} />
+              <GalleryRow key={ri} photos={row} rowIndex={ri} onOpen={setLightbox} isMobile={isMobile} isTouch={isTouch} />
             ))}
           </motion.div>
         )}
