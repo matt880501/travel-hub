@@ -34,7 +34,7 @@ const ITINERARY: Day[] = [
   {
     day: "DAY 2", date: "Apr 12, Sat", location: "North Okinawa",
     items: [
-      { time: "09:30", text: "青之洞窟浮潛", cat: "dive", mapUrl: "https://www.google.com/maps/search/青の洞窟+真栄田岬+沖縄", note: "很漂亮！！" },
+      { time: "09:30", text: "青之洞窟浮潛", cat: "dive", mapUrl: "https://www.google.com/maps/search/青の洞窟+真栄田岬+沖縄", note: "世界三大青洞之一，陽光從海底折射進來，整個洞是藍的。" },
       { time: "10:30", text: "万座毛", cat: "sight", mapUrl: "https://www.google.com/maps/search/万座毛+沖縄" },
       { time: "11:30", text: "潛水員牛排", cat: "food", mapUrl: "https://www.google.com/maps/place/%E6%BD%9B%E6%B0%B4%E5%93%A1%E7%89%9B%E6%8E%92/@26.4373497,127.5740051,9.46z/data=!4m6!3m5!1s0x34e4ff6d0f7340ff:0x9dd6ffcd2a4c5e4d!8m2!3d26.5947861!4d127.9594444!16s%2Fg%2F1tj82lxm", note: "日本牛排是配飯，這間好吃。" },
       { time: "13:00", text: "沖縄美ら海水族館", cat: "sight", mapUrl: "https://www.google.com/maps/search/沖縄美ら海水族館" },
