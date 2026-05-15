@@ -75,10 +75,26 @@ const EXTRAS = [
 ];
 
 function ExtraItem({ e }: { e: { text: string; note: string } }) {
+  const [open, setOpen] = useState(false);
   return (
-    <div style={{ padding: "14px 0", borderBottom: `0.5px solid rgba(28,44,53,0.1)` }}>
-      <div style={{ fontSize: 14, color: TEXT, marginBottom: 6 }}>{e.text}</div>
-      <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: 0, fontStyle: "italic" }}>{e.note}</p>
+    <div onClick={() => setOpen(o => !o)} style={{ cursor: "pointer", padding: "14px 0", borderBottom: `0.5px solid rgba(28,44,53,0.1)`, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 14, color: TEXT }}>{e.text}</div>
+        <AnimatePresence>
+          {open && (
+            <motion.p
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: "8px 0 0", fontStyle: "italic", overflow: "hidden" }}
+            >
+              {e.note}
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </div>
+      <span style={{ fontSize: 10, color: MUTED, opacity: 0.5, paddingTop: 2, marginLeft: 16 }}>{open ? "−" : "+"}</span>
     </div>
   );
 }
