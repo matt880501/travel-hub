@@ -205,8 +205,6 @@ export default function Home() {
   const [showTrips, setShowTrips] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const [showNext, setShowNext] = useState(true);
-  useEffect(() => { setShowNext(Math.random() >= 0.5); }, []);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
@@ -224,7 +222,7 @@ export default function Home() {
   const featuredPast = TRIPS.flatMap(g => g.list).filter(t => ["nagoya", "australia"].includes(t.id));
   const lastTrip = featuredPast[Math.floor(Math.random() * featuredPast.length)];
 
-  const activeTrip = showNext ? upcomingTrip : lastTrip;
+  const activeTrip = lastTrip;
   const heroImg = activeTrip?.img || "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg";
   const heroTitle = activeTrip?.title || "Singapore & Bintan";
   const heroFullDate = activeTrip?.fullDate || "Jul 23 – Jul 28, 2026";
@@ -486,7 +484,7 @@ export default function Home() {
 
           <div style={{ position: "absolute", bottom: isMobile ? 28 : 36, left: isMobile ? 20 : 36, right: isMobile ? 20 : 36, zIndex: 2, display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "flex-end", justifyContent: "space-between", gap: isMobile ? 16 : 0 }}>
             <div>
-              <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.25em", marginBottom: 10, fontWeight: 500 }}>{showNext ? "NEXT TRIP" : "LAST TRIP"}</div>
+              <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.25em", marginBottom: 10, fontWeight: 500 }}>LAST TRIP</div>
               <div style={{ fontSize: isMobile ? 36 : 44, fontWeight: 400, color: "#f0ece4", lineHeight: 1.1, letterSpacing: "-0.01em", fontFamily: "Georgia, serif" }}>
                 {heroTitle.includes("&") ? (<>{heroTitle.split("&")[0].trim()}<br />&amp; {heroTitle.split("&")[1].trim()}</>) : heroTitle}
               </div>
