@@ -71,31 +71,14 @@ const ITINERARY: Day[] = [
 ];
 
 const EXTRAS = [
-  { text: "Okinawa Vibe", note: "不是東南亞那種無所事事的慵懶，是日式的整潔 chill——海灘乾淨、路上安靜、服務到位，連便利商店都讓人很安心。" },
-  { text: "為什麼四月", note: "四月關稅大戰打得正激烈，股票跌得七零八落——剛好藉這個機會來散心，timing 其實超剛好（吧）。" },
+  { text: "Okinawa Vibe", note: "沖繩海灘沒有東南亞那種 chill 感，是日式整潔 fu——還是是因為關稅戰股票跌爛讓我這樣覺得哈哈哈哈" },
 ];
 
 function ExtraItem({ e }: { e: { text: string; note: string } }) {
-  const [open, setOpen] = useState(false);
   return (
-    <div onClick={() => setOpen(o => !o)} style={{ cursor: "pointer", padding: "14px 0", borderBottom: `0.5px solid rgba(28,44,53,0.1)`, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-      <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 14, color: TEXT }}>{e.text}</div>
-        <AnimatePresence>
-          {open && (
-            <motion.p
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: "8px 0 0", fontStyle: "italic", overflow: "hidden" }}
-            >
-              {e.note}
-            </motion.p>
-          )}
-        </AnimatePresence>
-      </div>
-      <span style={{ fontSize: 10, color: MUTED, opacity: 0.5, paddingTop: 2, marginLeft: 16 }}>{open ? "−" : "+"}</span>
+    <div style={{ padding: "14px 0", borderBottom: `0.5px solid rgba(28,44,53,0.1)` }}>
+      <div style={{ fontSize: 14, color: TEXT, marginBottom: 6 }}>{e.text}</div>
+      <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: 0, fontStyle: "italic" }}>{e.note}</p>
     </div>
   );
 }
