@@ -221,9 +221,8 @@ export default function Home() {
     .filter(t => t.parsedDate >= today)
     .sort((a, b) => a.parsedDate.getTime() - b.parsedDate.getTime())[0];
 
-  const lastTrip = TRIPS.flatMap(g => g.list)
-    .filter(t => t.status === "done" && t.img)
-    .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime())[0];
+  const featuredPast = TRIPS.flatMap(g => g.list).filter(t => ["nagoya", "australia"].includes(t.id));
+  const lastTrip = featuredPast[Math.floor(Math.random() * featuredPast.length)];
 
   const activeTrip = showNext ? upcomingTrip : lastTrip;
   const heroImg = activeTrip?.img || "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg";
