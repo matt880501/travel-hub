@@ -88,7 +88,7 @@ ITINERARY = [
             {"time": "09:00", "text": "出發前往 Belgrave Station", "map": "https://www.google.com/maps/search/Belgrave+Station+Melbourne", "cat": "transit"},
             {"time": "10:30", "text": "Belgrave Station", "cat": "transit"},
             {"time": "11:10", "text": "Puffing Billy Railway 出發", "map": "https://www.google.com/maps/search/Puffing+Billy+Railway+Belgrave", "note": "腳可以伸出窗外！百年蒸汽火車穿越丹頂嶺國家公園，終點 Lakeside Station。", "cat": "transit"},
-            {"time": "16:00", "text": "Lakeside Station 抵達", "cat": "transit"},
+            {"time": "16:00", "text": "Lakeside Station 出發", "cat": "transit"},
             {"time": "17:00", "text": "返回墨爾本", "cat": "transit"},
             {"time": "19:30", "text": "晚餐 — 亞拉河畔", "cat": "food"},
         ]

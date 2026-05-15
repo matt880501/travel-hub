@@ -93,7 +93,7 @@
 10:30  Belgrave Station
 11:10  Puffing Billy Railway 出發
        > 腳可以伸出窗外！百年蒸汽火車穿越丹頂嶺國家公園，終點 Lakeside Station。
-16:00  Lakeside Station 抵達
+16:00  Lakeside Station 出發
 17:00  返回墨爾本
 19:30  晚餐 — 亞拉河畔
 

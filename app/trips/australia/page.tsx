@@ -69,7 +69,7 @@ const GALLERY_ROWS: GalleryPhoto[][] = [
   // Row 9 — landscape + 2 portrait
   [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862384/AU9_tnah0g.jpg", caption: "鴿子。", location: "Melbourne", wide: true },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862426/AUs16_eco3uj.jpg", caption: "墨爾本大學大氣系", location: "University of Melbourne" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778886135/AUs18_bcxab1.jpg", caption: "goodbye great ocean road", location: "Great Ocean Road" },
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862430/AUs17_mqalqr.jpg", caption: "大洋路起點", location: "Great Ocean Road" },
   ],
 ];
@@ -158,7 +158,7 @@ const ITINERARY: Day[] = [
       { time: "09:00", text: "出發前往 Belgrave Station", mapUrl: "https://www.google.com/maps/search/Belgrave+Station+Melbourne", cat: "transit" },
       { time: "10:30", text: "Belgrave Station", cat: "transit" },
       { time: "11:10", text: "Puffing Billy Railway 出發", mapUrl: "https://www.google.com/maps/search/Puffing+Billy+Railway+Belgrave", note: "腳可以伸出窗外！百年蒸汽火車穿越丹頂嶺國家公園，終點 Lakeside Station。", cat: "transit" },
-      { time: "16:00", text: "Lakeside Station 抵達", cat: "transit" },
+      { time: "16:00", text: "Lakeside Station 出發", cat: "transit" },
       { time: "17:00", text: "返回墨爾本", cat: "transit" },
       { time: "19:30", text: "晚餐 — 亞拉河畔", cat: "food" },
     ]
