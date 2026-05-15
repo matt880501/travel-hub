@@ -36,7 +36,7 @@ const GALLERY_ROWS: GalleryPhoto[][] = [
   [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862401/AUs4_ytvcuz.jpg", caption: "大洋路一景", location: "Great Ocean Road" },
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862403/AUs5_zm6rcb.jpg", caption: "藍山國家公園", location: "Blue Mountains" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862404/AUs6_vpzrlq.jpg", caption: "Amie Peng 到此一遊", location: "Australia" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862404/AUs6_vpzrlq.jpg", caption: "Amie Peng 到此一遊", location: "Blue Mountains" },
   ],
   // Row 5 — 2 landscape
   [
