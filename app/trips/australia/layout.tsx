@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "Aug 2024 —雪梨、藍山、墨爾本、大洋路、雅拉河谷。十五天的南半球冬旅。",
   openGraph: {
     title: "Australia",
-    description: "Winter 2025 — 雪梨、藍山、墨爾本、大洋路、雅拉河谷。",
+    description: "Aug 2024 — 雪梨、藍山、墨爾本、大洋路、雅拉河谷。",
     type: "article",
   },
 };
