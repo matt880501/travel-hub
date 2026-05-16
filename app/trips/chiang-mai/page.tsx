@@ -143,7 +143,7 @@ function GalleryImage({ img, index, onClick, isMobile, isTouch }: { img: typeof 
             style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%)", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "20px 16px" }}
           >
             <div style={{ fontSize: isMobile ? 10 : 12, color: "rgba(255,255,255,0.9)", fontStyle: "italic", fontFamily: "Georgia, serif", lineHeight: 1.4 }}>{img.caption}</div>
-            <div style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", letterSpacing: "0.12em", marginTop: 4 }}>{img.location}</div>
+            <div style={{ fontSize: isMobile ? 8 : 10, color: "rgba(255,255,255,0.5)", letterSpacing: "0.12em", marginTop: 4 }}>{img.location}</div>
           </motion.div>
         )}
       </AnimatePresence>
