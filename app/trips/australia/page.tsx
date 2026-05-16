@@ -231,7 +231,7 @@ const ITINERARY: Day[] = [
 ];
 
 const EXTRAS: { text: string; note: string }[] = [
-  { text: "", note: "大洋路回程的夜路，前後找不到第二台車的燈。Those Were the Days 在車裡放著，爸媽和姐姐都睡了。我挺累的，卻捨不得讓那個夜晚結束。" },
+  { text: "", note: "大洋路回程的夜路，前後望不見第二盞車燈。Those Were the Days 在車裡放著，爸媽和姐姐都睡了。我挺累的，卻捨不得讓那個夜晚結束。" },
   { text: "交通 — Apple Pay · Myki 卡", note: "雪梨：Apple Pay 感應搭車，公車、火車、輕軌全適用，機場搭 T8 轉 T2 直達 CBD。墨爾本：Myki 卡需提前儲值，市區 Free Tram Zone 內搭電車免刷卡。" },
   { text: "行程預訂 — KKday · Klook", note: "KKday：郵輪午餐、藍山一日遊、雪梨塔 + 旋轉餐廳套票、普芬比利蒸汽火車、半島溫泉。Klook：澳洲網卡、雪梨歌劇院導覽、SkyBus 機場快線（墨爾本）。" },
 ];
