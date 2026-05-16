@@ -69,7 +69,7 @@ const GALLERY_ROWS: GalleryPhoto[][] = [
   // Row 9 — landscape + 2 portrait
   [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862384/AU9_tnah0g.jpg", caption: "海鷗。", location: "Mornington Peninsula", wide: true },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778886135/AUs18_bcxab1.jpg", caption: "goodbye great ocean road", location: "Loch Ard Gorge" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778907118/AUs19_bwom4j.jpg", caption: "Balgownie Estate", location: "Yarra Valley" },
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862430/AUs17_mqalqr.jpg", caption: "大洋路起點", location: "Great Ocean Road" },
   ],
 ];
