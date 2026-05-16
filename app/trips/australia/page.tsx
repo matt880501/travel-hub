@@ -330,11 +330,11 @@ function ExtraItem({ e }: { e: typeof EXTRAS[0] }) {
   );
 }
 
-function GalleryRow({ photos, rowIndex, onOpen, isMobile, isTouch }: { photos: GalleryPhoto[]; rowIndex: number; onOpen: (url: string) => void; isMobile: boolean; isTouch: boolean }) {
+function GalleryRow({ photos, rowIndex, onOpen, isMobile, isTouch, tall }: { photos: GalleryPhoto[]; rowIndex: number; onOpen: (url: string) => void; isMobile: boolean; isTouch: boolean; tall?: boolean }) {
   const [hovered, setHovered] = useState<number | null>(null);
   const [tapped, setTapped] = useState<number | null>(null);
   const allPortrait = photos.every(p => !p.wide);
-  const ROW_H = isMobile ? (allPortrait ? 200 : 130) : (allPortrait ? 360 : 220);
+  const ROW_H = isMobile ? (allPortrait ? 200 : 130) : (allPortrait ? 360 : (tall ? 310 : 220));
   const active = isTouch ? tapped : hovered;
   return (
     <div style={{ display: "flex", gap: isMobile ? 4 : 6, marginBottom: isMobile ? 4 : 6 }}>
@@ -539,7 +539,7 @@ export default function Australia() {
               <p style={{ fontSize: 11, color: MUTED, fontStyle: "italic", margin: "0 0 20px", opacity: 0.7 }}>tap to view</p>
             )}
             {GALLERY_ROWS.map((row, ri) => (
-              <GalleryRow key={ri} photos={row} rowIndex={ri} onOpen={setLightbox} isMobile={isMobile} isTouch={isTouch} />
+              <GalleryRow key={ri} photos={row} rowIndex={ri} onOpen={setLightbox} isMobile={isMobile} isTouch={isTouch} tall={ri === GALLERY_ROWS.length - 1} />
             ))}
           </motion.div>
         )}
