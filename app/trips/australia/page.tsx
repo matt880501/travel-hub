@@ -364,8 +364,8 @@ function GalleryRow({ photos, rowIndex, onOpen, isMobile, isTouch }: { photos: G
                 transition={{ duration: 0.25 }}
                 style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%)", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "14px 12px" }}
               >
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.9)", fontStyle: "italic", fontFamily: "Georgia, serif" }}>{photo.caption}</div>
-                <div style={{ fontSize: 9, color: "rgba(255,255,255,0.45)", letterSpacing: "0.12em", marginTop: 2 }}>{photo.location}</div>
+                <div style={{ fontSize: isMobile ? 10 : 11, color: "rgba(255,255,255,0.9)", fontStyle: "italic", fontFamily: "Georgia, serif" }}>{photo.caption}</div>
+                <div style={{ fontSize: isMobile ? 8 : 9, color: "rgba(255,255,255,0.45)", letterSpacing: "0.12em", marginTop: 2 }}>{photo.location}</div>
               </motion.div>
             )}
           </AnimatePresence>
