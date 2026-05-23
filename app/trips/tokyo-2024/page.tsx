@@ -80,7 +80,7 @@ const ITINERARY: Day[] = [
       { time: "16:00", text: "阿美橫町", mapUrl: "https://www.google.com/maps/search/Ameyoko+Market+Ueno+Tokyo", note: "大章魚燒！", cat: "food" },
       { time: "17:00", text: "秋葉原 · 廣播大樓", mapUrl: "https://www.google.com/maps/search/Radio+Kaikan+Akihabara+Tokyo", note: "Steins;Gate", cat: "shop" },
       { time: "18:30", text: "銀座", mapUrl: "https://www.google.com/maps/search/Ginza+Tokyo", cat: "shop" },
-      { time: "21:00", text: "晚餐", mapUrl: "https://www.google.com/maps/place/%E7%AB%8B%E9%A3%9F%E7%83%8F%E9%BE%8D%E9%BA%BA+%E3%81%8A%E3%81%AB%E3%82%84%E3%82%93%E3%81%BE/@35.6254307,139.7213775,17z/data=!3m2!4b1!5s0x60188afafc667e1d:0xb1fbe17870c7b2e!4m6!3m5!1s0x60188afafdbd1e1d:0xa051bd9d6bc72ef7!8m2!3d35.6254264!4d139.7239524!16s%2Fg%2F11b66gp2mj?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D", cat: "food" },
+      { time: "21:00", text: "晚餐 — 立食烏龍麵 おにやんま", mapUrl: "https://www.google.com/maps/place/%E7%AB%8B%E9%A3%9F%E7%83%8F%E9%BE%8D%E9%BA%BA+%E3%81%8A%E3%81%AB%E3%82%84%E3%82%93%E3%81%BE/@35.6254307,139.7213775,17z/data=!3m2!4b1!5s0x60188afafc667e1d:0xb1fbe17870c7b2e!4m6!3m5!1s0x60188afafdbd1e1d:0xa051bd9d6bc72ef7!8m2!3d35.6254264!4d139.7239524!16s%2Fg%2F11b66gp2mj?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D", note: "我愛udon", cat: "food" },
     ]
   },
   {
