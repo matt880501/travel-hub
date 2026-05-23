@@ -13,49 +13,37 @@ const MUTED = "#8a6870";
 
 const HERO_URL = "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/To1_rgcmr9.jpg";
 
-type GalleryPhoto = { url: string; caption: string; location: string; wide?: boolean; };
-const GALLERY_ROWS: GalleryPhoto[][] = [
-  // Row 1 — 3 portrait
-  [
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526544/Tos2_byiruz.jpg", caption: "新宿到河口湖", location: "Fujikyu Line" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/Tos3_yee38p.jpg", caption: "富士山", location: "Kawaguchiko" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/Tos4_joloox.jpg", caption: "日川時計店", location: "Shimoyoshida" },
-  ],
-  // Row 2 — landscape + portrait
-  [
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/To1_rgcmr9.jpg", caption: "Tokyo", location: "Tokyo", wide: true },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/Tos5_biwcuh.jpg", caption: "Shibuya Sky", location: "Shibuya" },
-  ],
-  // Row 3 — 3 portrait
-  [
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526545/Tos6_bm4kcc.jpg", caption: "Shibuya", location: "Shibuya" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526545/Tos7_cxwapy.jpg", caption: "吉！", location: "Asakusa" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526544/Tos8_gdlgem.jpg", caption: "Steins;Gate", location: "Akihabara" },
-  ],
-  // Row 4 — 2 portrait
-  [
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/Tos9_n2rorf.jpg", caption: "晴空塔", location: "Tokyo Skytree" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526542/Tos10_tatbbx.jpg", caption: "掰掰！", location: "Narita Airport" },
-  ],
+type GalleryPhoto = { url: string; caption: string; location: string; };
+const GALLERY: GalleryPhoto[] = [
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/To1_rgcmr9.jpg", caption: "Tokyo", location: "Tokyo" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526544/Tos2_byiruz.jpg", caption: "新幹線", location: "Fujikyu Line" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/Tos3_yee38p.jpg", caption: "-43", location: "Kawaguchiko" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/Tos4_joloox.jpg", caption: "日川時計店", location: "Shimoyoshida" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/Tos5_biwcuh.jpg", caption: "Shibuya Sky", location: "Shibuya" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526545/Tos6_bm4kcc.jpg", caption: "Sunset", location: "Shibuya" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526545/Tos7_cxwapy.jpg", caption: "吉！", location: "淺草寺" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526544/Tos8_gdlgem.jpg", caption: "Steins;Gate", location: "Akihabara" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/Tos9_n2rorf.jpg", caption: "晴空，塔", location: "Tokyo Skytree" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526542/Tos10_tatbbx.jpg", caption: "-43掰掰", location: "Sky" },
 ];
 
 const ITINERARY: Day[] = [
   {
-    day: 1, date: "May 17, Fri", location: "桃園 → 東京",
+    day: 1, date: "May 17, Fri", location: "東京gogo",
     items: [
       { time: "08:55", text: "Depart Taipei (TPE)", cat: "flight" },
       { time: "13:15", text: "Arrive Tokyo Narita (NRT)", cat: "flight" },
       { time: "14:49", text: "JR N'EX 成田特快 → 品川 → 五反田", mapUrl: "https://www.google.com/maps/search/Narita+Express+Tokyo", note: "直達品川，轉五反田。15:54 抵達。", cat: "transit" },
       { time: "16:00", text: "Check-in · 三井花園酒店五反田", mapUrl: "https://www.google.com/maps/search/Hotel+Mitsui+Garden+Gotanda+Tokyo", cat: "stay" },
       { time: "17:00", text: "山手線 → 新宿", cat: "transit" },
-      { time: "18:00", text: "晚餐 — Nabezo 鍋ぞう 新宿明治通り店", mapUrl: "https://www.google.com/maps/search/Nabezo+Shinjuku+Meiji+Dori", cat: "food" },
+      { time: "18:00", text: "晚餐 — Nabezo 鍋ぞう 新宿明治通り店", cat: "food" },
       { time: "19:30", text: "ALPEN Tokyo · Lumine Est", mapUrl: "https://www.google.com/maps/search/ALPEN+Tokyo+Shinjuku", cat: "shop" },
     ]
   },
   {
     day: 2, date: "May 18, Sat", location: "河口湖一日遊 Kawaguchiko",
     items: [
-      { time: "06:26", text: "新宿出發 → 河口湖", mapUrl: "https://www.google.com/maps/search/Shinjuku+Station+Tokyo", note: "08:52 抵達河口湖。", cat: "transit" },
+      { time: "06:26", text: "新宿出發 → 河口湖", mapUrl: "https://www.google.com/maps/search/Shinjuku+Station+Tokyo", note: "富士山gogo", cat: "transit" },
       { time: "09:00", text: "租電動自行車", cat: "transit" },
       { time: "09:30", text: "下吉田新倉山淺間神社", mapUrl: "https://www.google.com/maps/search/Arakurayama+Sengen+Park+Fujiyoshida", cat: "sight" },
       { time: "11:00", text: "日川時計店", mapUrl: "https://www.google.com/maps/search/Hikawa+Watch+Shimoyoshida", cat: "sight" },
@@ -90,7 +78,7 @@ const ITINERARY: Day[] = [
       { time: "12:30", text: "午餐 — とんかつ山家 御徒町店", mapUrl: "https://www.google.com/maps/search/Tonkatsu+Yamabe+Okachimachi+Tokyo", cat: "food" },
       { time: "13:00", text: "東京大學", mapUrl: "https://www.google.com/maps/search/University+of+Tokyo", cat: "sight" },
       { time: "16:00", text: "阿美橫町", mapUrl: "https://www.google.com/maps/search/Ameyoko+Market+Ueno+Tokyo", note: "大章魚燒！", cat: "food" },
-      { time: "17:00", text: "秋葉原 · 廣播大樓", mapUrl: "https://www.google.com/maps/search/Radio+Kaikan+Akihabara+Tokyo", cat: "shop" },
+      { time: "17:00", text: "秋葉原 · 廣播大樓", mapUrl: "https://www.google.com/maps/search/Radio+Kaikan+Akihabara+Tokyo", note: "Steins;Gate", cat: "shop" },
       { time: "18:30", text: "銀座", mapUrl: "https://www.google.com/maps/search/Ginza+Tokyo", cat: "shop" },
       { time: "19:30", text: "晚餐", cat: "food" },
       { time: "20:00", text: "Uniqlo · 無印良品 旗艦店", mapUrl: "https://www.google.com/maps/search/Uniqlo+Ginza+Tokyo", cat: "shop" },
@@ -111,8 +99,7 @@ const ITINERARY: Day[] = [
 ];
 
 const EXTRAS: { text: string; note: string }[] = [
-  { text: "", note: "Charlotte 第一次出國，剛好是東京。一起去河口湖看富士山，一起在澀谷迷路，一起搶六點多的早班車。這次旅行很短，卻感覺什麼都剛剛好。" },
-  { text: "交通 — JR N'EX · 山手線 · 京成 Access", note: "成田入境搭 N'EX 成田特快至品川轉五反田（14:49 → 15:54）。市區以山手線為主，淺草 → 上野搭銀座線。回程搭京成 Access 特急返成田。" },
+  { text: "", note: "彭姥老進大東京" },
 ];
 
 function CatIcon({ cat }: { cat?: Category }) {
@@ -209,48 +196,36 @@ function ExtraItem({ e }: { e: typeof EXTRAS[0] }) {
   );
 }
 
-function GalleryRow({ photos, rowIndex, onOpen, isMobile, isTouch }: { photos: GalleryPhoto[]; rowIndex: number; onOpen: (url: string) => void; isMobile: boolean; isTouch: boolean }) {
-  const [hovered, setHovered] = useState<number | null>(null);
-  const [tapped, setTapped] = useState<number | null>(null);
-  const allPortrait = photos.every(p => !p.wide);
-  const ROW_H = isMobile ? (allPortrait ? 200 : 130) : (allPortrait ? 360 : 220);
-  const active = isTouch ? tapped : hovered;
+function GalleryImage({ img, index, onClick, isMobile, isTouch }: { img: GalleryPhoto; index: number; onClick: () => void; isMobile: boolean; isTouch: boolean }) {
+  const [active, setActive] = useState(false);
+  const handleClick = () => { if (isTouch) { setActive(o => !o); } else { onClick(); } };
   return (
-    <div style={{ display: "flex", gap: isMobile ? 4 : 6, marginBottom: isMobile ? 4 : 6 }}>
-      {photos.map((photo, pi) => (
-        <motion.div
-          key={pi}
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: (rowIndex * photos.length + pi) * 0.04 }}
-          onClick={() => isTouch ? setTapped(t => t === pi ? null : pi) : onOpen(photo.url)}
-          onMouseEnter={() => !isTouch && setHovered(pi)}
-          onMouseLeave={() => !isTouch && setHovered(null)}
-          style={{ flex: photo.wide ? 2 : 1, height: ROW_H, position: "relative", overflow: "hidden", borderRadius: 2, cursor: "pointer", flexShrink: 0 }}
-        >
-          <img
-            src={photo.url}
-            alt={photo.caption}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: active === pi ? "scale(1.04)" : "scale(1)" }}
-          />
-          <AnimatePresence>
-            {active === pi && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%)", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "14px 12px" }}
-              >
-                <div style={{ fontSize: isMobile ? 10 : 11, color: "rgba(255,255,255,0.9)", fontStyle: "italic", fontFamily: "Georgia, serif" }}>{photo.caption}</div>
-                <div style={{ fontSize: isMobile ? 8 : 9, color: "rgba(255,255,255,0.45)", letterSpacing: "0.12em", marginTop: 2 }}>{photo.location}</div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      ))}
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.04 }}
+      onMouseEnter={() => { if (!isTouch) setActive(true); }}
+      onMouseLeave={() => { if (!isTouch) setActive(false); }}
+      onClick={handleClick}
+      style={{ position: "relative", borderRadius: 2, overflow: "hidden", cursor: "pointer", marginBottom: isMobile ? 6 : 10, breakInside: "avoid" }}
+    >
+      <img src={img.url} alt={img.caption} style={{ width: "100%", height: "auto", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: (!isTouch && active) ? "scale(1.03)" : "scale(1)" }} />
+      <AnimatePresence>
+        {active && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 55%)", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: isMobile ? "12px 10px" : "20px 16px" }}
+          >
+            <div style={{ fontSize: isMobile ? 10 : 12, color: "rgba(255,255,255,0.9)", fontStyle: "italic", fontFamily: "Georgia, serif", lineHeight: 1.4 }}>{img.caption}</div>
+            <div style={{ fontSize: isMobile ? 8 : 9, color: "rgba(255,255,255,0.45)", letterSpacing: "0.12em", marginTop: 3 }}>{img.location}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
@@ -267,6 +242,9 @@ export default function Tokyo2024() {
   useEffect(() => {
     setIsTouch(navigator.maxTouchPoints > 0);
   }, []);
+  const col1 = [GALLERY[0], GALLERY[3], GALLERY[6], GALLERY[9]];
+  const col2 = [GALLERY[1], GALLERY[4], GALLERY[7]];
+  const col3 = [GALLERY[2], GALLERY[5], GALLERY[8]];
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
@@ -403,7 +381,7 @@ export default function Tokyo2024() {
         </motion.div>
 
         {/* Gallery */}
-        {GALLERY_ROWS.length > 0 && (
+        {GALLERY.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -417,9 +395,15 @@ export default function Tokyo2024() {
             {isTouch && (
               <p style={{ fontSize: 11, color: MUTED, fontStyle: "italic", margin: "0 0 20px", opacity: 0.7 }}>tap to view</p>
             )}
-            {GALLERY_ROWS.map((row, ri) => (
-              <GalleryRow key={ri} photos={row} rowIndex={ri} onOpen={setLightbox} isMobile={isMobile} isTouch={isTouch} />
-            ))}
+            <div style={{ display: "flex", gap: isMobile ? 6 : 10 }}>
+              {[col1, col2, col3].map((col, ci) => (
+                <div key={ci} style={{ flex: 1 }}>
+                  {col.map((img, i) => img && (
+                    <GalleryImage key={i} img={img} index={ci * 4 + i} onClick={() => setLightbox(img.url)} isMobile={isMobile} isTouch={isTouch} />
+                  ))}
+                </div>
+              ))}
+            </div>
           </motion.div>
         )}
 
@@ -433,8 +417,8 @@ export default function Tokyo2024() {
           <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.2em", marginBottom: 24 }}>ABOUT THIS TRIP</div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? 24 : 32 }}>
             {[
-              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "14°C — 27°C", sub: "Late spring warmth" },
-              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, label: "MOOD", value: "Urban & Traditional", sub: "Temples to neon" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "16°C — 27°C", sub: "Late spring warmth" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, label: "MOOD", value: "Urban & Fuji", sub: "Neon streets and mountain air" },
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>, label: "SEASON", value: "May", sub: "Late spring Tokyo" },
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, label: "WITH", value: "Charlotte", sub: "First trip together" },
             ].map((m, i) => (
