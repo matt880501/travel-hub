@@ -160,6 +160,59 @@ ITINERARY = [
     },
 ]
 
+EXTRAS = [
+    {"text": "", "note": "大洋路回程的夜路，前後望不見第二盞車燈。Those Were the Days 在車裡放著，爸媽和姐姐都睡了。我挺累的，卻捨不得讓那個夜晚結束。"},
+    {"text": "交通 — Apple Pay · Myki 卡", "note": "雪梨：Apple Pay 感應搭車，公車、火車、輕軌全適用，機場搭 T8 轉 T2 直達 CBD。墨爾本：Myki 卡需提前儲值，市區 Free Tram Zone 內搭電車免刷卡。"},
+    {"text": "行程預訂 — KKday · Klook", "note": "KKday：郵輪午餐、藍山一日遊、雪梨塔 + 旋轉餐廳套票、普芬比利蒸汽火車、半島溫泉。Klook：澳洲網卡、雪梨歌劇院導覽、SkyBus 機場快線（墨爾本）。"},
+]
+
+# wide: true 的照片為橫幅，佔 2 欄；其餘為直式
+# 順序即為頁面顯示順序（row by row）
+GALLERY_ROWS = [
+    [
+        {"id": "AU12",  "caption": "雪梨大橋望歌劇院", "location": "Sydney Harbour",         "wide": True},
+        {"id": "AU6",   "caption": "海的對面是南極",   "location": "Great Ocean Road",        "wide": True},
+    ],
+    [
+        {"id": "AUs1",  "caption": "雪梨大學",          "location": "The University of Sydney"},
+        {"id": "AUs2",  "caption": "冬末春初",           "location": "Sydney"},
+        {"id": "AUs3",  "caption": "雪梨塔夜景",         "location": "Sydney Tower Eye"},
+    ],
+    [
+        {"id": "AU13",  "caption": "三姐妹岩",           "location": "Blue Mountains",          "wide": True},
+        {"id": "AU7",   "caption": "London Bridge",      "location": "Great Ocean Road",        "wide": True},
+    ],
+    [
+        {"id": "AUs4",  "caption": "大洋路一景",         "location": "Great Ocean Road"},
+        {"id": "AUs5",  "caption": "藍山國家公園",        "location": "Blue Mountains"},
+        {"id": "AUs6",  "caption": "Amie Peng 到此一遊", "location": "Blue Mountains"},
+    ],
+    [
+        {"id": "AU2",   "caption": "雪梨街景",           "location": "Sydney CBD",              "wide": True},
+        {"id": "AU14",  "caption": "Twelve Apostles",    "location": "Great Ocean Road",        "wide": True},
+    ],
+    [
+        {"id": "AUs7",  "caption": "酒莊野生袋鼠",       "location": "Yarra Valley"},
+        {"id": "AUs8",  "caption": "Edition Roasters",   "location": "Sydney"},
+        {"id": "AUs9",  "caption": "QVB",                "location": "Queen Victoria Building"},
+        {"id": "AUs10", "caption": "Circular Quay",      "location": "Sydney"},
+    ],
+    [
+        {"id": "AU8",   "caption": "小企鵝與大洋路",     "location": "Great Ocean Road",        "wide": True},
+        {"id": "AU3",   "caption": "Lest We Forget",     "location": "Australian War Memorial", "wide": True},
+    ],
+    [
+        {"id": "AUs11", "caption": "痛風餐",             "location": "Sydney Fish Market"},
+        {"id": "AUs12", "caption": "澳網主場",            "location": "Melbourne Park"},
+        {"id": "AUs15", "caption": "State Library Victoria", "location": "Melbourne"},
+    ],
+    [
+        {"id": "AU9",   "caption": "海鷗。",             "location": "Mornington Peninsula",    "wide": True},
+        {"id": "AUs18", "caption": "seeya",              "location": "Loch Ard Gorge"},
+        {"id": "AUs17", "caption": "大洋路起點",          "location": "Great Ocean Road"},
+    ],
+]
+
 # ── 以下不用動 ──────────────────────────────────────────
 
 def escape(s):
