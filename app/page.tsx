@@ -11,23 +11,23 @@ const TRIPS: { year: string; list: Trip[] }[] = [
   {
     year: "2026",
     list: [
-      { id: "canada", title: "Canada", sub: "加拿大", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "upcoming", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778680358/CA1_c2rier.jpg", href: "/trips/canada" },
-      { id: "singapore-bintan", title: "Singapore & Bintan", sub: "新加坡 · 民丹島", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "next", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg", href: "/trips/singapore-bintan" },
-      { id: "nagoya", title: "Nagoya", sub: "名古屋 · 飛驒高山 · 犬山", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669488/NG1_cfqqat.jpg", href: "/trips/nagoya" },
-      { id: "chiang-mai", title: "Chiang Mai", sub: "清邁 · 春節", date: "Feb, 2026", fullDate: "Feb 13 – Feb 19, 2026", startDate: "2026-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg", href: "/trips/chiang-mai" },
+      { id: "canada", title: "Canada", sub: "加拿大", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "upcoming", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778680358/CA1_c2rier.jpg", href: "/trips/canada-2026" },
+      { id: "singapore-bintan", title: "Singapore & Bintan", sub: "新加坡 · 民丹島", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "next", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg", href: "/trips/singapore-bintan-2026" },
+      { id: "nagoya", title: "Nagoya", sub: "名古屋 · 飛驒高山 · 犬山", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669488/NG1_cfqqat.jpg", href: "/trips/nagoya-2026" },
+      { id: "chiang-mai", title: "Chiang Mai", sub: "清邁 · 春節", date: "Feb, 2026", fullDate: "Feb 13 – Feb 19, 2026", startDate: "2026-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg", href: "/trips/chiang-mai-2026" },
     ],
   },
   {
     year: "2025",
     list: [
-      { id: "bohol", title: "Bohol Island", sub: "薄荷島", date: "Oct, 2025", fullDate: "Oct 22 – Oct 26, 2025", startDate: "2025-10-22", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg", href: "/trips/bohol" },
-      { id: "okinawa", title: "Okinawa", sub: "沖繩", date: "Apr, 2025", fullDate: "Apr 11 – Apr 15, 2025", startDate: "2025-04-11", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843907/OKI1_kvpgjq.jpg", href: "/trips/okinawa" },
+      { id: "bohol", title: "Bohol Island", sub: "薄荷島", date: "Oct, 2025", fullDate: "Oct 22 – Oct 26, 2025", startDate: "2025-10-22", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg", href: "/trips/bohol-2025" },
+      { id: "okinawa", title: "Okinawa", sub: "沖繩", date: "Apr, 2025", fullDate: "Apr 11 – Apr 15, 2025", startDate: "2025-04-11", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843907/OKI1_kvpgjq.jpg", href: "/trips/okinawa-2025" },
     ],
   },
   {
     year: "2024",
     list: [
-      { id: "australia", title: "Australia", sub: "雪梨 · 墨爾本", date: "Aug, 2024", fullDate: "Aug 17 – Aug 31, 2024", startDate: "2024-08-17", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862389/AU12_w6s7vd.jpg", href: "/trips/australia" },
+      { id: "australia", title: "Australia", sub: "雪梨 · 墨爾本", date: "Aug, 2024", fullDate: "Aug 17 – Aug 31, 2024", startDate: "2024-08-17", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862389/AU12_w6s7vd.jpg", href: "/trips/australia-2024" },
       { id: "tokyo-2024", title: "Tokyo", sub: "東京", date: "May, 2024", fullDate: "May 17 – May 21, 2024", startDate: "2024-05-17", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/To1_rgcmr9.jpg", href: "/trips/tokyo-2024" },
     ],
   },

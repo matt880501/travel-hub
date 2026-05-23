@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery Layout Demo</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, sans-serif; background: #f0f2f4; color: #1b2535; }
+
+  .section { padding: 60px 40px; max-width: 960px; margin: 0 auto; }
+  .label { font-size: 10px; letter-spacing: 0.25em; color: #4d6f8e; margin-bottom: 32px; border-bottom: 0.5px solid rgba(77,111,142,0.2); padding-bottom: 12px; }
+  .option-title { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+  .option-desc { font-size: 12px; color: #7b8c9e; margin-bottom: 24px; }
+
+  /* fake landscape photos */
+  .photo {
+    background: linear-gradient(135deg, #c9d6df, #a8bfcc);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .photo::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 8px; left: 10px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+  }
+  .photo-1 { background: linear-gradient(135deg, #b8cdd9, #7fa8bf); }
+  .photo-2 { background: linear-gradient(135deg, #c2d4bc, #8aaa82); }
+  .photo-3 { background: linear-gradient(135deg, #d4c9b8, #b09e82); }
+  .photo-4 { background: linear-gradient(135deg, #c9b8d4, #9982b0); }
+  .photo-5 { background: linear-gradient(135deg, #b8c9d4, #7898a8); }
+  .photo-6 { background: linear-gradient(135deg, #d4c2b8, #b08878); }
+  .photo-7 { background: linear-gradient(135deg, #c2d4bc, #6a9860); }
+  .photo-8 { background: linear-gradient(135deg, #d4d0b8, #a8a470); }
+
+  hr { border: none; border-top: 1px solid rgba(27,37,53,0.1); margin: 0; }
+
+  /* ── Option A: Horizontal Scroll ── */
+  .option-a-wrap {
+    overflow-x: auto;
+    display: flex;
+    gap: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: #c0c8cf transparent;
+    padding-bottom: 8px;
+  }
+  .option-a-wrap .photo {
+    flex: 0 0 auto;
+    height: 340px;
+    width: auto;
+    aspect-ratio: 16/9;
+    border-radius: 2px;
+  }
+
+  /* ── Option B: Justified Rows ── */
+  .option-b-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .option-b-row .photo {
+    flex: 1;
+    height: 200px;
+    border-radius: 2px;
+  }
+  .option-b-row .photo.tall { flex: 0 0 auto; width: 140px; height: 200px; }
+  .option-b-row .photo.wide { flex: 2; }
+  .option-b-row .photo.wider { flex: 3; }
+
+  /* ── Option C: Full-width + 2-up ── */
+  .option-c-full {
+    width: 100%;
+    aspect-ratio: 21/9;
+    border-radius: 2px;
+    margin-bottom: 6px;
+  }
+  .option-c-pair {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .option-c-pair .photo {
+    flex: 1;
+    aspect-ratio: 16/9;
+    border-radius: 2px;
+  }
+
+  .divider { height: 1px; background: rgba(27,37,53,0.08); margin: 60px 0; }
+</style>
+</head>
+<body>
+
+<div style="background:#1b2535; color:#eef5f9; padding: 24px 40px; font-size:10px; letter-spacing:0.2em;">
+  GALLERY LAYOUT DEMO — 澳洲用哪個？
+</div>
+
+<!-- Option A -->
+<div class="section">
+  <div class="label">OPTION A</div>
+  <div class="option-title">Horizontal Scroll — 橫向捲動</div>
+  <div class="option-desc">← 向右滑動 / 拖曳 →　　電影感強，每張大景完整呈現，但跟頁面其他區塊捲動方向不同</div>
+  <div class="option-a-wrap">
+    <div class="photo photo-1" data-label="Uluru Sunrise"></div>
+    <div class="photo photo-2" data-label="Great Ocean Road"></div>
+    <div class="photo photo-3" data-label="Whitsundays"></div>
+    <div class="photo photo-4" data-label="Blue Mountains"></div>
+    <div class="photo photo-5" data-label="Kakadu"></div>
+    <div class="photo photo-6" data-label="Ningaloo"></div>
+    <div class="photo photo-7" data-label="Grampians"></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Option B -->
+<div class="section">
+  <div class="label">OPTION B</div>
+  <div class="option-title">Justified Rows — 等高排列</div>
+  <div class="option-desc">每排等高，寬度自動分配，橫幅自然佔多一點空間。最尊重照片原始比例。</div>
+
+  <!-- row 1: 3 landscape photos -->
+  <div class="option-b-row">
+    <div class="photo photo-1 wide" data-label="Uluru Sunrise"></div>
+    <div class="photo photo-2" data-label="Whitsundays"></div>
+    <div class="photo photo-3" data-label="Great Ocean Road"></div>
+  </div>
+  <!-- row 2: 2 landscape -->
+  <div class="option-b-row">
+    <div class="photo photo-4 wider" data-label="Blue Mountains"></div>
+    <div class="photo photo-5 wide" data-label="Kakadu"></div>
+  </div>
+  <!-- row 3: 3 -->
+  <div class="option-b-row">
+    <div class="photo photo-6" data-label="Ningaloo"></div>
+    <div class="photo photo-7 wide" data-label="Grampians"></div>
+    <div class="photo photo-8" data-label="Daintree"></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Option C -->
+<div class="section">
+  <div class="label">OPTION C</div>
+  <div class="option-title">Full-width + 2-up — 精選全寬</div>
+  <div class="option-desc">主角照片全寬展示，其他兩張並列。有雜誌編輯感，但需要手動選哪張當 featured。</div>
+
+  <div class="photo photo-1 option-c-full" data-label="Uluru Sunrise — featured"></div>
+  <div class="option-c-pair">
+    <div class="photo photo-2" data-label="Great Ocean Road"></div>
+    <div class="photo photo-3" data-label="Whitsundays"></div>
+  </div>
+  <div class="photo photo-4 option-c-full" data-label="Blue Mountains — featured"></div>
+  <div class="option-c-pair">
+    <div class="photo photo-5" data-label="Kakadu"></div>
+    <div class="photo photo-6" data-label="Ningaloo"></div>
+  </div>
+</div>
+
+<div style="height: 80px;"></div>
+
+</body>
+</html>
