@@ -71,7 +71,7 @@ const ITINERARY: Day[] = [
 ];
 
 const EXTRAS = [
-  { text: "Okinawa Vibe", note: "沖繩海灘沒有東南亞那種 chill 感，是日式整潔 fu——還是是因為關稅戰股票跌爛讓我這樣覺得哈哈哈哈" },
+  { text: "", note: "沖繩海灘沒有東南亞那種 chill 感，是日式整潔 fu——還是是因為關稅戰股票跌爛讓我這樣覺得哈哈哈哈" },
 ];
 
 function ExtraItem({ e }: { e: { text: string; note: string } }) {
