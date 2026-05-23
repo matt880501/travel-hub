@@ -28,7 +28,7 @@ const TRIPS: { year: string; list: Trip[] }[] = [
     year: "2024",
     list: [
       { id: "australia", title: "Australia", sub: "雪梨 · 墨爾本", date: "Aug, 2024", fullDate: "Aug 17 – Aug 31, 2024", startDate: "2024-08-17", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862389/AU12_w6s7vd.jpg", href: "/trips/australia" },
-      { id: "tokyo-2024", title: "Tokyo", sub: "東京", date: "May, 2024", fullDate: "May 17 – May 22, 2024", startDate: "2024-05-17", status: "done", img: null, href: "#" },
+      { id: "tokyo-2024", title: "Tokyo", sub: "東京", date: "May, 2024", fullDate: "May 17 – May 21, 2024", startDate: "2024-05-17", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/To1_rgcmr9.jpg", href: "/trips/tokyo-2024" },
     ],
   },
   {
