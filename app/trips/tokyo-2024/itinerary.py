@@ -10,7 +10,7 @@ ITINERARY = [
         "items": [
             {"time": "08:55", "text": "Depart Taipei (TPE)", "cat": "flight"},
             {"time": "13:15", "text": "Arrive Tokyo Narita (NRT)", "cat": "flight"},
-            {"time": "14:49", "text": "JR N'EX 成田特快 → 品川 → 五反田", "map": "https://www.google.com/maps/search/Narita+Express+Tokyo", "note": "直達品川，轉五反田。15:54 抵達。", "cat": "transit"},
+            {"time": "14:49", "text": "JR N'EX 成田特快 → 品川 → 五反田", "map": "https://www.google.com/maps/search/Narita+Express+Tokyo", "note": "直達品川，轉五反田。", "cat": "transit"},
             {"time": "16:00", "text": "Check-in · 三井花園酒店五反田", "map": "https://www.google.com/maps/search/Hotel+Mitsui+Garden+Gotanda+Tokyo", "cat": "stay"},
             {"time": "17:00", "text": "山手線 → 新宿", "cat": "transit"},
             {"time": "18:00", "text": "晚餐 — Nabezo 鍋ぞう 新宿明治通り店", "cat": "food"},
@@ -28,7 +28,7 @@ ITINERARY = [
             {"time": "13:30", "text": "富士山景觀纜車", "map": "https://www.google.com/maps/search/Mt+Fuji+Panoramic+Ropeway+Kawaguchiko", "cat": "sight"},
             {"time": "14:00", "text": "河口湖天上山公園", "map": "https://www.google.com/maps/search/Tenjoyama+Park+Kawaguchiko", "cat": "sight"},
             {"time": "15:30", "text": "大石公園", "map": "https://www.google.com/maps/search/Oishi+Park+Kawaguchiko", "cat": "sight"},
-            {"time": "17:16", "text": "下吉田 → 新宿", "note": "19:28 抵達新宿。", "cat": "transit"},
+            {"time": "17:16", "text": "下吉田 → 新宿", "note": "繼續逛！", "cat": "transit"},
         ]
     },
     {
@@ -42,6 +42,7 @@ ITINERARY = [
             {"time": "13:00", "text": "Blue Bottle Coffee", "map": "https://www.google.com/maps/search/Blue+Bottle+Coffee+Aoyama+Tokyo", "cat": "cafe"},
             {"time": "14:00", "text": "Parco · Pokémon Center · Disney Store", "map": "https://www.google.com/maps/search/Shibuya+Parco+Tokyo", "cat": "shop"},
             {"time": "16:30", "text": "Shibuya Sky — 日落", "map": "https://www.google.com/maps/search/Shibuya+Sky+Tokyo", "cat": "sight"},
+            {"time": "19:30", "text": "晚餐", "map": "https://www.google.com/maps/place/大阪烤肉+%2F+荷爾蒙+二子+五反田總店/@35.6254281,139.7229423,18z/data=!3m1!5s0x60188afafc667e1d:0xb1fbe17870c7b2e!4m14!1m7!3m6!1s0x60188afafdbd1e1d:0xa051bd9d6bc72ef7!2z56uL6aOf54OP6b6N6bq1IOOBiuOBq-OChOOCk-OBvg!8m2!3d35.6254264!4d139.7239524!16s%2Fg%2F11b66gp2mj!3m5!1s0x60188bb8e48d1ce7:0x1ee019a6ad20daad!8m2!3d35.6256317!4d139.722877!16s%2Fg%2F11n68qh7jy?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D, "cat": "food"},
         ]
     },
     {
@@ -57,8 +58,7 @@ ITINERARY = [
             {"time": "16:00", "text": "阿美橫町", "map": "https://www.google.com/maps/search/Ameyoko+Market+Ueno+Tokyo", "note": "大章魚燒！", "cat": "food"},
             {"time": "17:00", "text": "秋葉原 · 廣播大樓", "map": "https://www.google.com/maps/search/Radio+Kaikan+Akihabara+Tokyo", "note": "Steins;Gate","cat": "shop"},
             {"time": "18:30", "text": "銀座", "map": "https://www.google.com/maps/search/Ginza+Tokyo", "cat": "shop"},
-            {"time": "19:30", "text": "晚餐", "cat": "food"},
-            {"time": "20:00", "text": "Uniqlo · 無印良品 旗艦店", "map": "https://www.google.com/maps/search/Uniqlo+Ginza+Tokyo", "cat": "shop"},
+            {"time": "21:00", "text": "晚餐", "map": "https://www.google.com/maps/place/立食烏龍麵+おにやんま/@35.6254307,139.7213775,17z/data=!3m2!4b1!5s0x60188afafc667e1d:0xb1fbe17870c7b2e!4m6!3m5!1s0x60188afafdbd1e1d:0xa051bd9d6bc72ef7!8m2!3d35.6254264!4d139.7239524!16s%2Fg%2F11b66gp2mj?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D, "cat": "food"},
         ]
     },
     {
