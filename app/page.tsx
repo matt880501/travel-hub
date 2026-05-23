@@ -62,6 +62,7 @@ const MEMORIES = [
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg", label: "Chiang Mai" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843907/OKI1_kvpgjq.jpg", label: "Okinawa" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862389/AU12_w6s7vd.jpg", label: "Australia" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/To1_rgcmr9.jpg", label: "Tokyo" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg", label: "Bohol Island" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430033/NZ1_vuque7.jpg", label: "New Zealand" },
 ];
