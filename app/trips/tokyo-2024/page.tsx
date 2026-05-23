@@ -271,7 +271,7 @@ export default function Tokyo2024() {
         <div style={{ fontSize: 10, letterSpacing: "0.2em", color: MUTED }}>
           {!isMobile && <><a href="/" style={{ color: MUTED, textDecoration: "none" }}>MATT</a><span style={{ margin: "0 10px", opacity: 0.4 }}>/</span><a href="/" style={{ color: MUTED, textDecoration: "none" }}>TRAVEL ARCHIVE</a><span style={{ margin: "0 10px", opacity: 0.4 }}>/</span></>}
           {isMobile && <a href="/" style={{ color: MUTED, textDecoration: "none", marginRight: 10 }}>←</a>}
-          <span style={{ color: TEXT }}>TOKYO 2024</span>
+          <span style={{ color: TEXT }}>TOKYO</span>
         </div>
         {!isMobile && <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.15em" }}>MAY 17 – 21, 2024</div>}
       </div>
