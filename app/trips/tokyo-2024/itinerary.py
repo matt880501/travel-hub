@@ -42,7 +42,7 @@ ITINERARY = [
             {"time": "13:00", "text": "Blue Bottle Coffee", "map": "https://www.google.com/maps/search/Blue+Bottle+Coffee+Aoyama+Tokyo", "cat": "cafe"},
             {"time": "14:00", "text": "Parco · Pokémon Center · Disney Store", "map": "https://www.google.com/maps/search/Shibuya+Parco+Tokyo", "cat": "shop"},
             {"time": "16:30", "text": "Shibuya Sky — 日落", "map": "https://www.google.com/maps/search/Shibuya+Sky+Tokyo", "cat": "sight"},
-            {"time": "19:30", "text": "晚餐 — 立食烏龍麵 おにやんま", "map": "https://www.google.com/maps/place/大阪烤肉+%2F+荷爾蒙+二子+五反田總店/@35.6254281,139.7229423,18z/data=!3m1!5s0x60188afafc667e1d:0xb1fbe17870c7b2e!4m14!1m7!3m6!1s0x60188afafdbd1e1d:0xa051bd9d6bc72ef7!2z56uL6aOf54OP6b6N6bq1IOOBiuOBq-OChOOCk-OBvg!8m2!3d35.6254264!4d139.7239524!16s%2Fg%2F11b66gp2mj!3m5!1s0x60188bb8e48d1ce7:0x1ee019a6ad20daad!8m2!3d35.6256317!4d139.722877!16s%2Fg%2F11n68qh7jy?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D", "note": "超好吃", "cat": "food"},
+            {"time": "19:30", "text": "晚餐 — 居酒屋", "map": "https://www.google.com/maps/place/大阪烤肉+%2F+荷爾蒙+二子+五反田總店/@35.6254281,139.7229423,18z/data=!3m1!5s0x60188afafc667e1d:0xb1fbe17870c7b2e!4m14!1m7!3m6!1s0x60188afafdbd1e1d:0xa051bd9d6bc72ef7!2z56uL6aOf54OP6b6N6bq1IOOBiuOBq-OChOOCk-OBvg!8m2!3d35.6254264!4d139.7239524!16s%2Fg%2F11b66gp2mj!3m5!1s0x60188bb8e48d1ce7:0x1ee019a6ad20daad!8m2!3d35.6256317!4d139.722877!16s%2Fg%2F11n68qh7jy?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D", "note": "這間滿滿的日本人，好吃", "cat": "food"},
         ]
     },
     {
