@@ -15,7 +15,6 @@ const HERO_URL = "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_aut
 
 type GalleryPhoto = { url: string; caption: string; location: string; };
 const GALLERY: GalleryPhoto[] = [
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/To1_rgcmr9.jpg", caption: "Tokyo", location: "Tokyo" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526544/Tos2_byiruz.jpg", caption: "新幹線", location: "Fujikyu Line" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/Tos3_yee38p.jpg", caption: "-43", location: "Kawaguchiko" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/Tos4_joloox.jpg", caption: "日川時計店", location: "Shimoyoshida" },
@@ -99,7 +98,7 @@ const ITINERARY: Day[] = [
 ];
 
 const EXTRAS: { text: string; note: string }[] = [
-  { text: "", note: "彭姥老進大東京" },
+  { text: "", note: "彭姥姥進大東京" },
 ];
 
 function CatIcon({ cat }: { cat?: Category }) {
@@ -242,7 +241,7 @@ export default function Tokyo2024() {
   useEffect(() => {
     setIsTouch(navigator.maxTouchPoints > 0);
   }, []);
-  const col1 = [GALLERY[0], GALLERY[3], GALLERY[6], GALLERY[9]];
+  const col1 = [GALLERY[0], GALLERY[3], GALLERY[6]];
   const col2 = [GALLERY[1], GALLERY[4], GALLERY[7]];
   const col3 = [GALLERY[2], GALLERY[5], GALLERY[8]];
   const heroRef = useRef<HTMLDivElement>(null);

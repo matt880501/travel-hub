@@ -76,12 +76,11 @@ ITINERARY = [
 ]
 
 EXTRAS = [
-    {"text": "", "note": "彭姥老進大東京"},
+    {"text": "", "note": "彭姥姥進大東京"},
 ]
 
 # caption / location 順序即為頁面顯示順序（3欄直式）
 GALLERY = [
-    {"id": "To1",   "caption": "Tokyo",       "location": "Tokyo"},
     {"id": "Tos2",  "caption": "新幹線",  "location": "Fujikyu Line"},
     {"id": "Tos3",  "caption": "-43",        "location": "Kawaguchiko"},
     {"id": "Tos4",  "caption": "日川時計店",    "location": "Shimoyoshida"},
