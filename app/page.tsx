@@ -66,7 +66,14 @@ const MEMORIES = [
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg", label: "Bohol Island" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430033/NZ1_vuque7.jpg", label: "New Zealand" },
 ];
-const shuffled = [...MEMORIES].sort(() => Math.random() - 0.5);
+function shuffle<T>(arr: T[]): T[] {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
 
 const VISITED = ["Japan", "Philippines", "Australia", "New Zealand", "Thailand", "Egypt", "Austria", "Czechia", "Czech Republic"];
 
@@ -204,12 +211,20 @@ export default function Home() {
   const [showMap, setShowMap] = useState(false);
   const [showTrips, setShowTrips] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [shuffled, setShuffled] = useState(MEMORIES);
+  const [featuredTrip, setFeaturedTrip] = useState<Trip | undefined>(undefined);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
+  }, []);
+
+  useEffect(() => {
+    setShuffled(shuffle(MEMORIES));
+    const featuredPast = TRIPS.flatMap(g => g.list).filter(t => ["nagoya", "australia"].includes(t.id));
+    setFeaturedTrip(featuredPast[Math.floor(Math.random() * featuredPast.length)]);
   }, []);
 
   const today = new Date();
@@ -219,10 +234,7 @@ export default function Home() {
     .filter(t => t.parsedDate >= today)
     .sort((a, b) => a.parsedDate.getTime() - b.parsedDate.getTime())[0];
 
-  const featuredPast = TRIPS.flatMap(g => g.list).filter(t => ["nagoya", "australia"].includes(t.id));
-  const lastTrip = featuredPast[Math.floor(Math.random() * featuredPast.length)];
-
-  const activeTrip = lastTrip;
+  const activeTrip = featuredTrip;
   const heroImg = activeTrip?.img || "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg";
   const heroTitle = activeTrip?.title || "Singapore & Bintan";
   const heroFullDate = activeTrip?.fullDate || "Jul 23 – Jul 28, 2026";

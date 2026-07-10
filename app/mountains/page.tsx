@@ -90,7 +90,7 @@ function IconMountain({ active }: { active?: boolean }) {
 export default function MountainsPage() {
   const [isMobile, setIsMobile]     = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
-  const [galleryPhotos] = useState(() => pickRandom(MOUNTAIN_PHOTOS, MOUNTAIN_PHOTOS.length));
+  const [galleryPhotos, setGalleryPhotos] = useState(MOUNTAIN_PHOTOS);
   const [isTouch, setIsTouch] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -105,6 +105,10 @@ export default function MountainsPage() {
 
   useEffect(() => {
     setIsTouch(navigator.maxTouchPoints > 0);
+  }, []);
+
+  useEffect(() => {
+    setGalleryPhotos(pickRandom(MOUNTAIN_PHOTOS, MOUNTAIN_PHOTOS.length));
   }, []);
 
   const NAV = [
