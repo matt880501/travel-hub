@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
-const HERO_IMG  = "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1783683397/%E5%98%89%E6%98%8E%E6%B9%962_o4uzgz.jpg";
+const HERO_IMG  = "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693006/%E6%9C%88%E4%BA%AE%E7%9A%84%E9%8F%A1%E5%AD%90_dictfi.jpg";
 const STRIP_IMG = "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1783683328/%E5%98%89%E6%98%8E%E6%B9%961_bkpcs0.jpg";
 
 const EXPEDITIONS = [
@@ -68,9 +68,9 @@ function GalleryPhotoCard({ photo, isMobile, isTouch }: { photo: { url: string; 
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.78) 0%, transparent 45%)", display: "flex", alignItems: "flex-end", justifyContent: "flex-end", padding: 14 }}
+            style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.78) 0%, transparent 45%)", display: "flex", alignItems: "flex-end", justifyContent: "flex-end", padding: isMobile ? 10 : 14 }}
           >
-            <div style={{ fontSize: 12, color: "#f0ece4", fontFamily: "Georgia, serif", lineHeight: 1.3, textAlign: "right" }}>{photo.caption}</div>
+            <div style={{ fontSize: isMobile ? 10 : 12, color: "#f0ece4", fontFamily: "Georgia, serif", lineHeight: 1.3, textAlign: "right" }}>{photo.caption}</div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -267,6 +267,19 @@ export default function Home() {
               </div>
               <button onClick={() => setShowTrips(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#555", fontSize: 20, lineHeight: 1, padding: 4 }}>×</button>
             </div>
+            <div style={{ padding: "10px 8px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+              {[
+                { label: "TRAVEL",   href: "/",          active: true,  icon: <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg> },
+                { label: "MOUNTAIN", href: "/mountains", active: false, icon: <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg> },
+              ].map(({ label, href, active, icon }) => (
+                <a key={label} href={href} onClick={() => setShowTrips(false)} style={{ textDecoration: "none", display: "block" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "7px 12px", borderRadius: 8, marginBottom: 1, background: active ? "rgba(196,168,130,0.1)" : "transparent", border: `1px solid ${active ? "rgba(196,168,130,0.15)" : "transparent"}` }}>
+                    <span style={{ color: active ? "#c4a882" : "#555" }}>{icon}</span>
+                    <span style={{ fontSize: 12, color: active ? "#c4a882" : "#555", letterSpacing: "0.08em", fontWeight: active ? 500 : 400 }}>{label}</span>
+                  </div>
+                </a>
+              ))}
+            </div>
             <div style={{ flex: 1, padding: "12px 8px", overflowY: "auto" }}>
               {upcomingTrip && (
                 <>
