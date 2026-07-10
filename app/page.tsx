@@ -515,7 +515,7 @@ export default function Home() {
 
           <div style={{ position: "absolute", bottom: isMobile ? 28 : 36, left: isMobile ? 20 : 36, right: isMobile ? 20 : 36, zIndex: 2, display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "flex-end", justifyContent: "space-between", gap: isMobile ? 16 : 0 }}>
             <div>
-              <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.25em", marginBottom: 10, fontWeight: 500 }}>LAST TRIP</div>
+              <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.25em", marginBottom: 10, fontWeight: 500 }}>{activeTrip?.id && activeTrip.id === upcomingTrip?.id ? "NEXT TRIP" : "LAST TRIP"}</div>
               <div style={{ fontSize: isMobile ? 36 : 44, fontWeight: 400, color: "#f0ece4", lineHeight: 1.1, letterSpacing: "-0.01em", fontFamily: "Georgia, serif" }}>
                 {heroTitle.includes("&") ? (<>{heroTitle.split("&")[0].trim()}<br />&amp; {heroTitle.split("&")[1].trim()}</>) : heroTitle}
               </div>
