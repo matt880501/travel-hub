@@ -25,7 +25,6 @@ const BY_YEAR = Object.entries(
 ).sort(([a], [b]) => Number(b) - Number(a));
 
 const TOTAL = 18;
-const PROGRESS = Math.round((TOTAL / 100) * 100);
 
 const MOUNTAIN_PHOTOS: { url: string; caption: string }[] = [
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693008/Sunrise_efjb6r.jpg", caption: "Sunrise" },
@@ -167,7 +166,6 @@ export default function MountainsPage() {
         <div style={{ fontSize: 26, fontWeight: 600, color: "#f0ece4", fontFamily: "Georgia, serif", lineHeight: 1 }}>
           {TOTAL} <span style={{ fontSize: 16, color: "#555", fontWeight: 300 }}>/ 100</span>
         </div>
-        <div style={{ fontSize: 11, color: "#666", marginTop: 4 }}>{PROGRESS}% Completed</div>
       </div>
     </div>
   );
