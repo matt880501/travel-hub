@@ -220,7 +220,7 @@ export default function MountainsPage() {
       <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto", paddingTop: isMobile ? 56 : 0 }}>
 
         {/* Hero */}
-        <div ref={heroRef} style={{ position: "relative", height: isMobile ? 320 : 400, overflow: "hidden", flexShrink: 0 }}>
+        <div ref={heroRef} style={{ position: "relative", height: isMobile ? 380 : 460, overflow: "hidden", flexShrink: 0 }}>
           <motion.div style={{ y: heroY, position: "absolute", inset: 0, top: "-20%", bottom: "-20%" }}>
             <img src={HERO_IMG} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
           </motion.div>
@@ -232,7 +232,7 @@ export default function MountainsPage() {
               百岳
             </div>
             <div style={{ fontSize: 15, color: "#aaa", marginTop: 10, letterSpacing: "0.02em" }}>
-              {TOTAL} / 100 <span style={{ color: "#666" }}>Completed</span>
+              {TOTAL} <span style={{ color: "#666" }}>Peaks</span>
             </div>
           </div>
         </div>

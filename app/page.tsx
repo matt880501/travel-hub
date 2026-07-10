@@ -507,7 +507,7 @@ export default function Home() {
       <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto", paddingTop: isMobile ? 56 : 0 }}>
 
         {/* ── HERO ── */}
-        <div style={{ position: "relative", height: isMobile ? 380 : 440, backgroundImage: `url(${heroImg})`, backgroundSize: "cover", backgroundPosition: "center 65%", flexShrink: 0 }}>
+        <div style={{ position: "relative", height: isMobile ? 440 : 500, backgroundImage: `url(${heroImg})`, backgroundSize: "cover", backgroundPosition: "center 65%", flexShrink: 0 }}>
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.3) 60%, rgba(10,10,10,0.1) 100%)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 50%)" }} />
 
