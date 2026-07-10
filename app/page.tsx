@@ -214,6 +214,13 @@ export default function Home() {
   const [shuffled, setShuffled] = useState(MEMORIES);
   const [featuredTrip, setFeaturedTrip] = useState<Trip | undefined>(undefined);
 
+  const today = new Date();
+  const upcomingTrip = TRIPS.flatMap(g => g.list)
+    .filter(t => t.status === "next" || t.status === "upcoming")
+    .map(t => ({ ...t, parsedDate: new Date(t.startDate) }))
+    .filter(t => t.parsedDate >= today)
+    .sort((a, b) => a.parsedDate.getTime() - b.parsedDate.getTime())[0];
+
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
@@ -224,15 +231,9 @@ export default function Home() {
   useEffect(() => {
     setShuffled(shuffle(MEMORIES));
     const featuredPast = TRIPS.flatMap(g => g.list).filter(t => ["nagoya", "australia"].includes(t.id));
-    setFeaturedTrip(featuredPast[Math.floor(Math.random() * featuredPast.length)]);
+    const pool = [...featuredPast, ...(upcomingTrip ? [upcomingTrip] : [])];
+    setFeaturedTrip(pool[Math.floor(Math.random() * pool.length)]);
   }, []);
-
-  const today = new Date();
-  const upcomingTrip = TRIPS.flatMap(g => g.list)
-    .filter(t => t.status === "next" || t.status === "upcoming")
-    .map(t => ({ ...t, parsedDate: new Date(t.startDate) }))
-    .filter(t => t.parsedDate >= today)
-    .sort((a, b) => a.parsedDate.getTime() - b.parsedDate.getTime())[0];
 
   const activeTrip = featuredTrip;
   const heroImg = activeTrip?.img || "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg";
