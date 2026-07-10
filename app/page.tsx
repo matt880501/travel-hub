@@ -200,7 +200,6 @@ function Countdown({ targetDate, compact = false }: { targetDate: Date; compact?
 export default function Home() {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
-  const [search, setSearch] = useState("");
   const [showMemories, setShowMemories] = useState(false);
   const [showMap, setShowMap] = useState(false);
   const [showTrips, setShowTrips] = useState(false);
@@ -230,10 +229,6 @@ export default function Home() {
   const heroHref = activeTrip?.href || "/trips/singapore-bintan";
   const heroCountdown = upcomingTrip ? new Date(upcomingTrip.startDate) : new Date("2026-07-23");
 
-  const displayTrips = search
-    ? TRIPS.map(g => ({ ...g, list: g.list.filter(t => t.title.toLowerCase().includes(search.toLowerCase())) })).filter(g => g.list.length > 0)
-    : TRIPS;
-
   return (
     <div style={{ display: "flex", minHeight: "100vh", background: "#161616", fontFamily: "SF Pro Display, -apple-system, sans-serif", color: "#e8e4dc" }}>
 
@@ -248,7 +243,7 @@ export default function Home() {
             </button>
             <div>
               <div style={{ fontSize: 15, fontWeight: 600, color: "#f0ece4", letterSpacing: "0.02em" }}>MATT</div>
-              <div style={{ fontSize: 9, color: "#c4a882", letterSpacing: "0.18em" }}>TRAVEL ARCHIVE</div>
+              <div style={{ fontSize: 9, color: "#c4a882", letterSpacing: "0.18em" }}>ARCHIVE</div>
             </div>
           </div>
           <div style={{ display: "flex", gap: 8 }}>
@@ -268,7 +263,7 @@ export default function Home() {
             <div style={{ padding: "20px 20px 12px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
               <div>
                 <div style={{ fontSize: 15, fontWeight: 600, color: "#f0ece4" }}>MATT</div>
-                <div style={{ fontSize: 9, color: "#c4a882", letterSpacing: "0.18em" }}>TRAVEL ARCHIVE</div>
+                <div style={{ fontSize: 9, color: "#c4a882", letterSpacing: "0.18em" }}>ARCHIVE</div>
               </div>
               <button onClick={() => setShowTrips(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#555", fontSize: 20, lineHeight: 1, padding: 4 }}>×</button>
             </div>
@@ -405,15 +400,24 @@ export default function Home() {
       <div style={{ width: 248, flexShrink: 0, background: "#161616", borderRight: "1px solid rgba(255,255,255,0.06)", display: isMobile ? "none" : "flex", flexDirection: "column", height: "100vh", position: "sticky", top: 0 }}>
         <div style={{ padding: "28px 20px 16px" }}>
           <div style={{ fontSize: 22, fontWeight: 600, letterSpacing: "0.02em", color: "#f0ece4" }}>MATT</div>
-          <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.18em", marginTop: 2 }}>TRAVEL ARCHIVE</div>
+          <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.18em", marginTop: 2 }}>ARCHIVE</div>
         </div>
 
-        <div style={{ padding: "0 16px 14px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.04)", borderRadius: 8, border: "1px solid rgba(255,255,255,0.06)", padding: "8px 12px" }}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth={2}><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
-            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search trips..." style={{ background: "none", border: "none", outline: "none", fontSize: 12, color: "#aaa", flex: 1 }} />
-            <span style={{ fontSize: 10, color: "#444" }}>⌘K</span>
-          </div>
+        <div style={{ padding: "0 8px 10px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+          {[
+            { label: "TRAVEL",   href: "/",          active: true,  icon: <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg> },
+            { label: "MOUNTAIN", href: "/mountains", active: false, icon: <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg> },
+          ].map(({ label, href, active, icon }) => (
+            <a key={label} href={href} style={{ textDecoration: "none", display: "block" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "7px 12px", borderRadius: 8, marginBottom: 1, background: active ? "rgba(196,168,130,0.1)" : "transparent", border: `1px solid ${active ? "rgba(196,168,130,0.15)" : "transparent"}` }}
+                onMouseEnter={e => { if (!active) e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
+                onMouseLeave={e => { if (!active) e.currentTarget.style.background = "transparent"; }}
+              >
+                <span style={{ color: active ? "#c4a882" : "#555" }}>{icon}</span>
+                <span style={{ fontSize: 12, color: active ? "#c4a882" : "#555", letterSpacing: "0.08em", fontWeight: active ? 500 : 400 }}>{label}</span>
+              </div>
+            </a>
+          ))}
         </div>
 
         <div style={{ flex: 1, overflowY: "auto", padding: "0 8px" }}>
@@ -436,7 +440,7 @@ export default function Home() {
           )}
 
           <div style={{ padding: "12px 8px 8px", fontSize: 11, color: "#555", letterSpacing: "0.12em" }}>Trips</div>
-          {displayTrips.map(({ year, list }) => (
+          {TRIPS.map(({ year, list }) => (
             <div key={year} style={{ marginBottom: 12 }}>
               <div style={{ fontSize: 10, color: "#3a3a3a", letterSpacing: "0.15em", padding: "2px 10px 6px", fontWeight: 600 }}>{year}</div>
               {list.map(trip => (
