@@ -392,7 +392,7 @@ export default function Australia() {
   }, []);
 
   async function handleShare() {
-    const blob = await buildPhotoGridShareCard(GALLERY_ROWS.flat().map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Australia", subtitle: "Sydney · Melbourne · Great Ocean Road", backdropColor: ACCENT });
+    const blob = await buildPhotoGridShareCard(GALLERY_ROWS.flat().map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Australia", subtitle: "Sydney · Melbourne · Great Ocean Road", backdropColor: BG });
     await shareOrCopyLink({
       title: "Australia — Matt Travels",
       text: "Aug 2024, Sydney · Melbourne · Great Ocean Road",

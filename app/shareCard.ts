@@ -109,15 +109,16 @@ export async function buildPhotoGridShareCard(
   const footerBaseline = gridY + gridH + footerH - 40;
   const rightEdge = gridX + gridW;
 
+  const title = opts.subtitle ? `${opts.title} · ${opts.subtitle}` : opts.title;
+  const titleSize = fitFontSize(ctx, title, gridW * 0.62, 54, 28, "Georgia, serif");
+
   if (opts.kicker) {
     ctx.textAlign = "left";
     ctx.fillStyle = "#9a9490";
     ctx.font = "600 18px -apple-system, sans-serif";
-    ctx.fillText(opts.kicker.toUpperCase(), gridX, footerBaseline - 46);
+    ctx.fillText(opts.kicker.toUpperCase(), gridX, footerBaseline - titleSize - 8);
   }
 
-  const title = opts.subtitle ? `${opts.title} · ${opts.subtitle}` : opts.title;
-  const titleSize = fitFontSize(ctx, title, gridW * 0.62, 54, 28, "Georgia, serif");
   ctx.textAlign = "left";
   ctx.fillStyle = "#161616";
   ctx.font = `700 ${titleSize}px Georgia, serif`;
