@@ -57,7 +57,7 @@ function GalleryPhotoCard({ photo, isMobile, isTouch }: { photo: { url: string; 
       onMouseEnter={() => { if (!isTouch) setActive(true); }}
       onMouseLeave={() => { if (!isTouch) setActive(false); }}
       onClick={() => { if (isTouch) setActive(o => !o); }}
-      style={{ position: "relative", breakInside: "avoid", marginBottom: isMobile ? 8 : 10, borderRadius: isMobile ? 10 : 12, overflow: "hidden", cursor: isTouch ? "pointer" : "default" }}
+      style={{ position: "relative", breakInside: "avoid", marginBottom: isMobile ? 8 : 10, borderRadius: isMobile ? 10 : 12, overflow: "hidden", cursor: isTouch ? "pointer" : "default", WebkitMaskImage: "-webkit-radial-gradient(white, black)" }}
     >
       <img src={photo.url} alt={photo.caption} style={{ width: "100%", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: (!isTouch && active) ? "scale(1.06)" : "scale(1)" }} />
       <AnimatePresence>
