@@ -7,7 +7,7 @@ const STRIP_IMG = "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_au
 
 const EXPEDITIONS = [
   { label: "武陵四秀",          sub: "Wuling Four Peaks", year: "2025", date: "2025.12", days: "4D3N", img: HERO_IMG,  pos: "center 20%" },
-  { label: "嘉明湖",            sub: "Jia Ming Lake",     year: "2023", date: "2023.6",  days: "3D2N", img: STRIP_IMG, pos: "center 60%" },
+  { label: "嘉明湖、向陽山、三叉山", sub: "Jiaming Lake · Xiangyang · Sancha", year: "2023", date: "2023.6",  days: "3D2N", img: STRIP_IMG, pos: "center 60%" },
   { label: "郡大山",            sub: "Jundashan Peak",    year: "2021", date: "2021.8",  days: "2D1N", img: HERO_IMG,  pos: "center 70%" },
   { label: "玉山主北西",        sub: "Yu Shan",           year: "2021", date: "2021.3",  days: "2D1N", img: STRIP_IMG, pos: "center 30%" },
   { label: "合歡西峰",          sub: "Hehuan West",       year: "2020", date: "2020.6",  days: "1D",   img: HERO_IMG,  pos: "center 50%" },
@@ -69,7 +69,7 @@ function GalleryPhotoCard({ photo, isMobile, isTouch }: { photo: { url: string; 
             transition={{ duration: 0.3 }}
             style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.78) 0%, transparent 45%)", display: "flex", alignItems: "flex-end", justifyContent: "flex-end", padding: isMobile ? 10 : 14 }}
           >
-            <div style={{ fontSize: isMobile ? 10 : 12, color: "#f0ece4", fontFamily: "Georgia, serif", lineHeight: 1.3, textAlign: "right" }}>{photo.caption}</div>
+            <div style={{ fontSize: isMobile ? 10 : 12, color: "#f0ece4", fontFamily: "Georgia, serif", fontStyle: "italic", lineHeight: 1.3, textAlign: "right" }}>{photo.caption}</div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -227,15 +227,15 @@ export default function MountainsPage() {
         {/* Stats */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: isMobile ? 8 : 12, padding: isMobile ? "12px 16px" : "16px 20px", background: "#161616", flexShrink: 0 }}>
           {[
-            { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M3 20L9 8l4 6 3-4 5 10H3z" /></svg>, val: `${TOTAL}`, label: "Peaks" },
-            { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M12 19V5M5 12l7-7 7 7" /></svg>, val: "3,952 m", label: "Highest · 玉山主峰" },
-            { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>, val: "嘉明湖", label: "Favorite" },
+            { icon: <svg width={isMobile ? 16 : 20} height={isMobile ? 16 : 20} viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M3 20L9 8l4 6 3-4 5 10H3z" /></svg>, val: `${TOTAL}`, label: "Peaks" },
+            { icon: <svg width={isMobile ? 16 : 20} height={isMobile ? 16 : 20} viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M12 19V5M5 12l7-7 7 7" /></svg>, val: "3,952 m", label: "Highest · 玉山主峰" },
+            { icon: <svg width={isMobile ? 16 : 20} height={isMobile ? 16 : 20} viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>, val: "嘉明湖", label: "Favorite" },
           ].map(({ icon, val, label }) => (
-            <div key={label} style={{ background: "#1c1c1c", borderRadius: 12, padding: "16px 18px", border: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", gap: 14 }}>
-              <span>{icon}</span>
-              <div>
-                <div style={{ fontSize: 22, fontWeight: 500, color: "#f0ece4", fontFamily: "Georgia, serif" }}>{val}</div>
-                <div style={{ fontSize: 11, color: "#555", marginTop: 1, letterSpacing: "0.05em" }}>{label}</div>
+            <div key={label} style={{ background: "#1c1c1c", borderRadius: 12, padding: isMobile ? "10px 8px" : "16px 18px", border: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", gap: isMobile ? 6 : 14 }}>
+              <span style={{ flexShrink: 0 }}>{icon}</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: isMobile ? 14 : 22, fontWeight: 500, color: "#f0ece4", fontFamily: "Georgia, serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{val}</div>
+                <div style={{ fontSize: isMobile ? 8.5 : 11, color: "#555", marginTop: 1, letterSpacing: "0.05em", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{label}</div>
               </div>
             </div>
           ))}
