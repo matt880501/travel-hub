@@ -117,14 +117,6 @@ export default function MountainsPage() {
 
   const SidebarInner = ({ onNav }: { onNav?: () => void }) => (
     <div style={{ display: "flex", flexDirection: "column", height: "100%", overflow: "hidden" }}>
-      {/* Header */}
-      <div style={{ padding: "28px 20px 20px", flexShrink: 0 }}>
-        <a href="/" style={{ textDecoration: "none" }}>
-          <div style={{ fontSize: 22, fontWeight: 600, letterSpacing: "0.02em", color: "#f0ece4" }}>MATT</div>
-          <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.18em", marginTop: 2 }}>ARCHIVE</div>
-        </a>
-      </div>
-
       {/* Nav */}
       <div style={{ padding: "0 8px 12px", borderBottom: "1px solid rgba(255,255,255,0.05)", flexShrink: 0 }}>
         {NAV.map(({ label, href, icon: Icon, active }) => (
@@ -203,7 +195,15 @@ export default function MountainsPage() {
 
       {/* Desktop sidebar */}
       <div style={{ width: 248, flexShrink: 0, background: "#161616", borderRight: "1px solid rgba(255,255,255,0.06)", display: isMobile ? "none" : "flex", flexDirection: "column", height: "100vh", position: "sticky", top: 0 }}>
-        <SidebarInner />
+        <div style={{ padding: "28px 20px 20px", flexShrink: 0 }}>
+          <a href="/" style={{ textDecoration: "none" }}>
+            <div style={{ fontSize: 22, fontWeight: 600, letterSpacing: "0.02em", color: "#f0ece4" }}>MATT</div>
+            <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.18em", marginTop: 2 }}>ARCHIVE</div>
+          </a>
+        </div>
+        <div style={{ flex: 1, overflow: "hidden" }}>
+          <SidebarInner />
+        </div>
       </div>
 
       {/* Main */}
