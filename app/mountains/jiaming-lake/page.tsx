@@ -27,9 +27,9 @@ const STATS = [
 ];
 
 const HERO_STATS = [
-  { icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M3 20L9 8l4 6 3-4 5 10H3z" /></svg>, value: "3,603 m", label: "Elevation" },
-  { icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 3" /></svg>, value: "2 Days", label: "Duration" },
-  { icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><rect x="3" y="4" width="18" height="17" rx="2" /><path d="M16 2v4M8 2v4M3 9h18" /></svg>, value: "2023.6", label: "Date" },
+  { icon: (s: number) => <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M3 20L9 8l4 6 3-4 5 10H3z" /></svg>, value: "3,603 m", label: "Elevation" },
+  { icon: (s: number) => <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 3" /></svg>, value: "2 Days", label: "Duration" },
+  { icon: (s: number) => <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><rect x="3" y="4" width="18" height="17" rx="2" /><path d="M16 2v4M8 2v4M3 9h18" /></svg>, value: "2023.6", label: "Date" },
 ];
 
 function GalleryPhoto({ photo, isMobile, isTouch }: { photo: { url: string; caption: string }; isMobile: boolean; isTouch: boolean }) {
@@ -119,16 +119,16 @@ export default function JiamingLakePage() {
             <rect x="2" y="6" width="20" height="15" rx="4" /><circle cx="12" cy="13.5" r="4.2" /><path d="M8 6l1.5-2.5h5L16 6" /><circle cx="17.5" cy="9.5" r="0.8" fill="#f0ece4" stroke="none" />
           </svg>
         </button>
-        <div style={{ position: "absolute", bottom: isMobile ? 18 : 26, left: isMobile ? 18 : 28, right: isMobile ? 18 : 28 }}>
-          <div style={{ fontSize: isMobile ? 30 : 44, fontWeight: 400, color: "#f0ece4", lineHeight: 1.05, fontFamily: "Georgia, serif", textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}>嘉明湖</div>
-          <div style={{ fontSize: isMobile ? 13 : 15, color: "rgba(240,236,228,0.7)", marginTop: 6, textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Jiaming Lake</div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: isMobile ? 18 : 32, marginTop: isMobile ? 16 : 22 }}>
+        <div style={{ position: "absolute", bottom: isMobile ? 14 : 26, right: isMobile ? 14 : 28, textAlign: "right" }}>
+          <div style={{ fontSize: isMobile ? 20 : 44, fontWeight: 400, color: "#f0ece4", lineHeight: 1.05, fontFamily: "Georgia, serif", textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}>嘉明湖</div>
+          <div style={{ fontSize: isMobile ? 10 : 15, color: "rgba(240,236,228,0.7)", marginTop: isMobile ? 3 : 6, textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Jiaming Lake</div>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "flex-end", gap: isMobile ? 10 : 32, marginTop: isMobile ? 8 : 22 }}>
             {HERO_STATS.map(({ icon, value, label }) => (
-              <div key={label} style={{ display: "flex", alignItems: "center", gap: 8, textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
-                {icon}
+              <div key={label} style={{ display: "flex", alignItems: "center", gap: isMobile ? 4 : 8, textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
+                {icon(isMobile ? 11 : 16)}
                 <div>
-                  <div style={{ fontSize: isMobile ? 14 : 16, color: "#f0ece4", fontFamily: "Georgia, serif" }}>{value}</div>
-                  <div style={{ fontSize: 9.5, color: "rgba(240,236,228,0.6)", letterSpacing: "0.08em" }}>{label}</div>
+                  <div style={{ fontSize: isMobile ? 10 : 16, color: "#f0ece4", fontFamily: "Georgia, serif" }}>{value}</div>
+                  <div style={{ fontSize: isMobile ? 7 : 9.5, color: "rgba(240,236,228,0.6)", letterSpacing: "0.08em" }}>{label}</div>
                 </div>
               </div>
             ))}
@@ -141,9 +141,9 @@ export default function JiamingLakePage() {
         <div>
           <div style={sectionLabel}>OVERVIEW</div>
           <p style={{ fontSize: isMobile ? 14 : 15, color: "rgba(232,228,220,0.85)", lineHeight: 1.8, maxWidth: 680 }}>
-            嘉明湖，天使的眼淚。但我更喜歡月亮的鏡子這名字。
+            嘉明湖，天使的眼淚，但我更喜歡月亮的鏡子這名字。
             <br /><br />
-            何等運氣遇上日出大景，我在湖邊一坐就是兩小時，捨不得走。
+            何等運氣遇上日出大景，我坐在湖邊一待就是兩小時，看著湖面漸變的顏色，捨不得走。
           </p>
 
           <div style={{ marginTop: isMobile ? 24 : 32 }}>
