@@ -50,6 +50,81 @@ function pickRandom<T>(arr: T[], n: number): T[] {
   return copy.slice(0, n);
 }
 
+function loadImage(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+async function buildShareCard(): Promise<Blob | null> {
+  const W = 1080, H = 1920;
+  const cols = 2, rows = 3;
+  const cellW = W / cols, cellH = H / rows;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+
+  try {
+    const photos = pickRandom(MOUNTAIN_PHOTOS, cols * rows);
+    const imgs = await Promise.all(photos.map(p => loadImage(p.url)));
+    imgs.forEach((img, i) => {
+      const x = (i % cols) * cellW, y = Math.floor(i / cols) * cellH;
+      const scale = Math.max(cellW / img.width, cellH / img.height);
+      const sw = cellW / scale, sh = cellH / scale;
+      const sx = (img.width - sw) / 2, sy = (img.height - sh) / 2;
+      ctx.drawImage(img, sx, sy, sw, sh, x, y, cellW, cellH);
+    });
+  } catch {
+    return null;
+  }
+
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, "rgba(10,10,10,0.55)");
+  grad.addColorStop(0.45, "rgba(10,10,10,0.2)");
+  grad.addColorStop(1, "rgba(10,10,10,0.92)");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  const pad = 64;
+
+  ctx.fillStyle = "#c4a882";
+  ctx.font = "600 28px -apple-system, sans-serif";
+  ctx.fillText("MOUNTAIN ARCHIVE", pad, 130);
+
+  ctx.fillStyle = "#f0ece4";
+  ctx.font = "400 100px Georgia, serif";
+  ctx.fillText("百岳", pad, 232);
+
+  let ty = H - 260;
+  const stats: [string, string][] = [
+    [`${TOTAL}`, "Peaks"],
+    ["3,952 m", "Highest · 玉山主峰"],
+    ["嘉明湖", "Favorite"],
+  ];
+  stats.forEach(([val, label]) => {
+    ctx.font = "500 44px Georgia, serif";
+    ctx.fillStyle = "#f0ece4";
+    ctx.fillText(val, pad, ty);
+    ctx.font = "400 24px -apple-system, sans-serif";
+    ctx.fillStyle = "#999";
+    ctx.fillText(label, pad + 280, ty);
+    ty += 64;
+  });
+
+  ctx.font = "400 22px -apple-system, sans-serif";
+  ctx.fillStyle = "rgba(240,236,228,0.6)";
+  ctx.fillText("mattravels.com", pad, H - 60);
+
+  return new Promise(resolve => canvas.toBlob(blob => resolve(blob), "image/png", 0.92));
+}
+
 function GalleryPhotoCard({ photo, isMobile, isTouch }: { photo: { url: string; caption: string }; isMobile: boolean; isTouch: boolean }) {
   const [active, setActive] = useState(false);
   return (
@@ -112,10 +187,16 @@ export default function MountainsPage() {
     const shareData = { title: "百岳 — Matt's Mountain Archive", text: `${TOTAL} peaks and counting 🏔️`, url };
     let file: File | null = null;
     try {
-      const res = await fetch(HERO_IMG);
-      const blob = await res.blob();
-      file = new File([blob], "mountains.jpg", { type: blob.type || "image/jpeg" });
+      const blob = await buildShareCard();
+      if (blob) file = new File([blob], "mountains-story.png", { type: "image/png" });
     } catch {}
+    if (!file) {
+      try {
+        const res = await fetch(HERO_IMG);
+        const blob = await res.blob();
+        file = new File([blob], "mountains.jpg", { type: blob.type || "image/jpeg" });
+      } catch {}
+    }
 
     const canShareFiles = !!file && !!navigator.canShare?.({ files: [file] });
     try {
