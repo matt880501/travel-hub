@@ -6,7 +6,7 @@ import { buildPhotoGridShareCard, shareOrCopyLink } from "../../shareCard";
 const HERO_IMG = "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693006/%E6%9C%88%E4%BA%AE%E7%9A%84%E9%8F%A1%E5%AD%90_dictfi.jpg";
 
 const GALLERY: { url: string; caption: string }[] = [
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1783683328/%E5%98%89%E6%98%8E%E6%B9%961_bkpcs0.jpg", caption: "Sunrise" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693008/Sunrise_efjb6r.jpg", caption: "Sunrise" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693005/%E4%B8%89%E5%8F%89%E5%B1%B1_uhyola.jpg", caption: "三叉山彩霞" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693001/%E5%98%89%E6%98%8E%E6%B9%96%E7%95%94_wlkcv1.jpg", caption: "嘉明湖畔" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693000/%E5%98%89%E6%98%8E%E6%B9%96%E5%A4%A7%E6%99%AF_bu9ntf.jpg", caption: "嘉明湖全景" },
@@ -77,7 +77,7 @@ export default function JiamingLakePage() {
 
   async function handleShare() {
     const photos = [HERO_IMG, ...GALLERY.map(g => g.url)];
-    const blob = await buildPhotoGridShareCard(photos, { kicker: "MOUNTAIN ARCHIVE", title: "嘉明湖、向陽山、三叉山", cols: 2, rows: 3, backdropUrl: HERO_IMG });
+    const blob = await buildPhotoGridShareCard(photos, { kicker: "MOUNTAIN ARCHIVE", title: "嘉明湖、向陽山、三叉山", titleMaxSize: 34, titleMinSize: 18, cols: 2, rows: 3, backdropUrl: HERO_IMG, footerTop: STATS[0].value, footerBottom: STATS[1].value });
     await shareOrCopyLink({
       title: "嘉明湖 — Matt's Mountain Archive",
       text: "2023.6 — 向陽山、三叉山、嘉明湖",

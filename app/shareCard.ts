@@ -39,7 +39,7 @@ function roundRectPath(ctx: CanvasRenderingContext2D, x: number, y: number, w: n
 
 export async function buildPhotoGridShareCard(
   photoUrls: string[],
-  opts: { kicker?: string; title: string; subtitle?: string; cols?: number; rows?: number; backdropUrl?: string; backdropColor?: string; footerTop?: string; footerBottom?: string }
+  opts: { kicker?: string; title: string; subtitle?: string; cols?: number; rows?: number; backdropUrl?: string; backdropColor?: string; footerTop?: string; footerBottom?: string; titleMaxSize?: number; titleMinSize?: number }
 ): Promise<Blob | null> {
   const W = 1080, H = 1920;
   const cols = opts.cols ?? 3, rows = opts.rows ?? 3;
@@ -110,7 +110,7 @@ export async function buildPhotoGridShareCard(
   const rightEdge = gridX + gridW;
 
   const title = opts.subtitle ? `${opts.title} · ${opts.subtitle}` : opts.title;
-  const titleSize = fitFontSize(ctx, title, gridW * 0.62, 54, 28, "Georgia, serif");
+  const titleSize = fitFontSize(ctx, title, gridW * 0.62, opts.titleMaxSize ?? 54, opts.titleMinSize ?? 28, "Georgia, serif");
   const kickerBaseline = footerBaseline - titleSize - 8;
 
   if (opts.kicker) {
