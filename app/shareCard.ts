@@ -20,11 +20,21 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 function fitFontSize(ctx: CanvasRenderingContext2D, text: string, maxWidth: number, maxSize: number, minSize: number, fontFamily: string): number {
   let size = maxSize;
   while (size > minSize) {
-    ctx.font = `400 ${size}px ${fontFamily}`;
+    ctx.font = `700 ${size}px ${fontFamily}`;
     if (ctx.measureText(text).width <= maxWidth) break;
     size -= 4;
   }
   return size;
+}
+
+function roundRectPath(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
 }
 
 export async function buildPhotoGridShareCard(
@@ -32,8 +42,7 @@ export async function buildPhotoGridShareCard(
   opts: { kicker?: string; title: string; subtitle?: string; cols?: number; rows?: number }
 ): Promise<Blob | null> {
   const W = 1080, H = 1920;
-  const cols = opts.cols ?? 2, rows = opts.rows ?? 3;
-  const cellW = W / cols, cellH = H / rows;
+  const cols = opts.cols ?? 3, rows = opts.rows ?? 3;
 
   const canvas = document.createElement("canvas");
   canvas.width = W;
@@ -41,52 +50,82 @@ export async function buildPhotoGridShareCard(
   const ctx = canvas.getContext("2d");
   if (!ctx) return null;
 
+  let imgs: HTMLImageElement[];
   try {
     const urls = pickRandom(photoUrls, cols * rows);
-    const imgs = await Promise.all(urls.map(loadImage));
-    imgs.forEach((img, i) => {
-      const x = (i % cols) * cellW, y = Math.floor(i / cols) * cellH;
-      const scale = Math.max(cellW / img.width, cellH / img.height);
-      const sw = cellW / scale, sh = cellH / scale;
-      const sx = (img.width - sw) / 2, sy = (img.height - sh) / 2;
-      ctx.drawImage(img, sx, sy, sw, sh, x, y, cellW, cellH);
-    });
+    imgs = await Promise.all(urls.map(loadImage));
   } catch {
     return null;
   }
 
-  const grad = ctx.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, "rgba(10,10,10,0.55)");
-  grad.addColorStop(0.45, "rgba(10,10,10,0.2)");
-  grad.addColorStop(1, "rgba(10,10,10,0.92)");
-  ctx.fillStyle = grad;
+  // Blurred backdrop, cropped from one of the grid photos.
+  const bg = imgs[0];
+  ctx.save();
+  ctx.filter = "blur(70px) brightness(0.55)";
+  const bgScale = Math.max(W / bg.width, H / bg.height) * 1.2;
+  const bgW = bg.width * bgScale, bgH = bg.height * bgScale;
+  ctx.drawImage(bg, (W - bgW) / 2, (H - bgH) / 2, bgW, bgH);
+  ctx.restore();
+  ctx.fillStyle = "rgba(0,0,0,0.2)";
   ctx.fillRect(0, 0, W, H);
 
-  const pad = 64;
-  const maxTextWidth = W - pad * 2;
-  let ty = 130;
+  // White card
+  const cardX = 48, cardY = 160, cardW = W - cardX * 2, cardH = H - cardY * 2;
+  const radius = 32;
+
+  ctx.save();
+  roundRectPath(ctx, cardX, cardY, cardW, cardH, radius);
+  ctx.clip();
+  ctx.fillStyle = "#fdfcfa";
+  ctx.fillRect(cardX, cardY, cardW, cardH);
+
+  const innerPad = 18;
+  const footerH = 140;
+  const gridX = cardX + innerPad, gridY = cardY + innerPad;
+  const gridW = cardW - innerPad * 2;
+  const gridH = cardH - innerPad * 2 - footerH;
+  const gap = 5;
+  const cellW = (gridW - gap * (cols - 1)) / cols;
+  const cellH = (gridH - gap * (rows - 1)) / rows;
+
+  imgs.forEach((img, i) => {
+    const x = gridX + (i % cols) * (cellW + gap);
+    const y = gridY + Math.floor(i / cols) * (cellH + gap);
+    const scale = Math.max(cellW / img.width, cellH / img.height);
+    const sw = cellW / scale, sh = cellH / scale;
+    const sx = (img.width - sw) / 2, sy = (img.height - sh) / 2;
+    ctx.drawImage(img, sx, sy, sw, sh, x, y, cellW, cellH);
+  });
+
+  const footerBaseline = gridY + gridH + footerH - 40;
+  const rightEdge = gridX + gridW;
 
   if (opts.kicker) {
-    ctx.fillStyle = "#c4a882";
-    ctx.font = "600 28px -apple-system, sans-serif";
-    ctx.fillText(opts.kicker, pad, ty);
-    ty += 102;
-  } else {
-    ty += 40;
+    ctx.textAlign = "left";
+    ctx.fillStyle = "#9a9490";
+    ctx.font = "600 18px -apple-system, sans-serif";
+    ctx.fillText(opts.kicker.toUpperCase(), gridX, footerBaseline - 46);
   }
 
-  const titleSize = fitFontSize(ctx, opts.title, maxTextWidth, 100, 40, "Georgia, serif");
-  ctx.font = `400 ${titleSize}px Georgia, serif`;
-  ctx.fillStyle = "#f0ece4";
-  ctx.fillText(opts.title, pad, ty);
+  const title = opts.subtitle ? `${opts.title} · ${opts.subtitle}` : opts.title;
+  const titleSize = fitFontSize(ctx, title, gridW * 0.62, 54, 28, "Georgia, serif");
+  ctx.textAlign = "left";
+  ctx.fillStyle = "#161616";
+  ctx.font = `700 ${titleSize}px Georgia, serif`;
+  ctx.fillText(title, gridX, footerBaseline);
 
-  if (opts.subtitle) {
-    ty += titleSize * 0.55 + 30;
-    const subtitleSize = fitFontSize(ctx, opts.subtitle, maxTextWidth, 40, 22, "Georgia, serif");
-    ctx.font = `400 ${subtitleSize}px Georgia, serif`;
-    ctx.fillStyle = "rgba(240,236,228,0.65)";
-    ctx.fillText(opts.subtitle, pad, ty);
-  }
+  ctx.textAlign = "right";
+  ctx.fillStyle = "#4a4a4a";
+  ctx.font = "600 24px -apple-system, sans-serif";
+  ctx.fillText("mattravels.com", rightEdge, footerBaseline);
+
+  ctx.restore();
+
+  // Thin card border for definition against the blurred backdrop.
+  roundRectPath(ctx, cardX, cardY, cardW, cardH, radius);
+  ctx.strokeStyle = "rgba(0,0,0,0.06)";
+  ctx.lineWidth = 1;
+  ctx.stroke();
 
   return new Promise(resolve => canvas.toBlob(blob => resolve(blob), "image/png", 0.92));
 }
