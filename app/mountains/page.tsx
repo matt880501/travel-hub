@@ -91,6 +91,7 @@ export default function MountainsPage() {
   const [showDrawer, setShowDrawer] = useState(false);
   const [galleryPhotos, setGalleryPhotos] = useState(MOUNTAIN_PHOTOS);
   const [isTouch, setIsTouch] = useState(false);
+  const [shareMsg, setShareMsg] = useState<string | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
@@ -105,6 +106,35 @@ export default function MountainsPage() {
   useEffect(() => {
     setIsTouch(navigator.maxTouchPoints > 0);
   }, []);
+
+  async function handleShare() {
+    const url = window.location.href;
+    const shareData = { title: "百岳 — Matt's Mountain Archive", text: `${TOTAL} peaks and counting 🏔️`, url };
+    let file: File | null = null;
+    try {
+      const res = await fetch(HERO_IMG);
+      const blob = await res.blob();
+      file = new File([blob], "mountains.jpg", { type: blob.type || "image/jpeg" });
+    } catch {}
+
+    const canShareFiles = !!file && !!navigator.canShare?.({ files: [file] });
+    try {
+      if (canShareFiles) {
+        await navigator.share({ ...shareData, files: [file!] });
+      } else if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        throw new Error("no share api");
+      }
+    } catch (err) {
+      if ((err as Error)?.name === "AbortError") return;
+      try {
+        await navigator.clipboard.writeText(url);
+        setShareMsg("連結已複製");
+        setTimeout(() => setShareMsg(null), 2000);
+      } catch {}
+    }
+  }
 
   useEffect(() => {
     setGalleryPhotos(pickRandom(MOUNTAIN_PHOTOS, MOUNTAIN_PHOTOS.length));
@@ -156,6 +186,12 @@ export default function MountainsPage() {
 
   return (
     <div style={{ display: "flex", minHeight: "100vh", background: "#161616", fontFamily: "SF Pro Display, -apple-system, sans-serif", color: "#e8e4dc" }}>
+
+      {shareMsg && (
+        <div style={{ position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)", background: "rgba(20,20,20,0.92)", color: "#f0ece4", padding: "8px 16px", borderRadius: 20, fontSize: 12, zIndex: 999, border: "1px solid rgba(255,255,255,0.1)" }}>
+          {shareMsg}
+        </div>
+      )}
 
       {/* Mobile top bar */}
       {isMobile && (
@@ -216,6 +252,16 @@ export default function MountainsPage() {
           </motion.div>
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0.2) 70%)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 55%)" }} />
+          <button
+            onClick={handleShare}
+            aria-label="Share"
+            style={{ position: "absolute", top: isMobile ? 16 : 24, right: isMobile ? 16 : 24, zIndex: 2, width: 34, height: 34, borderRadius: "50%", background: "rgba(255,255,255,0.12)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f0ece4" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+            </svg>
+          </button>
           <div style={{ position: "absolute", bottom: isMobile ? 24 : 32, left: isMobile ? 20 : 32, zIndex: 2 }}>
             <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.25em", marginBottom: 10, fontWeight: 500 }}>MOUNTAIN ARCHIVE</div>
             <div style={{ fontSize: isMobile ? 32 : 46, fontWeight: 400, color: "#f0ece4", lineHeight: 1.05, letterSpacing: "-0.01em", fontFamily: "Georgia, serif" }}>
