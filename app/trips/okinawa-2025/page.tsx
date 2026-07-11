@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { buildPhotoGridShareCard, shareOrCopyLink } from "../../shareCard";
 
 type Category = "food" | "transit" | "flight" | "stay" | "sight" | "cafe" | "dive" | "spa";
 type Item = { time: string; text: string; note?: string; mapUrl?: string; cat?: Category; };
@@ -192,6 +193,7 @@ export default function Okinawa() {
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
+  const [shareMsg, setShareMsg] = useState<string | null>(null);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
@@ -199,6 +201,20 @@ export default function Okinawa() {
     return () => window.removeEventListener("resize", check);
   }, []);
   useEffect(() => { setIsTouch(navigator.maxTouchPoints > 0); }, []);
+
+  async function handleShare() {
+    const blob = await buildPhotoGridShareCard(GALLERY.map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Okinawa" });
+    await shareOrCopyLink({
+      title: "Okinawa — Matt Travels",
+      text: "Spring 2025, Apr 11–15",
+      url: window.location.href,
+      fileBlob: blob,
+      filename: "okinawa-story.png",
+      fallbackImgUrl: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843907/OKI1_kvpgjq.jpg",
+      onFallbackMessage: msg => { setShareMsg(msg); setTimeout(() => setShareMsg(null), 2000); },
+    });
+  }
+
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
@@ -210,6 +226,11 @@ export default function Okinawa() {
 
   return (
     <div style={{ minHeight: "100vh", background: BG, fontFamily: "-apple-system, 'Helvetica Neue', sans-serif", color: TEXT }}>
+      {shareMsg && (
+        <div style={{ position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)", background: "rgba(20,20,20,0.92)", color: "#f0ece4", padding: "8px 16px", borderRadius: 20, fontSize: 12, zIndex: 999, border: "1px solid rgba(255,255,255,0.1)" }}>
+          {shareMsg}
+        </div>
+      )}
 
       {/* Lightbox */}
       <AnimatePresence>
@@ -246,6 +267,15 @@ export default function Okinawa() {
         </motion.div>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.02) 30%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.88) 100%)" }} />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 60%)" }} />
+        <button
+          onClick={handleShare}
+          aria-label="Share"
+          style={{ position: "absolute", top: isMobile ? 68 : 90, right: isMobile ? 10 : 40, zIndex: 2, width: isMobile ? 26 : 34, height: isMobile ? 26 : 34, borderRadius: "50%", background: "rgba(255,255,255,0.12)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
+        >
+          <svg width={isMobile ? 12 : 15} height={isMobile ? 12 : 15} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="6" width="20" height="15" rx="4" /><circle cx="12" cy="13.5" r="4.2" /><path d="M8 6l1.5-2.5h5L16 6" /><circle cx="17.5" cy="9.5" r="0.8" fill="#fff" stroke="none" />
+          </svg>
+        </button>
 
         <motion.div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 32px" : "0 40px 48px", opacity: heroOpacity }}>
           <motion.div

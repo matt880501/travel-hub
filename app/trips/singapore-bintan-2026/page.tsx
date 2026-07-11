@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { shareOrCopyLink } from "../../shareCard";
 
 type Category = "food" | "transit" | "flight" | "stay" | "sight" | "shop" | "onsen" | "cafe";
 type Item = { time: string; text: string; note?: string; mapUrl?: string; cat?: Category; };
@@ -153,8 +154,11 @@ function Countdown({ targetDate }: { targetDate: Date }) {
   );
 }
 
+const HERO_URL = "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg";
+
 export default function SingaporeBintan() {
   const [isMobile, setIsMobile] = useState(false);
+  const [shareMsg, setShareMsg] = useState<string | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
@@ -167,8 +171,26 @@ export default function SingaporeBintan() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  // No gallery yet (trip hasn't happened), so just share the hero photo directly.
+  async function handleShare() {
+    await shareOrCopyLink({
+      title: "Singapore & Bintan — Matt Travels",
+      text: "Summer 2026, Jul 23–28",
+      url: window.location.href,
+      fileBlob: null,
+      filename: "singapore-bintan.jpg",
+      fallbackImgUrl: HERO_URL,
+      onFallbackMessage: msg => { setShareMsg(msg); setTimeout(() => setShareMsg(null), 2000); },
+    });
+  }
+
   return (
     <div style={{ minHeight: "100vh", background: BG, fontFamily: "-apple-system, 'Helvetica Neue', sans-serif", color: TEXT }}>
+      {shareMsg && (
+        <div style={{ position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)", background: "rgba(20,20,20,0.92)", color: "#f0ece4", padding: "8px 16px", borderRadius: 20, fontSize: 12, zIndex: 999, border: "1px solid rgba(255,255,255,0.1)" }}>
+          {shareMsg}
+        </div>
+      )}
 
       {/* Nav */}
       <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "16px 20px" : "18px 40px", background: "rgba(240,242,240,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(30,42,42,0.08)` }}>
@@ -190,12 +212,21 @@ export default function SingaporeBintan() {
       <div ref={heroRef} style={{ position: "relative", height: isMobile ? "auto" : "100vh", overflow: "hidden", background: "#0d1e1e" }}>
         <motion.div style={isMobile ? { y: 0 } : { position: "absolute", top: "-10%", left: 0, right: 0, height: "120%", y: heroY }}>
           <img
-            src="https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg"
+            src={HERO_URL}
             style={{ width: "100%", height: isMobile ? "auto" : "100%", objectFit: isMobile ? undefined : "cover", objectPosition: "center 40%", display: "block" }}
           />
         </motion.div>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.45) 70%, rgba(0,0,0,0.8) 100%)" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 60%)" }} />
+        <button
+          onClick={handleShare}
+          aria-label="Share"
+          style={{ position: "absolute", top: isMobile ? 68 : 90, right: isMobile ? 10 : 40, zIndex: 2, width: isMobile ? 26 : 34, height: isMobile ? 26 : 34, borderRadius: "50%", background: "rgba(255,255,255,0.12)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
+        >
+          <svg width={isMobile ? 12 : 15} height={isMobile ? 12 : 15} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="6" width="20" height="15" rx="4" /><circle cx="12" cy="13.5" r="4.2" /><path d="M8 6l1.5-2.5h5L16 6" /><circle cx="17.5" cy="9.5" r="0.8" fill="#fff" stroke="none" />
+          </svg>
+        </button>
 
         <motion.div
           style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 48px" : "0 40px 60px 40px", paddingRight: isMobile ? "20px" : "80px", opacity: heroOpacity, display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "flex-end", justifyContent: "space-between", gap: isMobile ? 20 : 0 }}
