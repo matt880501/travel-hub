@@ -102,26 +102,6 @@ async function buildShareCard(): Promise<Blob | null> {
   ctx.font = "400 100px Georgia, serif";
   ctx.fillText("百岳", pad, 232);
 
-  let ty = H - 260;
-  const stats: [string, string][] = [
-    [`${TOTAL}`, "Peaks"],
-    ["3,952 m", "Highest · 玉山主峰"],
-    ["嘉明湖", "Favorite"],
-  ];
-  stats.forEach(([val, label]) => {
-    ctx.font = "500 44px Georgia, serif";
-    ctx.fillStyle = "#f0ece4";
-    ctx.fillText(val, pad, ty);
-    ctx.font = "400 24px -apple-system, sans-serif";
-    ctx.fillStyle = "#999";
-    ctx.fillText(label, pad + 280, ty);
-    ty += 64;
-  });
-
-  ctx.font = "400 22px -apple-system, sans-serif";
-  ctx.fillStyle = "rgba(240,236,228,0.6)";
-  ctx.fillText("mattravels.com", pad, H - 60);
-
   return new Promise(resolve => canvas.toBlob(blob => resolve(blob), "image/png", 0.92));
 }
 
