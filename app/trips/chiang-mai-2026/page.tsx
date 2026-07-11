@@ -246,7 +246,7 @@ export default function ChiangMai() {
   useEffect(() => { setIsTouch(navigator.maxTouchPoints > 0); }, []);
 
   async function handleShare() {
-    const blob = await buildPhotoGridShareCard(GALLERY.map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Chiang Mai" });
+    const blob = await buildPhotoGridShareCard(GALLERY.map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Chiang Mai", backdropUrl: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg" });
     await shareOrCopyLink({
       title: "Chiang Mai — Matt Travels",
       text: "Feb 2026, Chiang Mai",

@@ -109,7 +109,7 @@ export default function MountainsPage() {
   }, []);
 
   async function handleShare() {
-    const blob = await buildPhotoGridShareCard(MOUNTAIN_PHOTOS.map(p => p.url), { kicker: "MOUNTAIN ARCHIVE", title: "百岳" });
+    const blob = await buildPhotoGridShareCard(MOUNTAIN_PHOTOS.map(p => p.url), { kicker: "MOUNTAIN ARCHIVE", title: "百岳", backdropUrl: HERO_IMG });
     await shareOrCopyLink({
       title: "百岳 — Matt's Mountain Archive",
       text: `${TOTAL} peaks and counting 🏔️`,
