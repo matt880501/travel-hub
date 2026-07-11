@@ -113,6 +113,16 @@ export async function shareOrCopyLink(opts: {
 
   const shareData = { title, text, url };
   const canShareFiles = !!file && !!navigator.canShare?.({ files: [file] });
+
+  if (canShareFiles) {
+    // Many share targets (Messages, Instagram) drop the url when files are attached,
+    // so copy it as a guaranteed fallback before handing off to the OS share sheet.
+    try {
+      await navigator.clipboard.writeText(url);
+      onFallbackMessage?.("連結已複製，貼上分享");
+    } catch {}
+  }
+
   try {
     if (canShareFiles) {
       await navigator.share({ ...shareData, files: [file!] });
