@@ -221,9 +221,6 @@ export default function MountainsPage() {
             <div style={{ fontSize: isMobile ? 32 : 46, fontWeight: 400, color: "#f0ece4", lineHeight: 1.05, letterSpacing: "-0.01em", fontFamily: "Georgia, serif" }}>
               百岳
             </div>
-            <div style={{ fontSize: 15, color: "#aaa", marginTop: 10, letterSpacing: "0.02em" }}>
-              {TOTAL} <span style={{ color: "#666" }}>Peaks</span>
-            </div>
           </div>
         </div>
 
@@ -245,7 +242,7 @@ export default function MountainsPage() {
         </div>
 
         {/* Gallery */}
-        <div style={{ padding: isMobile ? "20px 16px 24px" : "28px 20px 24px" }}>
+        <div style={{ padding: isMobile ? "8px 16px 24px" : "12px 20px 24px" }}>
           <div style={{ fontSize: 11, color: "#c4a882", letterSpacing: "0.18em", fontWeight: 600, marginBottom: 12 }}>GALLERY</div>
           <div style={{ columns: isMobile ? 2 : 3, gap: isMobile ? 8 : 10 }}>
             {galleryPhotos.map((p, i) => (
