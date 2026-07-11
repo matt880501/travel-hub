@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { buildPhotoGridShareCard, shareOrCopyLink } from "../../shareCard";
 
 type Category = "food" | "transit" | "flight" | "stay" | "sight" | "shop" | "onsen" | "cafe";
 type Item = { time: string; text: string; note?: string; mapUrl?: string; cat?: Category; };
@@ -217,6 +218,7 @@ export default function Nagoya() {
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
+  const [shareMsg, setShareMsg] = useState<string | null>(null);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
@@ -224,6 +226,20 @@ export default function Nagoya() {
     return () => window.removeEventListener("resize", check);
   }, []);
   useEffect(() => { setIsTouch(navigator.maxTouchPoints > 0); }, []);
+
+  async function handleShare() {
+    const blob = await buildPhotoGridShareCard(GALLERY.map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Nagoya", subtitle: "Takayama · Inuyama" });
+    await shareOrCopyLink({
+      title: "Nagoya · Takayama · Inuyama — Matt Travels",
+      text: "Winter 2026, 6 days in Japan",
+      url: window.location.href,
+      fileBlob: blob,
+      filename: "nagoya-story.png",
+      fallbackImgUrl: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669488/NG1_cfqqat.jpg",
+      onFallbackMessage: msg => { setShareMsg(msg); setTimeout(() => setShareMsg(null), 2000); },
+    });
+  }
+
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
@@ -235,6 +251,11 @@ export default function Nagoya() {
 
   return (
     <div style={{ minHeight: "100vh", background: BG, fontFamily: "-apple-system, 'Helvetica Neue', sans-serif", color: TEXT }}>
+      {shareMsg && (
+        <div style={{ position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)", background: "rgba(20,20,20,0.92)", color: "#f0ece4", padding: "8px 16px", borderRadius: 20, fontSize: 12, zIndex: 999, border: "1px solid rgba(255,255,255,0.1)" }}>
+          {shareMsg}
+        </div>
+      )}
       {/* Lightbox */}
       <AnimatePresence>
         {lightbox && (
@@ -270,6 +291,16 @@ export default function Nagoya() {
         </motion.div>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(10,20,35,0.1) 0%, transparent 30%, rgba(10,20,35,0.55) 70%, rgba(10,20,35,0.88) 100%)" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,20,35,0.35) 0%, transparent 65%)" }} />
+        <button
+          onClick={handleShare}
+          aria-label="Share"
+          style={{ position: "absolute", top: isMobile ? 68 : 90, right: isMobile ? 16 : 40, zIndex: 2, width: 34, height: 34, borderRadius: "50%", background: "rgba(255,255,255,0.12)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+          </svg>
+        </button>
 
         <motion.div
           style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 32px" : "0 40px 48px", opacity: heroOpacity }}

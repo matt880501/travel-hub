@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { buildPhotoGridShareCard, shareOrCopyLink } from "../shareCard";
 
 const HERO_IMG  = "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693006/%E6%9C%88%E4%BA%AE%E7%9A%84%E9%8F%A1%E5%AD%90_dictfi.jpg";
 const STRIP_IMG = "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1783683328/%E5%98%89%E6%98%8E%E6%B9%961_bkpcs0.jpg";
@@ -48,61 +49,6 @@ function pickRandom<T>(arr: T[], n: number): T[] {
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
   return copy.slice(0, n);
-}
-
-function loadImage(src: string): Promise<HTMLImageElement> {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.onload = () => resolve(img);
-    img.onerror = reject;
-    img.src = src;
-  });
-}
-
-async function buildShareCard(): Promise<Blob | null> {
-  const W = 1080, H = 1920;
-  const cols = 2, rows = 3;
-  const cellW = W / cols, cellH = H / rows;
-
-  const canvas = document.createElement("canvas");
-  canvas.width = W;
-  canvas.height = H;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return null;
-
-  try {
-    const photos = pickRandom(MOUNTAIN_PHOTOS, cols * rows);
-    const imgs = await Promise.all(photos.map(p => loadImage(p.url)));
-    imgs.forEach((img, i) => {
-      const x = (i % cols) * cellW, y = Math.floor(i / cols) * cellH;
-      const scale = Math.max(cellW / img.width, cellH / img.height);
-      const sw = cellW / scale, sh = cellH / scale;
-      const sx = (img.width - sw) / 2, sy = (img.height - sh) / 2;
-      ctx.drawImage(img, sx, sy, sw, sh, x, y, cellW, cellH);
-    });
-  } catch {
-    return null;
-  }
-
-  const grad = ctx.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, "rgba(10,10,10,0.55)");
-  grad.addColorStop(0.45, "rgba(10,10,10,0.2)");
-  grad.addColorStop(1, "rgba(10,10,10,0.92)");
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, W, H);
-
-  const pad = 64;
-
-  ctx.fillStyle = "#c4a882";
-  ctx.font = "600 28px -apple-system, sans-serif";
-  ctx.fillText("MOUNTAIN ARCHIVE", pad, 130);
-
-  ctx.fillStyle = "#f0ece4";
-  ctx.font = "400 100px Georgia, serif";
-  ctx.fillText("百岳", pad, 232);
-
-  return new Promise(resolve => canvas.toBlob(blob => resolve(blob), "image/png", 0.92));
 }
 
 function GalleryPhotoCard({ photo, isMobile, isTouch }: { photo: { url: string; caption: string }; isMobile: boolean; isTouch: boolean }) {
@@ -163,38 +109,16 @@ export default function MountainsPage() {
   }, []);
 
   async function handleShare() {
-    const url = window.location.href;
-    const shareData = { title: "百岳 — Matt's Mountain Archive", text: `${TOTAL} peaks and counting 🏔️`, url };
-    let file: File | null = null;
-    try {
-      const blob = await buildShareCard();
-      if (blob) file = new File([blob], "mountains-story.png", { type: "image/png" });
-    } catch {}
-    if (!file) {
-      try {
-        const res = await fetch(HERO_IMG);
-        const blob = await res.blob();
-        file = new File([blob], "mountains.jpg", { type: blob.type || "image/jpeg" });
-      } catch {}
-    }
-
-    const canShareFiles = !!file && !!navigator.canShare?.({ files: [file] });
-    try {
-      if (canShareFiles) {
-        await navigator.share({ ...shareData, files: [file!] });
-      } else if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        throw new Error("no share api");
-      }
-    } catch (err) {
-      if ((err as Error)?.name === "AbortError") return;
-      try {
-        await navigator.clipboard.writeText(url);
-        setShareMsg("連結已複製");
-        setTimeout(() => setShareMsg(null), 2000);
-      } catch {}
-    }
+    const blob = await buildPhotoGridShareCard(MOUNTAIN_PHOTOS.map(p => p.url), { kicker: "MOUNTAIN ARCHIVE", title: "百岳" });
+    await shareOrCopyLink({
+      title: "百岳 — Matt's Mountain Archive",
+      text: `${TOTAL} peaks and counting 🏔️`,
+      url: window.location.href,
+      fileBlob: blob,
+      filename: "mountains-story.png",
+      fallbackImgUrl: HERO_IMG,
+      onFallbackMessage: msg => { setShareMsg(msg); setTimeout(() => setShareMsg(null), 2000); },
+    });
   }
 
   useEffect(() => {
