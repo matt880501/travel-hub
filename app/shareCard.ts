@@ -39,7 +39,7 @@ function roundRectPath(ctx: CanvasRenderingContext2D, x: number, y: number, w: n
 
 export async function buildPhotoGridShareCard(
   photoUrls: string[],
-  opts: { kicker?: string; title: string; subtitle?: string; cols?: number; rows?: number; backdropUrl?: string; backdropColor?: string }
+  opts: { kicker?: string; title: string; subtitle?: string; cols?: number; rows?: number; backdropUrl?: string; backdropColor?: string; footerTop?: string; footerBottom?: string }
 ): Promise<Blob | null> {
   const W = 1080, H = 1920;
   const cols = opts.cols ?? 3, rows = opts.rows ?? 3;
@@ -111,12 +111,13 @@ export async function buildPhotoGridShareCard(
 
   const title = opts.subtitle ? `${opts.title} · ${opts.subtitle}` : opts.title;
   const titleSize = fitFontSize(ctx, title, gridW * 0.62, 54, 28, "Georgia, serif");
+  const kickerBaseline = footerBaseline - titleSize - 8;
 
   if (opts.kicker) {
     ctx.textAlign = "left";
     ctx.fillStyle = "#9a9490";
     ctx.font = "600 18px -apple-system, sans-serif";
-    ctx.fillText(opts.kicker.toUpperCase(), gridX, footerBaseline - titleSize - 8);
+    ctx.fillText(opts.kicker.toUpperCase(), gridX, kickerBaseline);
   }
 
   ctx.textAlign = "left";
@@ -124,10 +125,19 @@ export async function buildPhotoGridShareCard(
   ctx.font = `700 ${titleSize}px Georgia, serif`;
   ctx.fillText(title, gridX, footerBaseline);
 
-  ctx.textAlign = "right";
-  ctx.fillStyle = "#4a4a4a";
-  ctx.font = "600 24px -apple-system, sans-serif";
-  ctx.fillText("mattravels.com", rightEdge, footerBaseline);
+  if (opts.footerTop) {
+    ctx.textAlign = "right";
+    ctx.fillStyle = "#9a9490";
+    ctx.font = "600 18px -apple-system, sans-serif";
+    ctx.fillText(opts.footerTop, rightEdge, kickerBaseline);
+  }
+
+  if (opts.footerBottom) {
+    ctx.textAlign = "right";
+    ctx.fillStyle = "#4a4a4a";
+    ctx.font = "600 24px -apple-system, sans-serif";
+    ctx.fillText(opts.footerBottom, rightEdge, footerBaseline);
+  }
 
   ctx.restore();
 

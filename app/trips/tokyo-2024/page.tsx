@@ -245,7 +245,7 @@ export default function Tokyo2024() {
   }, []);
 
   async function handleShare() {
-    const blob = await buildPhotoGridShareCard(GALLERY.map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Tokyo", subtitle: "Kawaguchiko · Harajuku · Shibuya", backdropColor: BG });
+    const blob = await buildPhotoGridShareCard(GALLERY.map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Tokyo", subtitle: "Kawaguchiko · Harajuku · Shibuya", backdropColor: BG, footerTop: "May 2024", footerBottom: "5 Days" });
     await shareOrCopyLink({
       title: "Tokyo — Matt Travels",
       text: "May 2024, Kawaguchiko · Harajuku · Shibuya",
