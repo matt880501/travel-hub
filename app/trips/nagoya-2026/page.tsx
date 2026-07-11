@@ -228,7 +228,7 @@ export default function Nagoya() {
   useEffect(() => { setIsTouch(navigator.maxTouchPoints > 0); }, []);
 
   async function handleShare() {
-    const blob = await buildPhotoGridShareCard(GALLERY.map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Nagoya", subtitle: "Takayama · Inuyama", backdropUrl: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669488/NG1_cfqqat.jpg" });
+    const blob = await buildPhotoGridShareCard(GALLERY.map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Nagoya", subtitle: "Takayama · Inuyama", backdropColor: ACCENT });
     await shareOrCopyLink({
       title: "Nagoya · Takayama · Inuyama — Matt Travels",
       text: "Winter 2026, 6 days in Japan",

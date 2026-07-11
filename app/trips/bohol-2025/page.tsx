@@ -201,7 +201,7 @@ export default function Bohol() {
   useEffect(() => { setIsTouch(navigator.maxTouchPoints > 0); }, []);
 
   async function handleShare() {
-    const blob = await buildPhotoGridShareCard(GALLERY.map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Bohol", backdropUrl: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg" });
+    const blob = await buildPhotoGridShareCard(GALLERY.map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Bohol", backdropColor: ACCENT });
     await shareOrCopyLink({
       title: "Bohol — Matt Travels",
       text: "Fall 2025, Oct 22–26",

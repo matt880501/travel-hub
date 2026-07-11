@@ -203,7 +203,7 @@ export default function Okinawa() {
   useEffect(() => { setIsTouch(navigator.maxTouchPoints > 0); }, []);
 
   async function handleShare() {
-    const blob = await buildPhotoGridShareCard(GALLERY.map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Okinawa", backdropUrl: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843907/OKI1_kvpgjq.jpg" });
+    const blob = await buildPhotoGridShareCard(GALLERY.map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Okinawa", backdropColor: ACCENT });
     await shareOrCopyLink({
       title: "Okinawa — Matt Travels",
       text: "Spring 2025, Apr 11–15",

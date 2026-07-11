@@ -39,7 +39,7 @@ function roundRectPath(ctx: CanvasRenderingContext2D, x: number, y: number, w: n
 
 export async function buildPhotoGridShareCard(
   photoUrls: string[],
-  opts: { kicker?: string; title: string; subtitle?: string; cols?: number; rows?: number; backdropUrl?: string }
+  opts: { kicker?: string; title: string; subtitle?: string; cols?: number; rows?: number; backdropUrl?: string; backdropColor?: string }
 ): Promise<Blob | null> {
   const W = 1080, H = 1920;
   const cols = opts.cols ?? 3, rows = opts.rows ?? 3;
@@ -51,24 +51,32 @@ export async function buildPhotoGridShareCard(
   if (!ctx) return null;
 
   let imgs: HTMLImageElement[];
-  let bg: HTMLImageElement;
+  let bg: HTMLImageElement | null = null;
   try {
     const urls = pickRandom(photoUrls, cols * rows);
     imgs = await Promise.all(urls.map(loadImage));
-    bg = opts.backdropUrl ? await loadImage(opts.backdropUrl) : imgs[0];
+    if (!opts.backdropColor) {
+      bg = opts.backdropUrl ? await loadImage(opts.backdropUrl) : imgs[0];
+    }
   } catch {
     return null;
   }
 
-  // Blurred backdrop — the page's hero photo when given, otherwise one of the grid photos.
-  ctx.save();
-  ctx.filter = "blur(70px) brightness(0.55)";
-  const bgScale = Math.max(W / bg.width, H / bg.height) * 1.2;
-  const bgW = bg.width * bgScale, bgH = bg.height * bgScale;
-  ctx.drawImage(bg, (W - bgW) / 2, (H - bgH) / 2, bgW, bgH);
-  ctx.restore();
-  ctx.fillStyle = "rgba(0,0,0,0.2)";
-  ctx.fillRect(0, 0, W, H);
+  if (opts.backdropColor) {
+    // Flat backdrop in the trip's own theme color, no photo.
+    ctx.fillStyle = opts.backdropColor;
+    ctx.fillRect(0, 0, W, H);
+  } else if (bg) {
+    // Blurred backdrop — the page's hero photo when given, otherwise one of the grid photos.
+    ctx.save();
+    ctx.filter = "blur(70px) brightness(0.55)";
+    const bgScale = Math.max(W / bg.width, H / bg.height) * 1.2;
+    const bgW = bg.width * bgScale, bgH = bg.height * bgScale;
+    ctx.drawImage(bg, (W - bgW) / 2, (H - bgH) / 2, bgW, bgH);
+    ctx.restore();
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    ctx.fillRect(0, 0, W, H);
+  }
 
   // White card
   const cardX = 48, cardY = 160, cardW = W - cardX * 2, cardH = H - cardY * 2;
