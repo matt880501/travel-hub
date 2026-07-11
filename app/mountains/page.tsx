@@ -35,7 +35,7 @@ const MOUNTAIN_PHOTOS: { url: string; caption: string }[] = [
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693002/369%E5%B1%B1%E8%8E%8A_ll84p8.jpg", caption: "369山莊" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693001/%E5%96%AE%E6%94%BB%E9%9B%AA%E4%B8%BB%E6%9D%B1_mrq2fd.jpg", caption: "單攻雪主東" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693001/%E7%8E%89%E5%B1%B1%E8%A5%BF%E5%B3%B0_a48p0j.jpg", caption: "玉山西峰望主峰" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693000/%E6%A1%83%E5%B1%B1%E6%9C%9B%E5%A4%A7%E9%9C%B8%E5%B0%96_tntsez.jpg", caption: "桃山望大霸尖" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783739593/%E6%B1%A0%E6%9C%89%E6%9C%9B%E5%A4%A7%E9%9C%B8%E5%B0%96_yoisgb.jpg", caption: "池有望大霸尖" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693001/%E5%98%89%E6%98%8E%E6%B9%96%E7%95%94_wlkcv1.jpg", caption: "嘉明湖畔" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693000/%E5%90%88%E6%AD%A1%E8%A5%BF%E5%B3%B0%E6%97%A5%E8%90%BD_y0udsk.jpg", caption: "合歡西日落" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693000/%E5%98%89%E6%98%8E%E6%B9%96%E5%A4%A7%E6%99%AF_bu9ntf.jpg", caption: "嘉明湖全景" },
