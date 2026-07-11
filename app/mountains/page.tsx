@@ -159,14 +159,6 @@ export default function MountainsPage() {
         ))}
         <div style={{ padding: "4px 10px 16px", fontSize: 11, color: "#3a3a3a" }}>...</div>
       </div>
-
-      {/* Progress card */}
-      <div style={{ margin: "0 12px 16px", background: "#1c1c1c", borderRadius: 12, border: "1px solid rgba(196,168,130,0.12)", padding: "14px 16px", flexShrink: 0 }}>
-        <div style={{ fontSize: 9, color: "#c4a882", letterSpacing: "0.18em", marginBottom: 8 }}>PROGRESS</div>
-        <div style={{ fontSize: 26, fontWeight: 600, color: "#f0ece4", fontFamily: "Georgia, serif", lineHeight: 1 }}>
-          {TOTAL} <span style={{ fontSize: 16, color: "#555", fontWeight: 300 }}>/ 100</span>
-        </div>
-      </div>
     </div>
   );
 
@@ -233,6 +225,23 @@ export default function MountainsPage() {
               {TOTAL} <span style={{ color: "#666" }}>Peaks</span>
             </div>
           </div>
+        </div>
+
+        {/* Stats */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: isMobile ? 8 : 12, padding: isMobile ? "12px 16px" : "16px 20px", background: "#161616", flexShrink: 0 }}>
+          {[
+            { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M3 20L9 8l4 6 3-4 5 10H3z" /></svg>, val: `${TOTAL}`, label: "Peaks" },
+            { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M12 19V5M5 12l7-7 7 7" /></svg>, val: "3,952 m", label: "Highest · 玉山主峰" },
+            { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>, val: "嘉明湖", label: "Favorite" },
+          ].map(({ icon, val, label }) => (
+            <div key={label} style={{ background: "#1c1c1c", borderRadius: 12, padding: "16px 18px", border: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", gap: 14 }}>
+              <span>{icon}</span>
+              <div>
+                <div style={{ fontSize: 22, fontWeight: 500, color: "#f0ece4", fontFamily: "Georgia, serif" }}>{val}</div>
+                <div style={{ fontSize: 11, color: "#555", marginTop: 1, letterSpacing: "0.05em" }}>{label}</div>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Gallery */}
