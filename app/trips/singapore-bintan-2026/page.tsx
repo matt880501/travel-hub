@@ -229,14 +229,14 @@ export default function SingaporeBintan() {
         </button>
 
         <motion.div
-          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 48px" : "0 40px 60px 40px", paddingRight: isMobile ? "20px" : "80px", opacity: heroOpacity, display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "flex-end", justifyContent: "space-between", gap: isMobile ? 20 : 0 }}
+          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 16px 28px" : "0 32px 40px 32px", paddingRight: isMobile ? "16px" : "64px", opacity: heroOpacity, display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "flex-end", justifyContent: "space-between", gap: isMobile ? 20 : 0 }}
         >
           <div>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3 }}
-              style={{ fontSize: isMobile ? "clamp(40px, 12vw, 64px)" : "clamp(48px, 8vw, 100px)", fontWeight: 300, color: "#fff", lineHeight: 0.95, letterSpacing: "-0.02em", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 20 }}
+              style={{ fontSize: isMobile ? "clamp(28px, 9vw, 52px)" : "clamp(38px, 6.5vw, 76px)", fontWeight: 300, color: "#fff", lineHeight: 0.95, letterSpacing: "-0.02em", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 20 }}
             >
               Singapore<br />&amp; Bintan
             </motion.div>

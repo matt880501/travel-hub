@@ -317,16 +317,16 @@ export default function Tokyo2024() {
         </button>
 
         <motion.div
-          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 32px" : "0 40px 48px", opacity: heroOpacity }}
+          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 16px 20px" : "0 32px 32px", opacity: heroOpacity }}
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            style={{ fontSize: "clamp(40px, 6vw, 88px)", fontWeight: 300, color: "#fff", lineHeight: 0.95, letterSpacing: "-0.02em", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 20 }}
+            style={{ fontSize: "clamp(30px, 6vw, 72px)", fontWeight: 300, color: "#fff", lineHeight: 0.95, letterSpacing: "-0.02em", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 20 }}
           >
             Tokyo<br />
-            <span style={{ fontSize: "clamp(20px, 3vw, 46px)", color: "rgba(255,255,255,0.6)" }}>Kawaguchiko · Harajuku · Shibuya</span>
+            <span style={{ fontSize: "clamp(15px, 2.6vw, 34px)", color: "rgba(255,255,255,0.6)" }}>Kawaguchiko · Harajuku · Shibuya</span>
           </motion.div>
 
           <motion.div

@@ -322,7 +322,7 @@ export default function ChiangMai() {
         </button>
 
         <motion.div
-          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 20px 48px" : "0 40px 60px", opacity: heroOpacity }}
+          style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: isMobile ? "0 16px 24px" : "0 32px 36px", opacity: heroOpacity }}
         >
           {/* Eyebrow */}
 
@@ -332,7 +332,7 @@ export default function ChiangMai() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            style={{ fontSize: "clamp(56px, 9vw, 110px)", fontWeight: 300, color: "#fff", lineHeight: 0.95, letterSpacing: "-0.02em", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 24 }}
+            style={{ fontSize: "clamp(34px, 8vw, 76px)", fontWeight: 300, color: "#fff", lineHeight: 0.95, letterSpacing: "-0.02em", fontFamily: "Georgia, 'Times New Roman', serif", marginBottom: 24 }}
           >
             Chiang Mai
           </motion.div>

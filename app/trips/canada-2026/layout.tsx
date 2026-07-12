@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Canada — Matt Travels",
-  description: "Autumn 2026 — 落基山脈、Banff、Jasper，13天加拿大深秋之旅。",
+  description: "Autumn 2026 — Rocky Mountains · Banff · Jasper，13天加拿大初秋之旅。",
   openGraph: {
     title: "Canada",
-    description: "Autumn 2026 — 落基山脈、Banff、Jasper，13天加拿大深秋之旅。",
+    description: "Autumn 2026 — Rocky Mountains · Banff · Jasper，13天加拿大初秋之旅。",
     images: [
       {
         url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778680358/CA1_c2rier.jpg",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Canada",
-    description: "Autumn 2026 — 13天加拿大落基山脈。",
+    description: "Autumn 2026 — 13天加拿大 Rocky Mountains。",
     images: ["https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778680358/CA1_c2rier.jpg"],
   },
 };
