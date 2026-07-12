@@ -77,7 +77,7 @@ export default function JiamingLakePage() {
 
   async function handleShare() {
     const photos = [HERO_IMG, ...GALLERY.map(g => g.url)];
-    const blob = await buildPhotoGridShareCard(photos, { kicker: "MOUNTAIN ARCHIVE", title: "嘉明湖、向陽山、三叉山", titleMaxSize: 34, titleMinSize: 18, cols: 2, rows: 3, backdropUrl: HERO_IMG, footerTop: `總距離 ${STATS[0].value}`, footerBottom: `總爬升 ${STATS[1].value}`, footerBottomMuted: true });
+    const blob = await buildPhotoGridShareCard(photos, { kicker: "MOUNTAIN ARCHIVE", title: "嘉明湖、向陽山、三叉山", titleMaxSize: 34, titleMinSize: 18, cols: 2, rows: 3, backdropUrl: HERO_IMG });
     await shareOrCopyLink({
       title: "嘉明湖 — Matt's Mountain Archive",
       text: "2023.6 — 向陽山、三叉山、嘉明湖",
