@@ -39,7 +39,7 @@ function roundRectPath(ctx: CanvasRenderingContext2D, x: number, y: number, w: n
 
 export async function buildPhotoGridShareCard(
   photoUrls: string[],
-  opts: { kicker?: string; title: string; subtitle?: string; cols?: number; rows?: number; backdropUrl?: string; backdropColor?: string; footerTop?: string; footerBottom?: string; titleMaxSize?: number; titleMinSize?: number }
+  opts: { kicker?: string; title: string; subtitle?: string; cols?: number; rows?: number; backdropUrl?: string; backdropColor?: string; footerTop?: string; footerBottom?: string; footerBottomMuted?: boolean; titleMaxSize?: number; titleMinSize?: number }
 ): Promise<Blob | null> {
   const W = 1080, H = 1920;
   const cols = opts.cols ?? 3, rows = opts.rows ?? 3;
@@ -134,8 +134,8 @@ export async function buildPhotoGridShareCard(
 
   if (opts.footerBottom) {
     ctx.textAlign = "right";
-    ctx.fillStyle = "#4a4a4a";
-    ctx.font = "600 24px -apple-system, sans-serif";
+    ctx.fillStyle = opts.footerBottomMuted ? "#9a9490" : "#4a4a4a";
+    ctx.font = opts.footerBottomMuted ? "600 18px -apple-system, sans-serif" : "600 24px -apple-system, sans-serif";
     ctx.fillText(opts.footerBottom, rightEdge, footerBaseline);
   }
 
