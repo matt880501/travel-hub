@@ -81,22 +81,19 @@ const GALLERY_ROWS: GalleryPhoto[][] = [
   [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338519/SGs1_k8rbyj.jpg", caption: "星耀樟宜" },
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338511/SGs13_yrzcdv.jpg", caption: "sunrise" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338517/SGs9_ogd34d.jpg", caption: "肉骨茶" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338515/SGs10_sxjywb.jpg", caption: "CHILLL" },
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338517/SGs5_jlsrex.jpg", caption: "喝水囉" },
   ],
   [
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338516/SG5_ha8ofw.jpg", caption: "海", wide: true },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338515/SG16_ah8pra.jpg", caption: "TERRACE", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338520/SGs17JPG_pzxyo1.jpg", caption: "PC:咪口" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338520/SGs17_u1p8yh.jpg", caption: "李GO去當GO了" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338520/SGs15_zh2fgo.jpg", caption: "有夠好吃" },
   ],
   [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338515/SGs11_na3fdz.jpg", caption: "pickleball night!" },
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338522/SGs2_bprwql.jpg", caption: "" },
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338518/SGs6_t4ennq.jpg", caption: "什麼時候能去頂樓游泳" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338515/SGs10_sxjywb.jpg", caption: "CHILLL" },
-  ],
-  [
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338526/SG4_aaofis.jpg", caption: "", wide: true },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338513/SG6_y7ariz.jpg", caption: "goodbye bintan", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338517/SGs9_ogd34d.jpg", caption: "肉骨茶" },
   ],
   [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338519/SGs7_hvyjdn.jpg", caption: "濱海灣" },
@@ -104,9 +101,12 @@ const GALLERY_ROWS: GalleryPhoto[][] = [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338518/SGs14_gpoete.jpg", caption: "Clubmed all white dress code" },
   ],
   [
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338520/SGs17JPG_pzxyo1.jpg", caption: "PC:咪口" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338520/SGs17_u1p8yh.jpg", caption: "李GO去當GO了" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338520/SGs15_zh2fgo.jpg", caption: "有夠好吃" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338526/SG4_aaofis.jpg", caption: "", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338513/SG6_y7ariz.jpg", caption: "goodbye bintan", wide: true },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338516/SG5_ha8ofw.jpg", caption: "海", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338515/SG16_ah8pra.jpg", caption: "TERRACE", wide: true },
   ],
 ];
 
