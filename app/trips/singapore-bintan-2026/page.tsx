@@ -1,10 +1,10 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { shareOrCopyLink } from "../../shareCard";
+import { buildPhotoGridShareCard, shareOrCopyLink } from "../../shareCard";
 
 type Category = "food" | "transit" | "flight" | "stay" | "sight" | "shop" | "onsen" | "cafe";
-type Item = { time: string; text: string; note?: string; mapUrl?: string; cat?: Category; };
+type Item = { time?: string; text: string; note?: string; mapUrl?: string; cat?: Category; };
 type Day = { day: string; date: string; location: string; items: Item[]; };
 
 const ACCENT = "#3d7a7a";
@@ -18,18 +18,25 @@ const ITINERARY: Day[] = [
     items: [
       { time: "08:05", text: "Depart Taipei — CI 0753", cat: "flight" },
       { time: "12:35", text: "Arrive Singapore", cat: "flight" },
-      { time: "15:00", text: "Check-in · Mercure ICON Singapore City Centre", cat: "stay" },
-      { time: "16:00", text: "魚尾獅公園", mapUrl: "https://maps.google.com/?q=Merlion+Park+Singapore", note: "肯定要來當觀光客。", cat: "sight" },
-      { time: "17:30", text: "Marina Bay Sands", mapUrl: "https://maps.google.com/?q=Marina+Bay+Sands+Singapore", cat: "sight" },
-      { time: "19:00", text: "Song Fa Bak Kut Teh", mapUrl: "https://www.google.com/maps/place/Song+Fa+Bak+Kut+Teh+(11+New+Bridge+Road)/@1.2890153,103.845118,17z/data=!3m2!4b1!5s0x31da190aaf3074cf:0x9b21d7b61861b222!4m6!3m5!1s0x31da190a80c3583f:0xc7bd17dac49c70f5!8m2!3d1.2890099!4d103.8476983!16s%2Fg%2F1tf5mr7_?entry=ttu&g_ep=EgoyMDI2MDUxMC4wIKXMDSoASAFQAw%3D%3D", note: "肉骨茶", cat: "food" },
-      { time: "20:30", text: "濱海灣花園 — OCBC Skyway", mapUrl: "https://maps.google.com/?q=Gardens+by+the+Bay+Singapore", cat: "sight" },
+      { text: "星耀樟宜", mapUrl: "https://www.jewelchangiairport.com/en/attractions/rain-vortex.html", note: "來看瀑布", cat: "sight" },
+      { time: "14:30", text: "Check-in · Mercure ICON Singapore City Centre", mapUrl: "https://maps.google.com/?q=Mercure+ICON+Singapore+City+Centre,+8+Club+Street,+Singapore+069472", note: "位置很不錯～", cat: "stay" },
+      { text: "99老樹", mapUrl: "https://maps.google.com/?q=99+Old+Trees,+1+Teo+Hong+Road,+Singapore+088321", note: "榴槤冰&榴槤泡芙，邪教(?", cat: "cafe" },
+      { text: "Queic by Olivia", mapUrl: "https://maps.google.com/?q=Queic+by+Olivia,+41+Kreta+Ayer+Road,+Singapore", note: "王造博找的蛋糕店", cat: "cafe" },
+      { text: "阿仔海南雞", mapUrl: "https://maps.google.com/?q=Ah+Tai+Hainanese+Chicken+Rice,+Maxwell+Road+Food+Centre,+1+Kadayanallur+Street,+Singapore+069184", note: "肉很好吃", cat: "food" },
+      { text: "魚尾獅公園", mapUrl: "https://maps.google.com/?q=Merlion+Park+Singapore", note: "肯定要來當觀光客喝水", cat: "sight" },
+      { text: "Shake Shack", mapUrl: "https://maps.google.com/?q=Shake+Shack,+18+Marina+Gardens+Drive,+Singapore+018953", note: "繼續吃", cat: "food" },
+      { text: "Marina Bay Sands", mapUrl: "https://maps.google.com/?q=Marina+Bay+Sands+Singapore", cat: "sight" },
+      { text: "濱海灣花園", mapUrl: "https://maps.google.com/?q=Gardens+by+the+Bay+Singapore", note: "人超多...", cat: "sight" },
+      { text: "松發肉骨茶", mapUrl: "https://www.google.com/maps/place/Song+Fa+Bak+Kut+Teh+(11+New+Bridge+Road)/@1.2890153,103.845118,17z/data=!3m2!4b1!5s0x31da190aaf3074cf:0x9b21d7b61861b222!4m6!3m5!1s0x31da190a80c3583f:0xc7bd17dac49c70f5!8m2!3d1.2890099!4d103.8476983!16s%2Fg%2F1tf5mr7_?entry=ttu&g_ep=EgoyMDI2MDUxMC4wIKXMDSoASAFQAw%3D%3D", note: "從早吃到晚", cat: "food" },
     ]
   },
   {
     day: "DAY 2", date: "Jul 24, Fri", location: "Singapore → Bintan",
     items: [
+      { text: "亞坤", mapUrl: "https://maps.google.com/?q=Ya+Kun+Kaya+Toast,+18+China+Street,+Singapore+049560", note: "咖椰吐司", cat: "cafe" },
+      { text: "Common Man Coffee Roasters", mapUrl: "https://maps.google.com/?q=Common+Man+Coffee+Roasters,+22+Martin+Road,+Singapore+239058", note: "太貴了＝＝", cat: "cafe" },
       { time: "11:00", text: "Check-out · Mercure ICON", cat: "stay" },
-      { time: "12:00", text: "星耀樟宜", mapUrl: "https://www.jewelchangiairport.com/en/attractions/rain-vortex.html", cat: "sight" },
+      { text: "馳名結霜橋三輪車叻沙", mapUrl: "https://www.google.com/maps/place/%E9%A6%B3%E5%90%8D%E7%B5%90%E9%9C%9C%E6%A9%8B%E4%B8%89%E8%BC%AA%E8%BB%8A%E5%8F%BB%E6%B2%99/@1.2852825,103.84574,17z/data=!3m1!4b1!4m6!3m5!1s0x31da190b5ba5bafb:0x31661c54de4ca922!8m2!3d1.2852825!4d103.84574!16s%2Fg%2F11c0r4zvdb!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDcyNi4wIKXMDSoASAFQAw%3D%3D", note: "馳名叻沙，這間很好吃", cat: "food" },
       { time: "14:00", text: "Ferry · Singapore → Bintan (Business Class)", mapUrl: "https://maps.google.com/?q=Tanah+Merah+Ferry+Terminal+Singapore", note: "新加坡88，一天剛剛好", cat: "transit" },
       { time: "16:00", text: "Check-in · Club Med Bintan Island", mapUrl: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE", cat: "stay" },
     ]
@@ -37,13 +44,14 @@ const ITINERARY: Day[] = [
   {
     day: "DAY 3–6", date: "Jul 25–27", location: "Bintan Island",
     items: [
-      { time: "—", text: "Club Med all-inclusive — beach, pool, activities", mapUrl: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE", note: "爽玩", cat: "sight" },
+      { text: "Club Med all-inclusive — beach, pool, activities", mapUrl: "https://www.clubmed.com.tw/r/印尼民丹島/y?departure_city=TPE", note: "爽玩，吃吃喝喝運動夏令營", cat: "sight" },
+      { text: "SpaLab Bintan — 按摩", mapUrl: "https://www.spalabbintan.com/", note: "最後一晚跑出來按摩，新加坡物價但很舒服", cat: "onsen" },
     ]
   },
   {
     day: "DAY 6", date: "Jul 28, Tue", location: "Bintan → Taipei",
     items: [
-      { time: "08:35", text: "Ferry · Bintan → Singapore (Business Class)", note: "Bintan掰掰", cat: "transit" },
+      { time: "08:35", text: "Ferry · Bintan → Singapore (Business Class)", note: "Bintan掰掰QQ", cat: "transit" },
       { time: "13:45", text: "Depart Singapore — CI 0754", cat: "flight" },
       { time: "18:35", text: "Arrive Taipei", cat: "flight" },
     ]
@@ -55,6 +63,51 @@ const METADATA = [
   { label: "Currency", value: "SGD / IDR" },
   { label: "Mood", value: "Urban / Coastal / Easy" },
   { label: "Season", value: "Summer, Rainy Season" },
+];
+
+const EXTRAS: { text: string; note: string; url?: string }[] = [
+  { text: "新加坡入境卡", note: "入境前上網辦，SG Arrival Card", url: "https://eservices.ica.gov.sg/sgarrivalcard/" },
+  { text: "印尼 ECD", note: "入境印尼（民丹島）前上網辦", url: "https://allindonesia.imigrasi.go.id/" },
+  { text: "Bintan 渡輪", note: "買商務艙可以當廢人，他們會幫忙把手續都辦好，在貴賓室耍廢就好" },
+];
+
+type GalleryPhoto = { url: string; caption: string; wide?: boolean; };
+// Each sub-array = one row. wide=true photos get flex:2, others flex:1.
+const GALLERY_ROWS: GalleryPhoto[][] = [
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338514/SG1_nridue.jpg", caption: "船", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338511/SG2_e6wgqy.jpg", caption: "草地上buffet", wide: true },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338519/SGs1_k8rbyj.jpg", caption: "星耀樟宜" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338511/SGs13_yrzcdv.jpg", caption: "sunrise" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338517/SGs9_ogd34d.jpg", caption: "肉骨茶" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338517/SGs5_jlsrex.jpg", caption: "喝水囉" },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338516/SG5_ha8ofw.jpg", caption: "海", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338515/SG16_ah8pra.jpg", caption: "TERRACE", wide: true },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338515/SGs11_na3fdz.jpg", caption: "pickleball night!" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338518/SGs14_gpoete.jpg", caption: "Clubmed all white dress code" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338518/SGs6_t4ennq.jpg", caption: "什麼時候能去頂樓游泳" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338515/SGs10_sxjywb.jpg", caption: "CHILLL" },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338526/SG4_aaofis.jpg", caption: "", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338513/SG6_y7ariz.jpg", caption: "goodbye bintan", wide: true },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338519/SGs7_hvyjdn.jpg", caption: "濱海灣" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338515/SGs12_hg125n.jpg", caption: "" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338522/SGs2_bprwql.jpg", caption: "" },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338520/SGs17JPG_pzxyo1.jpg", caption: "PC:咪口" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338520/SGs17_u1p8yh.jpg", caption: "李GO去當GO了" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338520/SGs15_zh2fgo.jpg", caption: "有夠好吃" },
+  ],
 ];
 
 function CatIcon({ cat }: { cat?: Category }) {
@@ -124,12 +177,76 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
   );
 }
 
+function ExtraItem({ e }: { e: typeof EXTRAS[0] }) {
+  return (
+    <div style={{ padding: "14px 0", borderBottom: `0.5px solid rgba(30,42,42,0.1)` }}>
+      <div style={{ fontSize: 14, color: TEXT }}>
+        {e.url ? (
+          <a href={e.url} target="_blank" rel="noopener noreferrer"
+            style={{ color: TEXT, textDecoration: "none" }}
+            onMouseEnter={ev => (ev.currentTarget.style.color = ACCENT)}
+            onMouseLeave={ev => (ev.currentTarget.style.color = TEXT)}
+          >
+            {e.text}
+            <span style={{ fontSize: 10, color: MUTED, marginLeft: 4, opacity: 0.5 }}>↗</span>
+          </a>
+        ) : e.text}
+      </div>
+      <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: "8px 0 0", fontStyle: "italic", whiteSpace: "pre-line" }}>{e.note}</p>
+    </div>
+  );
+}
+
+function GalleryRow({ photos, rowIndex, onOpen, isMobile, isTouch, tall }: { photos: GalleryPhoto[]; rowIndex: number; onOpen: (url: string) => void; isMobile: boolean; isTouch: boolean; tall?: boolean }) {
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [tapped, setTapped] = useState<number | null>(null);
+  const allPortrait = photos.every(p => !p.wide);
+  const ROW_H = isMobile ? (allPortrait ? 200 : 130) : (allPortrait ? 360 : (tall ? 310 : 220));
+  const active = isTouch ? tapped : hovered;
+  return (
+    <div style={{ display: "flex", gap: isMobile ? 4 : 6, marginBottom: isMobile ? 4 : 6 }}>
+      {photos.map((photo, pi) => (
+        <motion.div
+          key={pi}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, delay: (rowIndex * photos.length + pi) * 0.04 }}
+          onClick={() => isTouch ? setTapped(t => t === pi ? null : pi) : onOpen(photo.url)}
+          onMouseEnter={() => !isTouch && setHovered(pi)}
+          onMouseLeave={() => !isTouch && setHovered(null)}
+          style={{ flex: photo.wide ? 2 : 1, height: ROW_H, position: "relative", overflow: "hidden", borderRadius: 2, cursor: "pointer", flexShrink: 0 }}
+        >
+          <img
+            src={photo.url}
+            alt={photo.caption}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: active === pi ? "scale(1.04)" : "scale(1)" }}
+          />
+          <AnimatePresence>
+            {active === pi && photo.caption && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%)", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "14px 12px" }}
+              >
+                <div style={{ fontSize: isMobile ? 10 : 11, color: "rgba(255,255,255,0.9)", fontStyle: "italic", fontFamily: "Georgia, serif" }}>{photo.caption}</div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
 function Countdown({ targetDate }: { targetDate: Date }) {
-  const [time, setTime] = useState({ days: 0, hrs: 0, min: 0 });
-  useState(() => {
+  const [time, setTime] = useState<{ days: number; hrs: number; min: number } | null>(null);
+  useEffect(() => {
     const calc = () => {
       const diff = targetDate.getTime() - Date.now();
-      if (diff <= 0) return;
+      if (diff <= 0) { setTime(null); return; }
       setTime({
         days: Math.floor(diff / 86400000),
         hrs: Math.floor((diff % 86400000) / 3600000),
@@ -139,7 +256,8 @@ function Countdown({ targetDate }: { targetDate: Date }) {
     calc();
     const id = setInterval(calc, 1000);
     return () => clearInterval(id);
-  });
+  }, [targetDate]);
+  if (!time) return null;
   return (
     <div style={{ display: "flex", gap: 20, alignItems: "flex-end" }}>
       {([["days", time.days], ["hrs", time.hrs], ["min", time.min]] as [string, number][]).map(([label, val]) => (
@@ -154,10 +272,12 @@ function Countdown({ targetDate }: { targetDate: Date }) {
   );
 }
 
-const HERO_URL = "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg";
+const HERO_URL = "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338512/SG3_vu8oms.jpg";
 
 export default function SingaporeBintan() {
   const [isMobile, setIsMobile] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+  const [lightbox, setLightbox] = useState<string | null>(null);
   const [shareMsg, setShareMsg] = useState<string | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -171,13 +291,17 @@ export default function SingaporeBintan() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // No gallery yet (trip hasn't happened), so just share the hero photo directly.
+  useEffect(() => {
+    setIsTouch(navigator.maxTouchPoints > 0);
+  }, []);
+
   async function handleShare() {
+    const blob = await buildPhotoGridShareCard(GALLERY_ROWS.flat().map(g => g.url), { kicker: "TRAVEL ARCHIVE", title: "Singapore & Bintan", subtitle: "新加坡 · 民丹島", backdropColor: BG, footerTop: "Jul 2026", footerBottom: "6 Days" });
     await shareOrCopyLink({
       title: "Singapore & Bintan — Matt Travels",
       text: "Summer 2026, Jul 23–28",
       url: window.location.href,
-      fileBlob: null,
+      fileBlob: blob,
       filename: "singapore-bintan.jpg",
       fallbackImgUrl: HERO_URL,
       onFallbackMessage: msg => { setShareMsg(msg); setTimeout(() => setShareMsg(null), 2000); },
@@ -191,6 +315,21 @@ export default function SingaporeBintan() {
           {shareMsg}
         </div>
       )}
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightbox(null)}
+            style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.95)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", cursor: "zoom-out" }}
+          >
+            <img src={lightbox} style={{ maxWidth: "90vw", maxHeight: "90vh", objectFit: "contain" }} alt="" />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Nav */}
       <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "16px 20px" : "18px 40px", background: "rgba(240,242,240,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(30,42,42,0.08)` }}>
@@ -314,6 +453,41 @@ export default function SingaporeBintan() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Travel info */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          style={{ marginBottom: 96 }}
+        >
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 32 }}>
+            <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>TRAVEL INFO</span>
+            <div style={{ flex: 1, height: 0.5, background: `rgba(61,122,122,0.2)` }} />
+          </div>
+          {EXTRAS.map((e, i) => <ExtraItem key={i} e={e} />)}
+        </motion.div>
+
+        {/* Gallery */}
+        {GALLERY_ROWS.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            style={{ marginBottom: 96 }}
+          >
+            <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: isMobile ? 12 : 32 }}>
+              <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>PHOTOGRAPHS</span>
+              <div style={{ flex: 1, height: 0.5, background: `rgba(61,122,122,0.2)` }} />
+            </div>
+            {isTouch && (
+              <p style={{ fontSize: 11, color: MUTED, fontStyle: "italic", margin: "0 0 20px", opacity: 0.7 }}>tap to view</p>
+            )}
+            {GALLERY_ROWS.map((row, ri) => (
+              <GalleryRow key={ri} photos={row} rowIndex={ri} onOpen={setLightbox} isMobile={isMobile} isTouch={isTouch} tall={ri === GALLERY_ROWS.length - 1} />
+            ))}
+          </motion.div>
+        )}
 
         {/* Metadata footer */}
         <motion.div

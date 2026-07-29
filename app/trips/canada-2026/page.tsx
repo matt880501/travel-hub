@@ -214,11 +214,11 @@ function ExtraItem({ e }: { e: typeof EXTRAS[0] }) {
 }
 
 function Countdown({ targetDate }: { targetDate: Date }) {
-  const [time, setTime] = useState({ days: 0, hrs: 0, min: 0 });
+  const [time, setTime] = useState<{ days: number; hrs: number; min: number } | null>(null);
   useEffect(() => {
     const calc = () => {
       const diff = targetDate.getTime() - Date.now();
-      if (diff <= 0) return;
+      if (diff <= 0) { setTime(null); return; }
       setTime({
         days: Math.floor(diff / 86400000),
         hrs: Math.floor((diff % 86400000) / 3600000),
@@ -229,6 +229,7 @@ function Countdown({ targetDate }: { targetDate: Date }) {
     const id = setInterval(calc, 1000);
     return () => clearInterval(id);
   }, [targetDate]);
+  if (!time) return null;
   return (
     <div style={{ display: "flex", gap: 20, alignItems: "flex-end" }}>
       {([["days", time.days], ["hrs", time.hrs], ["min", time.min]] as [string, number][]).map(([label, val]) => (

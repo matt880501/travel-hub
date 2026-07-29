@@ -12,7 +12,7 @@ const TRIPS: { year: string; list: Trip[] }[] = [
     year: "2026",
     list: [
       { id: "canada", title: "Canada", sub: "加拿大", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "upcoming", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778680358/CA1_c2rier.jpg", href: "/trips/canada-2026" },
-      { id: "singapore-bintan", title: "Singapore & Bintan", sub: "新加坡 · 民丹島", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "next", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg", href: "/trips/singapore-bintan-2026" },
+      { id: "singapore-bintan", title: "Singapore & Bintan", sub: "新加坡 · 民丹島", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg", href: "/trips/singapore-bintan-2026" },
       { id: "nagoya", title: "Nagoya", sub: "名古屋 · 飛驒高山 · 犬山", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669488/NG1_cfqqat.jpg", href: "/trips/nagoya-2026" },
       { id: "chiang-mai", title: "Chiang Mai", sub: "清邁 · 春節", date: "Feb, 2026", fullDate: "Feb 13 – Feb 19, 2026", startDate: "2026-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg", href: "/trips/chiang-mai-2026" },
     ],
@@ -75,7 +75,7 @@ function shuffle<T>(arr: T[]): T[] {
   return copy;
 }
 
-const VISITED = ["Japan", "Philippines", "Australia", "New Zealand", "Thailand", "Egypt", "Austria", "Czechia", "Czech Republic"];
+const VISITED = ["Japan", "Philippines", "Australia", "New Zealand", "Thailand", "Egypt", "Austria", "Czechia", "Czech Republic", "Singapore", "Indonesia"];
 
 
 function WorldMap({ visited, onHover }: {
@@ -533,7 +533,7 @@ export default function Home() {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? 8 : 12, padding: isMobile ? "12px 16px" : "16px 20px", background: "#161616", flexShrink: 0 }}>
           {[
             { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" /></svg>, val: "July 2026", label: "Updated" },
-            { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>, val: "8", label: "Countries" },
+            { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>, val: "10", label: "Countries" },
             { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>, val: "2018", label: "Since" },
             { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4a882" strokeWidth={1.5}><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>, val: "NZ", label: "Favorite Place" },
           ].map(({ icon, val, label }) => (
