@@ -90,7 +90,7 @@ const GALLERY_ROWS: GalleryPhoto[][] = [
   ],
   [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338515/SGs11_na3fdz.jpg", caption: "pickleball night!" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338518/SGs14_gpoete.jpg", caption: "Clubmed all white dress code" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338522/SGs2_bprwql.jpg", caption: "" },
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338518/SGs6_t4ennq.jpg", caption: "什麼時候能去頂樓游泳" },
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338515/SGs10_sxjywb.jpg", caption: "CHILLL" },
   ],
@@ -101,7 +101,7 @@ const GALLERY_ROWS: GalleryPhoto[][] = [
   [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338519/SGs7_hvyjdn.jpg", caption: "濱海灣" },
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338515/SGs12_hg125n.jpg", caption: "" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338522/SGs2_bprwql.jpg", caption: "" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338518/SGs14_gpoete.jpg", caption: "Clubmed all white dress code" },
   ],
   [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1785338520/SGs17JPG_pzxyo1.jpg", caption: "PC:咪口" },
