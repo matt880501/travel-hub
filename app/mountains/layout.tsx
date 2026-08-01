@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description: "Matt's Taiwan Hundred Peaks archive — mountains climbed, memories from the trail.",
     images: [
       {
-        url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693006/%E6%9C%88%E4%BA%AE%E7%9A%84%E9%8F%A1%E5%AD%90_dictfi.jpg",
+        url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1783693006/%E6%9C%88%E4%BA%AE%E7%9A%84%E9%8F%A1%E5%AD%90_dictfi.jpg",
         width: 1200,
         height: 630,
         alt: "百岳",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "百岳 — Mountain Archive",
     description: "Matt's Taiwan Hundred Peaks archive — mountains climbed, memories from the trail.",
-    images: ["https://res.cloudinary.com/dydhvvubl/image/upload/v1783693006/%E6%9C%88%E4%BA%AE%E7%9A%84%E9%8F%A1%E5%AD%90_dictfi.jpg"],
+    images: ["https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1783693006/%E6%9C%88%E4%BA%AE%E7%9A%84%E9%8F%A1%E5%AD%90_dictfi.jpg"],
   },
 };
 

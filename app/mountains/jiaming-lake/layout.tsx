@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: "2023.6 — 向陽山、三叉山、嘉明湖，天使的眼淚，月亮的鏡子。",
     images: [
       {
-        url: "https://res.cloudinary.com/dydhvvubl/image/upload/v1783693006/%E6%9C%88%E4%BA%AE%E7%9A%84%E9%8F%A1%E5%AD%90_dictfi.jpg",
+        url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1783693006/%E6%9C%88%E4%BA%AE%E7%9A%84%E9%8F%A1%E5%AD%90_dictfi.jpg",
         width: 1200,
         height: 630,
         alt: "嘉明湖",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "嘉明湖 — Jiaming Lake",
     description: "2023.6 — 向陽山、三叉山、嘉明湖。",
-    images: ["https://res.cloudinary.com/dydhvvubl/image/upload/v1783693006/%E6%9C%88%E4%BA%AE%E7%9A%84%E9%8F%A1%E5%AD%90_dictfi.jpg"],
+    images: ["https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1783693006/%E6%9C%88%E4%BA%AE%E7%9A%84%E9%8F%A1%E5%AD%90_dictfi.jpg"],
   },
 };
 
