@@ -99,7 +99,7 @@ const ITINERARY: Day[] = [
       { time: "09:00", text: "經 Jasper → Maligne Road", cat: "transit" },
       { time: "10:30", text: "Medicine Lake", mapUrl: "https://www.google.com/maps/search/Medicine+Lake+Jasper", cat: "sight" },
       { time: "12:30", text: "Maligne Lake Cruise — Spirit Island", mapUrl: "https://www.google.com/maps/search/Maligne+Lake+Cruise", cat: "sight" },
-      { time: "15:30", text: "回 Jasper East 住處", cat: "stay" },
+      { time: "15:30", text: "回 Airbnb", mapUrl: "https://www.airbnb.com.tw/rooms/1485425940040379181", cat: "stay" },
     ]
   },
   {
