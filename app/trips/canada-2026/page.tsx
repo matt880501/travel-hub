@@ -24,92 +24,116 @@ const ITINERARY: Day[] = [
   {
     day: "DAY 2", date: "Sep 18, Fri", location: "Arrive Calgary → Canmore",
     items: [
-      { time: "00:44", text: "Arrive Calgary — YYC", cat: "flight" },
+      { time: "00:44", text: "Arrive Calgary — YYC", mapUrl: "https://www.google.com/maps/search/Calgary+International+Airport", cat: "flight" },
       { time: "01:15", text: "Check-in · Delta Hotels Calgary Airport In-Terminal", mapUrl: "https://www.google.com/maps/search/Delta+Hotels+Calgary+Airport+In-Terminal", cat: "stay" },
       { time: "08:00", text: "RentalCars 取車", cat: "transit" },
       { time: "09:00", text: "上午前往 Canmore", cat: "transit" },
-      { time: "13:00", text: "Canmore Downtown", mapUrl: "https://www.google.com/maps/search/Canmore+Downtown", cat: "sight" },
-      { time: "下午", text: "Quarry Lake · Three Sisters Viewpoint", cat: "sight" },
+      { time: "10:30", text: "Canmore Downtown & lunch", mapUrl: "https://www.google.com/maps/search/Canmore+Downtown", cat: "food" },
+      { time: "13:00", text: "Policeman's Creek", mapUrl: "https://www.google.com/maps/search/Policeman's+Creek+Boardwalk+Canmore", cat: "sight" },
+      { time: "15:00", text: "Engine Bridge", mapUrl: "https://www.google.com/maps/search/Canmore+Engine+Bridge", note: "Three Sisters Viewpoint", cat: "sight" },
+      { time: "16:00", text: "Grassi Lakes", mapUrl: "https://www.google.com/maps/search/Grassi+Lakes", cat: "sight" },
       { time: "18:00", text: "Check-in · Rocky Mountain Oasis - Mountain View", mapUrl: "https://www.google.com/maps/search/Rocky+Mountain+Oasis+Canmore", cat: "stay" },
     ]
   },
   {
     day: "DAY 3", date: "Sep 19, Sat", location: "Banff National Park",
     items: [
-      { time: "09:00", text: "Banff Downtown", mapUrl: "https://www.google.com/maps/search/Banff+Downtown", cat: "sight" },
-      { time: "上午", text: "Bow Falls · Surprise Corner · Cascade Gardens", cat: "sight" },
-      { time: "16:30", text: "Banff Gondola 上山", mapUrl: "https://www.google.com/maps/search/Banff+Gondola", note: "散步到 Sulphur Mountain Boardwalk 看夕陽", cat: "transit" },
-      { time: "19:00", text: "晚餐：A) Sky Bistro／B) Northern Lights Alpine Kitchen（待定）", note: "山頂纜車站內，需預約", cat: "food" },
+      { time: "08:00", text: "搶 9/21 Moraine Alpine Start 接駁車", cat: "transit" },
+      { time: "09:00", text: "Banff Downtown", mapUrl: "https://www.google.com/maps/search/Banff+Downtown", note: "逛逛小鎮", cat: "sight" },
+      { time: "09:30", text: "Banff Ave", mapUrl: "https://www.google.com/maps/search/Banff+Avenue", cat: "sight" },
+      { time: "10:30", text: "Banff Pedestrian Bridge", mapUrl: "https://www.google.com/maps/search/Banff+Pedestrian+Bridge", cat: "sight" },
+      { time: "12:00", text: "Cascade of Time Garden", mapUrl: "https://www.google.com/maps/search/Cascade+of+Time+Garden+Banff", cat: "sight" },
+      { time: "15:50", text: "Banff Gondola 上山", mapUrl: "https://www.google.com/maps/search/Banff+Gondola", note: "散步到 Sulphur Mountain Boardwalk 看夕陽", cat: "transit" },
+      { time: "16:50", text: "Sky Bistro 晚餐", mapUrl: "https://www.google.com/maps/search/Sky+Bistro+Banff", note: "纜車山頂，已預約", cat: "food" },
       { time: "19:30", text: "下山，回 Canmore", cat: "transit" },
     ]
   },
   {
     day: "DAY 4", date: "Sep 20, Sun", location: "Yoho National Park (BC)",
     items: [
-      { time: "09:00", text: "Depart Canmore → Yoho", cat: "transit" },
-      { time: "上午", text: "Takakkaw Falls · Natural Bridge", cat: "sight" },
-      { time: "下午", text: "Emerald Lake", mapUrl: "https://www.google.com/maps/search/Emerald+Lake+Yoho", note: "可划船，時間允許可走 Emerald Lake Loop", cat: "sight" },
-      { time: "18:00", text: "Return to Canmore", cat: "transit" },
+      { time: "08:00", text: "Depart Canmore → Yoho", cat: "transit" },
+      { time: "09:30", text: "Takakkaw Falls", mapUrl: "https://www.google.com/maps/search/Takakkaw+Falls", cat: "sight" },
+      { time: "11:00", text: "Natural Bridge", mapUrl: "https://www.google.com/maps/search/Natural+Bridge+Yoho", cat: "sight" },
+      { time: "12:00", text: "Field 小鎮午餐", mapUrl: "https://www.google.com/maps/search/Field+British+Columbia", cat: "food" },
+      { time: "13:30", text: "Emerald Lake", mapUrl: "https://www.google.com/maps/search/Emerald+Lake+Yoho", note: "可划船，時間夠可走 Emerald Lake Loop", cat: "sight" },
+      { time: "17:00", text: "Return to Canmore", cat: "transit" },
     ]
   },
   {
     day: "DAY 5", date: "Sep 21, Mon", location: "Moraine Lake · Johnston Canyon",
     items: [
-      { time: "07:00", text: "Moraine Lake Shuttle", mapUrl: "https://www.google.com/maps/search/Moraine+Lake", cat: "transit" },
-      { time: "08:00", text: "A) Larch Valley Trail（8-9公里）／B) Moraine Lake Lakeshore（短程備案）", mapUrl: "https://www.google.com/maps/search/Larch+Valley+Trailhead", cat: "sight" },
+      { time: "04:00", text: "Depart Canmore → Lake Louise", note: "出發夢蓮湖追日出！", cat: "transit" },
+      { time: "05:00", text: "Alpine Start Shuttle", note: "只能搭接駁車", cat: "transit" },
+      { time: "05:40", text: "Moraine Lake", mapUrl: "https://www.google.com/maps/search/Moraine+Lake", cat: "sight" },
+      { time: "08:00", text: "Larch Valley Trail to Sentinel Pass", mapUrl: "https://www.google.com/maps/search/Larch+Valley+Trailhead", note: "來回 8-9km，海拔 2611m", cat: "sight" },
       { time: "14:00", text: "Johnston Canyon", mapUrl: "https://www.google.com/maps/search/Johnston+Canyon", cat: "sight" },
-      { time: "19:00", text: "最後一晚 Canmore", cat: "stay" },
+      { time: "18:00", text: "回 Canmore", cat: "transit" },
+      { time: "19:00", text: "鎮上晚餐", cat: "food" },
     ]
   },
   {
     day: "DAY 6", date: "Sep 22, Tue", location: "Icefields Parkway → Jasper",
     items: [
-      { time: "08:00", text: "退房 Canmore", cat: "stay" },
-      { time: "09:00", text: "Bow Lake", mapUrl: "https://www.google.com/maps/search/Bow+Lake+Icefields+Parkway", cat: "sight" },
-      { time: "09:45", text: "Peyto Lake", mapUrl: "https://www.google.com/maps/search/Peyto+Lake", cat: "sight" },
-      { time: "11:45", text: "Columbia Icefield Glacier Adventure", mapUrl: "https://www.google.com/maps/search/Columbia+Icefield+Glacier+Adventure", note: "已預約", cat: "sight" },
-      { time: "16:00", text: "Check-in · Fairmont Jasper Park Lodge", mapUrl: "https://www.google.com/maps/search/Fairmont+Jasper+Park+Lodge", note: "今天不排行程：湖邊散步、牛排晚餐、看星星", cat: "stay" },
+      { time: "06:45", text: "退房 Canmore", note: "沿冰原大道一路北上", cat: "stay" },
+      { time: "08:15", text: "Bow Lake", mapUrl: "https://www.google.com/maps/search/Bow+Lake+Icefields+Parkway", cat: "sight" },
+      { time: "09:00", text: "Peyto Lake", mapUrl: "https://www.google.com/maps/search/Peyto+Lake", cat: "sight" },
+      { time: "11:45", text: "Columbia Icefield Glacier Adventure", mapUrl: "https://www.google.com/maps/search/Columbia+Icefield+Glacier+Adventure", note: "我這一生如履薄冰", cat: "sight" },
+      { time: "16:00", text: "Check-in · Fairmont Jasper Park Lodge", mapUrl: "https://www.google.com/maps/search/Fairmont+Jasper+Park+Lodge", cat: "stay" },
+      { time: "18:00", text: "JPL 晚餐", note: "湖邊散步", cat: "food" },
     ]
   },
   {
-    day: "DAY 7", date: "Sep 23, Wed", location: "Jasper National Park（住宿：A) Jasper／B) Hinton 待定）",
+    day: "DAY 7", date: "Sep 23, Wed", location: "Jasper National Park",
     items: [
-      { time: "10:00", text: "退房 Fairmont Jasper Park Lodge", cat: "stay" },
-      { time: "上午", text: "Maligne Canyon · Medicine Lake", cat: "sight" },
-      { time: "下午", text: "Pyramid Lake · Patricia Lake", cat: "sight" },
+      { time: "10:00", text: "Pyramid Lake · Patricia Lake", mapUrl: "https://www.google.com/maps/search/Pyramid+Lake+Jasper", cat: "sight" },
+      { time: "12:00", text: "Jasper Downtown 午餐", mapUrl: "https://www.google.com/maps/search/Jasper+Downtown", cat: "food" },
+      { time: "13:30", text: "Jasper SkyTram or Valley of Five Lakes", mapUrl: "https://www.google.com/maps/search/Jasper+SkyTram", note: "看要不要再搭一次纜車", cat: "sight" },
+      { time: "16:00", text: "Jasper Downtown 超市補貨", mapUrl: "https://www.google.com/maps/search/Nesters+Market+Jasper", note: "大買，要自己煮", cat: "shop" },
+      { time: "17:30", text: "Check-in · 超大 Airbnb", note: "從 Jasper 往東約 40 分鐘", cat: "stay" },
+      { time: "18:00", text: "自主晚餐", cat: "food" },
     ]
   },
   {
     day: "DAY 8", date: "Sep 24, Thu", location: "Maligne Lake",
     items: [
+      { time: "09:00", text: "經 Jasper → Maligne Road", cat: "transit" },
+      { time: "10:30", text: "Medicine Lake", mapUrl: "https://www.google.com/maps/search/Medicine+Lake+Jasper", cat: "sight" },
       { time: "12:30", text: "Maligne Lake Cruise — Spirit Island", mapUrl: "https://www.google.com/maps/search/Maligne+Lake+Cruise", cat: "sight" },
-      { time: "15:30", text: "A) Jasper SkyTram／B) Athabasca Falls（待定）", mapUrl: "https://www.google.com/maps/search/Jasper+SkyTram", cat: "sight" },
+      { time: "15:30", text: "回 Jasper East 住處", cat: "stay" },
     ]
   },
   {
     day: "DAY 9", date: "Sep 25, Fri", location: "Icefields Parkway → Lake Louise",
     items: [
-      { time: "09:00", text: "退房，南下冰原大道", cat: "transit" },
-      { time: "沿途", text: "Athabasca Falls · Sunwapta Falls · Waterfowl Lakes", cat: "sight" },
-      { time: "15:00", text: "Check-in · Fairmont Chateau Lake Louise", mapUrl: "https://www.google.com/maps/search/Fairmont+Chateau+Lake+Louise", note: "洛磯山脈最美飯店之一，正對 Lake Louise 與 Victoria Glacier", cat: "stay" },
+      { time: "08:00", text: "退房，南下冰原大道", cat: "transit" },
+      { time: "09:30", text: "Athabasca Falls", mapUrl: "https://www.google.com/maps/search/Athabasca+Falls", cat: "sight" },
+      { time: "10:30", text: "Sunwapta Falls", mapUrl: "https://www.google.com/maps/search/Sunwapta+Falls", cat: "sight" },
+      { time: "12:00", text: "Mistaya Canyon", mapUrl: "https://www.google.com/maps/search/Mistaya+Canyon", cat: "sight" },
+      { time: "13:30", text: "Waterfowl Lakes", mapUrl: "https://www.google.com/maps/search/Waterfowl+Lakes", cat: "sight" },
+      { time: "14:30", text: "若天氣差，再去一次 Peyto Lake", cat: "sight" },
+      { time: "15:30", text: "Check-in · Fairmont Chateau Lake Louise", mapUrl: "https://www.google.com/maps/search/Fairmont+Chateau+Lake+Louise", note: "洛磯山脈最美飯店，正對 Lake Louise 與 Victoria Glacier", cat: "stay" },
       { time: "18:00", text: "Lake Louise 散步", mapUrl: "https://www.google.com/maps/search/Lake+Louise", cat: "sight" },
+      { time: "19:00", text: "飯店 Walliser Stube 晚餐", mapUrl: "https://www.google.com/maps/search/Walliser+Stube+Lake+Louise", cat: "food" },
     ]
   },
   {
     day: "DAY 10", date: "Sep 26, Sat", location: "Lake Louise",
     items: [
+      { time: "07:00", text: "Lake Louise 日出", mapUrl: "https://www.google.com/maps/search/Lake+Louise", cat: "sight" },
       { time: "08:00", text: "飯店早餐", cat: "food" },
-      { time: "10:00", text: "Fairview Lookout", mapUrl: "https://www.google.com/maps/search/Fairview+Lookout+Lake+Louise", cat: "sight" },
+      { time: "10:00", text: "Lake Agnes Trail 出發", mapUrl: "https://www.google.com/maps/search/Lake+Agnes+Trail+Trailhead", note: "老爸愛走，陪他走", cat: "sight" },
+      { time: "12:00", text: "Big Beehive", mapUrl: "https://www.google.com/maps/search/Big+Beehive+Lake+Louise", cat: "sight" },
       { time: "14:00", text: "飯店下午茶", cat: "cafe" },
-      { time: "19:00", text: "Lake Louise 日落", mapUrl: "https://www.google.com/maps/search/Lake+Louise", cat: "sight" },
+      { time: "19:00", text: "飯店 Fairview Bar and Restaurant", mapUrl: "https://www.google.com/maps/search/Fairview+Bar+and+Restaurant+Lake+Louise", cat: "food" },
     ]
   },
   {
     day: "DAY 11", date: "Sep 27, Sun", location: "Lake Louise → Calgary → Depart",
     items: [
-      { time: "07:00", text: "再看一次 Lake Louise", mapUrl: "https://www.google.com/maps/search/Lake+Louise", note: "這時段幾乎只有住宿客", cat: "sight" },
+      { time: "07:00", text: "再看一次 Lake Louise", mapUrl: "https://www.google.com/maps/search/Lake+Louise", note: "Bye Lake Louise", cat: "sight" },
       { time: "11:00", text: "退房，返回 Calgary", cat: "stay" },
-      { time: "15:00", text: "CrossIron Mills Outlet", mapUrl: "https://www.google.com/maps/search/CrossIron+Mills", note: "Arc'teryx、lululemon、Columbia、The North Face", cat: "shop" },
+      { time: "13:00", text: "CrossIron Mills Outlet", mapUrl: "https://www.google.com/maps/search/CrossIron+Mills", note: "Arc'teryx、lululemon、Columbia、The North Face", cat: "shop" },
+      { time: "17:00", text: "Calgary Downtown & dinner", mapUrl: "https://www.google.com/maps/search/Calgary+Downtown", cat: "food" },
       { time: "20:30", text: "還車", cat: "transit" },
       { time: "23:35", text: "Calgary → Vancouver — CI 9323", cat: "transit" },
     ]
@@ -130,11 +154,12 @@ const ITINERARY: Day[] = [
 ];
 
 const EXTRAS: { text: string; note: string }[] = [
-  { text: "簽證", note: "台灣護照免簽，搭機入境需上網辦 eTA（CAD $7，效期 5 年或至護照到期，出發前上加拿大官網申請）" },
-  { text: "住宿", note: "Calgary 機場：Delta Hotels Calgary Airport In-Terminal（booking.com，late check-in）\nCanmore：公寓式酒店，早餐自理（agoda）\nFairmont Jasper Park Lodge、Fairmont Chateau Lake Louise（booking.com）" },
-  { text: "已預約", note: "Columbia Icefield Glacier Adventure、Maligne Lake Cruise" },
-  { text: "待預約", note: "Moraine Lake Shuttle、Banff Gondola、Sky Bistro\n住宿：Sep 23-24 兩晚 Jasper 或 Hinton（尚未確定）" },
-  { text: "租車", note: "RentalCars，Dodge Durango（7 人座）" },
+  { text: "簽證", note: "入境需上網辦 eTA（CAD $7，效期 5 年或至護照到期，出發前上加拿大官網申請）" },
+  { text: "住宿", note: "Calgary 機場：Delta Hotels Calgary Airport In-Terminal（booking.com，late check-in）\nCanmore：公寓式酒店，早餐自理（agoda）\nFairmont Jasper Park Lodge、Fairmont Chateau Lake Louise（booking.com）\nJasper 兩晚：Airbnb（Jasper 東側約 40 分鐘）" },
+  { text: "已預約", note: "Columbia Icefield Glacier Adventure、Maligne Lake Cruise、Banff Gondola、Sky Bistro" },
+  { text: "待預約", note: "Moraine Lake Shuttle（兩天前 08:00 開放搶票）" },
+  { text: "租車", note: "RentalCars，Dodge Durango（7 人座）\nBanff East Gate 購買 Discovery Pass" },
+  { text: "常用連結", note: "訂票：bookings.banffjaspercollection.com/RKY\n夢蓮湖接駁車：reservation.pc.gc.ca\neTA 申請：canada.ca（IRCC eTA）" },
 ];
 
 function CatIcon({ cat }: { cat?: Category }) {
