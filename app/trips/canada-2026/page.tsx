@@ -89,7 +89,7 @@ const ITINERARY: Day[] = [
       { time: "12:00", text: "Jasper Downtown 午餐", mapUrl: "https://www.google.com/maps/search/Jasper+Downtown", cat: "food" },
       { time: "13:30", text: "Jasper SkyTram or Valley of Five Lakes", mapUrl: "https://www.google.com/maps/search/Jasper+SkyTram", note: "看要不要再搭一次纜車", cat: "sight" },
       { time: "16:00", text: "Jasper Downtown 超市補貨", mapUrl: "https://www.google.com/maps/search/Nesters+Market+Jasper", note: "大買，要自己煮", cat: "shop" },
-      { time: "17:30", text: "Check-in · 超大 Airbnb", note: "從 Jasper 往東約 40 分鐘", cat: "stay" },
+      { time: "17:30", text: "Check-in · 超大 Airbnb", mapUrl: "https://www.airbnb.com.tw/rooms/1485425940040379181", note: "從 Jasper 往東約 40 分鐘", cat: "stay" },
       { time: "18:00", text: "自主晚餐", cat: "food" },
     ]
   },
@@ -153,13 +153,22 @@ const ITINERARY: Day[] = [
   },
 ];
 
-const EXTRAS: { text: string; note: string }[] = [
+type Extra = { text: string; note: string; links?: { label: string; url: string }[] };
+
+const EXTRAS: Extra[] = [
   { text: "簽證", note: "入境需上網辦 eTA（CAD $7，效期 5 年或至護照到期，出發前上加拿大官網申請）" },
   { text: "住宿", note: "Calgary 機場：Delta Hotels Calgary Airport In-Terminal（booking.com，late check-in）\nCanmore：公寓式酒店，早餐自理（agoda）\nFairmont Jasper Park Lodge、Fairmont Chateau Lake Louise（booking.com）\nJasper 兩晚：Airbnb（Jasper 東側約 40 分鐘）" },
   { text: "已預約", note: "Columbia Icefield Glacier Adventure、Maligne Lake Cruise、Banff Gondola、Sky Bistro" },
   { text: "待預約", note: "Moraine Lake Shuttle（兩天前 08:00 開放搶票）" },
   { text: "租車", note: "RentalCars，Dodge Durango（7 人座）\nBanff East Gate 購買 Discovery Pass" },
-  { text: "常用連結", note: "訂票：bookings.banffjaspercollection.com/RKY\n夢蓮湖接駁車：reservation.pc.gc.ca\neTA 申請：canada.ca（IRCC eTA）" },
+  {
+    text: "常用連結", note: "",
+    links: [
+      { label: "Banff Jasper Collection 訂票", url: "https://bookings.banffjaspercollection.com/RKY" },
+      { label: "夢蓮湖接駁車預約（Parks Canada）", url: "https://reservation.pc.gc.ca/" },
+      { label: "eTA 線上申請", url: "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta/apply.html" },
+    ]
+  },
 ];
 
 function CatIcon({ cat }: { cat?: Category }) {
@@ -229,11 +238,27 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
   );
 }
 
-function ExtraItem({ e }: { e: typeof EXTRAS[0] }) {
+function ExtraItem({ e }: { e: Extra }) {
   return (
     <div style={{ padding: "14px 0", borderBottom: `0.5px solid rgba(30,43,30,0.1)` }}>
       <div style={{ fontSize: 14, color: TEXT }}>{e.text}</div>
-      <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: "8px 0 0", fontStyle: "italic", whiteSpace: "pre-line" }}>{e.note}</p>
+      {e.note && (
+        <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: "8px 0 0", fontStyle: "italic", whiteSpace: "pre-line" }}>{e.note}</p>
+      )}
+      {e.links && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 8 }}>
+          {e.links.map((l, i) => (
+            <a key={i} href={l.url} target="_blank" rel="noopener noreferrer"
+              style={{ fontSize: 12, color: MUTED, textDecoration: "none" }}
+              onMouseEnter={ev => (ev.currentTarget.style.color = ACCENT)}
+              onMouseLeave={ev => (ev.currentTarget.style.color = MUTED)}
+            >
+              {l.label}
+              <span style={{ fontSize: 10, marginLeft: 4, opacity: 0.5 }}>↗</span>
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
