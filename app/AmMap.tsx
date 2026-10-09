@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-const VISITED = ["JP", "PH", "AU", "NZ", "TH", "EG", "AT", "CZ", "TW", "SG", "ID"];
+const VISITED = ["JP", "PH", "AU", "NZ", "TH", "EG", "AT", "CZ", "TW", "SG", "ID", "CA"];
 export default function AmMap({ onHover }: { onHover?: (name: string | null, x?: number, y?: number) => void }) {
   const divRef = useRef<HTMLDivElement>(null);
   const onHoverRef = useRef(onHover);
