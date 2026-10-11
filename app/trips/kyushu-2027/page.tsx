@@ -20,10 +20,10 @@ const ITINERARY: Day[] = [
       { time: "10:35", text: "Arrive Kumamoto — KMJ", cat: "flight" },
       { time: "11:00", text: "熊本機場取車", mapUrl: "https://www.google.com/maps/search/Kumamoto+Airport", cat: "transit" },
       { time: "12:00", text: "熊本城", mapUrl: "https://www.google.com/maps/search/Kumamoto+Castle", cat: "sight" },
-      { time: "13:30", text: "熊本午餐", mapUrl: "https://www.google.com/maps/search/熊本市+午餐", cat: "food" },
+      { time: "13:30", text: "熊本午餐", cat: "food" },
       { time: "15:00", text: "前往阿蘇", mapUrl: "https://www.google.com/maps/search/阿蘇", cat: "transit" },
-      { time: "16:30", text: "阿蘇神社／門前町", mapUrl: "https://www.google.com/maps/search/阿蘇神社", note: "視時間彈性安排", cat: "sight" },
-      { time: "17:30", text: "Check-in · Origami Experience", mapUrl: "https://origami-experience.com/", note: "已訂，阿蘇三晚", cat: "stay" },
+      { time: "16:30", text: "阿蘇神社／門前町（視時間）", mapUrl: "https://www.google.com/maps/search/阿蘇神社", cat: "sight" },
+      { time: "17:30", text: "Check-in · Origami Experience", mapUrl: "https://origami-experience.com/", cat: "stay" },
     ]
   },
   {
@@ -33,7 +33,7 @@ const ITINERARY: Day[] = [
       { time: "10:30", text: "高千穗峽", mapUrl: "https://www.google.com/maps/search/Takachiho+Gorge", cat: "sight" },
       { time: "11:30", text: "真名井瀑布", mapUrl: "https://www.google.com/maps/search/真名井の滝", cat: "sight" },
       { time: "13:00", text: "高千穗神社", mapUrl: "https://www.google.com/maps/search/高千穗神社", cat: "sight" },
-      { time: "14:00", text: "高千穗峽划船", mapUrl: "https://www.google.com/maps/search/高千穗峽+貸しボート", note: "視當日開放狀況", cat: "sight" },
+      { time: "14:00", text: "高千穗峽划船（視當日開放）", mapUrl: "https://www.google.com/maps/search/高千穗峽+貸しボート", cat: "sight" },
       { time: "16:00", text: "返回阿蘇", cat: "transit" },
     ]
   },
@@ -41,21 +41,21 @@ const ITINERARY: Day[] = [
     day: "DAY 3", date: "Feb 5, Fri", location: "阿蘇一日遊",
     items: [
       { time: "09:00", text: "草千里", mapUrl: "https://www.google.com/maps/search/草千里ヶ浜", cat: "sight" },
-      { time: "10:30", text: "阿蘇火山口", mapUrl: "https://www.google.com/maps/search/阿蘇山火口", note: "視當日管制開放", cat: "sight" },
+      { time: "10:30", text: "阿蘇火山口（視當日管制）", mapUrl: "https://www.google.com/maps/search/阿蘇山火口", cat: "sight" },
       { time: "12:00", text: "大觀峰", mapUrl: "https://www.google.com/maps/search/大觀峰", cat: "sight" },
       { time: "13:30", text: "Milk Road", mapUrl: "https://www.google.com/maps/search/ミルクロード+阿蘇", cat: "sight" },
-      { time: "14:30", text: "阿蘇赤牛 午餐", mapUrl: "https://www.google.com/maps/search/阿蘇赤牛", cat: "food" },
+      { time: "14:30", text: "阿蘇赤牛 午餐", cat: "food" },
       { time: "18:00", text: "晚上回住宿休息，泡湯", cat: "onsen" },
     ]
   },
   {
     day: "DAY 4", date: "Feb 6, Sat", location: "阿蘇 → 黑川溫泉",
     items: [
-      { time: "09:30", text: "上午阿蘇最後景點", note: "睡晚一點，彈性安排", cat: "sight" },
+      { time: "09:30", text: "上午阿蘇最後景點／睡晚一點", cat: "sight" },
       { time: "11:30", text: "前往黑川溫泉", mapUrl: "https://www.google.com/maps/search/黑川溫泉", cat: "transit" },
-      { time: "13:00", text: "湯巡り", note: "溫泉手形，三間選三泡", cat: "onsen" },
+      { time: "13:00", text: "湯巡り", cat: "onsen" },
       { time: "15:00", text: "黑川溫泉街散步", mapUrl: "https://www.google.com/maps/search/黑川溫泉街", cat: "sight" },
-      { time: "18:00", text: "溫泉旅館晚餐", note: "除夕", cat: "food" },
+      { time: "18:00", text: "溫泉旅館晚餐", cat: "food" },
       { time: "20:00", text: "泡湯", cat: "onsen" },
       { time: "—", text: "Check-in · 黑川溫泉旅館", note: "住宿尚未預訂", cat: "stay" },
     ]
@@ -68,10 +68,10 @@ const ITINERARY: Day[] = [
       { time: "11:30", text: "湯之坪街道", mapUrl: "https://www.google.com/maps/search/湯の坪街道", cat: "shop" },
       { time: "12:30", text: "Floral Village", mapUrl: "https://www.google.com/maps/search/由布院+フローラルビレッジ", cat: "sight" },
       { time: "13:30", text: "金鱗湖", mapUrl: "https://www.google.com/maps/search/金鱗湖", cat: "sight" },
-      { time: "14:00", text: "由布院午餐", mapUrl: "https://www.google.com/maps/search/由布院+午餐", cat: "food" },
+      { time: "14:00", text: "由布院午餐", cat: "food" },
       { time: "15:30", text: "由布院還車", cat: "transit" },
-      { time: "16:00", text: "「由布院之森」→ 博多", mapUrl: "https://www.google.com/maps/search/由布院駅", note: "JR 特急，實際發車時間依訂票為準", cat: "transit" },
-      { time: "18:00", text: "Check-in · 福岡住宿", note: "住宿尚未預訂，三晚", cat: "stay" },
+      { time: "16:00", text: "「由布院之森」→ 博多", mapUrl: "https://www.google.com/maps/search/由布院駅", cat: "transit" },
+      { time: "18:00", text: "Check-in · 福岡住宿", note: "住宿尚未預訂", cat: "stay" },
     ]
   },
   {
@@ -81,7 +81,7 @@ const ITINERARY: Day[] = [
       { time: "10:30", text: "福岡城跡", mapUrl: "https://www.google.com/maps/search/福岡城跡", cat: "sight" },
       { time: "12:00", text: "櫛田神社", mapUrl: "https://www.google.com/maps/search/櫛田神社", cat: "sight" },
       { time: "13:30", text: "天神／博多購物", mapUrl: "https://www.google.com/maps/search/天神+博多", cat: "shop" },
-      { time: "18:00", text: "福岡美食 晚餐", mapUrl: "https://www.google.com/maps/search/福岡+美食", cat: "food" },
+      { time: "18:00", text: "福岡美食 晚餐", cat: "food" },
     ]
   },
   {
@@ -89,7 +89,7 @@ const ITINERARY: Day[] = [
     items: [
       { time: "09:00", text: "視天氣：糸島一日遊", note: "晴天：二見ヶ浦・海邊咖啡廳・糸島海岸｜雨天備案：太宰府天滿宮＋天神/博多購物", cat: "sight" },
       { time: "10:00", text: "二見ヶ浦", mapUrl: "https://www.google.com/maps/search/二見ヶ浦+糸島", cat: "sight" },
-      { time: "11:30", text: "海邊咖啡廳", mapUrl: "https://www.google.com/maps/search/糸島+カフェ", cat: "cafe" },
+      { time: "11:30", text: "海邊咖啡廳", cat: "cafe" },
       { time: "13:00", text: "糸島海岸", mapUrl: "https://www.google.com/maps/search/糸島+海岸", cat: "sight" },
       { time: "18:00", text: "福岡晚餐", cat: "food" },
     ]
@@ -101,22 +101,6 @@ const ITINERARY: Day[] = [
       { time: "10:00", text: "最後採買／伴手禮", mapUrl: "https://www.google.com/maps/search/天神+博多", cat: "shop" },
       { time: "19:10", text: "福岡機場 → 台灣 — JX841", cat: "flight" },
       { time: "20:50", text: "Arrive Taipei — TPE", cat: "flight" },
-    ]
-  },
-];
-
-type Extra = { text: string; note: string; links?: { label: string; url: string }[] };
-
-const EXTRAS: Extra[] = [
-  { text: "簽證", note: "日本對台灣免簽，出發前線上填 Visit Japan Web 入境表" },
-  { text: "住宿", note: "阿蘇三晚：Origami Experience（已訂）\n黑川溫泉一晚：尚未預訂\n福岡三晚：尚未預訂" },
-  { text: "已預約", note: "STARLUX 來回機票（JX846 / JX841，訂位代號 DSPKZF）\nOrigami Experience（阿蘇三晚）" },
-  { text: "待預約", note: "租車（熊本機場取車 → 由布院還車）\n黑川溫泉住宿\n福岡住宿\n「由布院之森」指定席車票" },
-  { text: "租車", note: "公司／車款尚未決定\n2/3 熊本機場取車 → 2/7 由布院還車" },
-  {
-    text: "常用連結", note: "",
-    links: [
-      { label: "Origami Experience（阿蘇住宿）", url: "https://origami-experience.com/" },
     ]
   },
 ];
@@ -185,31 +169,6 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
         )}
       </AnimatePresence>
     </motion.div>
-  );
-}
-
-function ExtraItem({ e }: { e: Extra }) {
-  return (
-    <div style={{ padding: "14px 0", borderBottom: `0.5px solid rgba(43,46,38,0.1)` }}>
-      <div style={{ fontSize: 14, color: TEXT }}>{e.text}</div>
-      {e.note && (
-        <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.8, margin: "8px 0 0", fontStyle: "italic", whiteSpace: "pre-line" }}>{e.note}</p>
-      )}
-      {e.links && (
-        <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 8 }}>
-          {e.links.map((l, i) => (
-            <a key={i} href={l.url} target="_blank" rel="noopener noreferrer"
-              style={{ fontSize: 12, color: MUTED, textDecoration: "none" }}
-              onMouseEnter={ev => (ev.currentTarget.style.color = ACCENT)}
-              onMouseLeave={ev => (ev.currentTarget.style.color = MUTED)}
-            >
-              {l.label}
-              <span style={{ fontSize: 10, marginLeft: 4, opacity: 0.5 }}>↗</span>
-            </a>
-          ))}
-        </div>
-      )}
-    </div>
   );
 }
 
@@ -402,20 +361,6 @@ export default function Kyushu() {
           ))}
         </motion.div>
 
-        {/* Travel info */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          style={{ marginBottom: 96 }}
-        >
-          <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 32 }}>
-            <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>TRAVEL INFO</span>
-            <div style={{ flex: 1, height: 0.5, background: `rgba(138,144,118,0.2)` }} />
-          </div>
-          {EXTRAS.map((e, i) => <ExtraItem key={i} e={e} />)}
-        </motion.div>
-
         {/* Metadata footer */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -426,10 +371,10 @@ export default function Kyushu() {
           <div style={{ fontSize: 10, color: MUTED, letterSpacing: "0.2em", marginBottom: 24 }}>ABOUT THIS TRIP</div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? 24 : 32 }}>
             {[
-              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "-5°C — 10°C", sub: "阿蘇高山酷寒，福岡較溫和" },
-              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, label: "MOOD", value: "Rustic / Volcanic / Serene", sub: "枯草與溫泉的季節" },
-              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>, label: "SEASON", value: "Winter", sub: "草千里枯黃季" },
-              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, label: "WITH", value: "Family", sub: "家族溫泉小旅行" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "-5°C — 10°C", sub: "Sharp cold on the caldera" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, label: "MOOD", value: "Rustic / Volcanic / Serene", sub: "Steam, ash, and stillness" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>, label: "SEASON", value: "Winter", sub: "Aso's grass turns gold" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, label: "WITH", value: "Family", sub: "Onsen trip across Kyushu" },
             ].map((m, i) => (
               <div key={i}>
                 <div style={{ color: MUTED, marginBottom: 10 }}>{m.icon}</div>
