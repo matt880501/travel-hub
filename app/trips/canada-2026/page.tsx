@@ -229,7 +229,7 @@ const GALLERY_ROWS: GalleryPhoto[][] = [
   [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709231/CAs20_uk4po3.jpg", caption: "Sunrise" },
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709233/CAs21_blppwq.jpg", caption: "加拿大鵝鵝鵝" },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709234/CAs22_dhylrx.jpg", caption: "Dad and son" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791733122/CAs22_otrgoc.jpg", caption: "Dad and son" },
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709223/CAs15_hyj88j.jpg", caption: "冰原小屋" },
   ],
 ];
