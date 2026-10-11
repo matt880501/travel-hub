@@ -100,7 +100,7 @@ const ITINERARY: Day[] = [
       { time: "14:00", text: "Patricia Lake · Pyramid Lake", mapUrl: "https://www.google.com/maps/search/Pyramid+Lake+Jasper", cat: "sight" },
       { time: "16:00", text: "Jasper Downtown 超市補貨", mapUrl: "https://www.google.com/maps/search/Nesters+Market+Jasper", note: "大買，要自己煮", cat: "shop" },
       { time: "17:30", text: "Check-in · 超大 Airbnb", mapUrl: "https://www.airbnb.com.tw/rooms/1485425940040379181", note: "從 Jasper 往東約 40 分鐘，沿路很漂亮，很多野生動物", cat: "stay" },
-      { time: "18:00", text: "自主晚餐", cat: "food" },
+      { time: "18:00", text: "晚餐自煮", cat: "food" },
     ]
   },
   {
