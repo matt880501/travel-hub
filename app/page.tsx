@@ -65,10 +65,16 @@ const TRIPS: { year: string; list: Trip[] }[] = [
 
 const MEMORIES = [
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669488/NG1_cfqqat.jpg", label: "Nagoya · Takayama" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg", label: "Chiang Mai" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843907/OKI1_kvpgjq.jpg", label: "Okinawa" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862389/AU12_w6s7vd.jpg", label: "Australia" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/To1_rgcmr9.jpg", label: "Tokyo" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg", label: "Bohol Island" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430033/NZ1_vuque7.jpg", label: "New Zealand" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709186/CA1_eirl9m.jpg", label: "Canada" },
 ];
+// Fixed set shown in the homepage preview widget (order still shuffles).
+const HOME_MEMORIES = MEMORIES.filter(m => ["Nagoya · Takayama", "Australia", "New Zealand", "Canada"].includes(m.label));
 function shuffle<T>(arr: T[]): T[] {
   const copy = [...arr];
   for (let i = copy.length - 1; i > 0; i--) {
@@ -214,7 +220,7 @@ export default function Home() {
   const [showMap, setShowMap] = useState(false);
   const [showTrips, setShowTrips] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [shuffled, setShuffled] = useState(MEMORIES);
+  const [shuffled, setShuffled] = useState(HOME_MEMORIES);
   const [featuredTrip, setFeaturedTrip] = useState<Trip | undefined>(undefined);
 
   const today = new Date();
@@ -232,7 +238,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    setShuffled(shuffle(MEMORIES));
+    setShuffled(shuffle(HOME_MEMORIES));
     const pool = TRIPS.flatMap(g => g.list).filter(t => ["nagoya", "australia", "canada"].includes(t.id));
     setFeaturedTrip(pool[Math.floor(Math.random() * pool.length)]);
   }, []);
