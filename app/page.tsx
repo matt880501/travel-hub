@@ -9,6 +9,12 @@ import * as topojson from "topojson-client";
 type Trip = { id: string; title: string; sub: string; date: string; fullDate: string; startDate: string; status: string; img: string | null; href: string; };
 const TRIPS: { year: string; list: Trip[] }[] = [
   {
+    year: "2027",
+    list: [
+      { id: "kyushu", title: "Kyushu", sub: "九州", date: "Feb, 2027", fullDate: "Feb 3 – Feb 10, 2027", startDate: "2027-02-03", status: "upcoming", img: "https://res.cloudinary.com/dydhvvubl/image/upload/v1791687372/DSC09767_bayxwo.jpg", href: "/trips/kyushu-2027" },
+    ],
+  },
+  {
     year: "2026",
     list: [
       { id: "canada", title: "Canada", sub: "加拿大", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778680358/CA1_c2rier.jpg", href: "/trips/canada-2026" },
