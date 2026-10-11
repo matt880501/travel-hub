@@ -215,7 +215,7 @@ const GALLERY_ROWS: GalleryPhoto[][] = [
   ],
   [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709201/CA11_thj8iz.jpg", caption: "Canoe", wide: true },
-    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709203/CA14_sixd02.jpg", caption: "", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709203/CA14_sixd02.jpg", caption: "再看一眼", wide: true },
   ],
   [
     { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709227/CAs17_pnf8hb.jpg", caption: "Beehive loop" },
