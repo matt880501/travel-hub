@@ -165,6 +165,75 @@ const ITINERARY: Day[] = [
   },
 ];
 
+type GalleryPhoto = { url: string; caption: string; wide?: boolean };
+// Each sub-array = one row. wide=true photos get flex:2, others flex:1.
+const GALLERY_ROWS: GalleryPhoto[][] = [
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709186/CA1_eirl9m.jpg", caption: "Moraine Lake", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709188/CA3_irwyf1.jpg", caption: "Rockies", wide: true },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709204/CAs1_n9slbm.jpg", caption: "Quarry Lake" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709209/CAs2_zdbpfc.jpg", caption: "Cascade Mountain" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709207/CAs3_ocyfy3.jpg", caption: "Banff Starbucks" },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709186/CA2_fjydlw.jpg", caption: "纜車上山", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709188/CA4_k0nwad.jpg", caption: "Larch Valley Trail", wide: true },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709209/CAs4_l4rbg2.jpg", caption: "Takakkaw Falls" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709211/CAs6_n1hwau.jpg", caption: "Moraine Lake" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709215/CAs7_wnf8ib.jpg", caption: "Sentinel Pass" },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709190/CA5_b9yb2h.jpg", caption: "Peyto Lake", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709193/CA6_h8gtrk.jpg", caption: "Glacier Adventure", wide: true },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709215/CAs9_v0hho2.jpg", caption: "雪車" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709216/CAs10_q3l4pw.jpg", caption: "Bow Lake" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709209/CAs5_tkzqzt.jpg", caption: "Mom and son" },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709192/CA7_blxqky.jpg", caption: "Jasper", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709194/CA8_be01fu.jpg", caption: "Beautiful Jasper", wide: true },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709218/CAs11_jkjvik.jpg", caption: "Ellllk" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709219/CAs12_cwgyu2.jpg", caption: "Maligne Lake" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709222/CAs13_g2dx5a.jpg", caption: "水" },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709195/CA9_xncnoi.jpg", caption: "Mooooose", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709196/CA10_bp6i4s.jpg", caption: "Siblings", wide: true },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709222/CAs14_ghpie8.jpg", caption: "山" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709223/CAs15_hyj88j.jpg", caption: "冰原小屋" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709225/CAs16_z38qgc.jpg", caption: "Iconic window" },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709201/CA11_thj8iz.jpg", caption: "Canoe", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709200/CA12_ra7tvz.jpg", caption: "Beehive & Fairmont", wide: true },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709227/CAs17_pnf8hb.jpg", caption: "Beehive loop" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709228/CAs18_bbdzn8.jpg", caption: "雪" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709229/CAs19_o8qwno.jpg", caption: "Fairview at Fairmont Lake Louise" },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709201/CA13_apxmer.jpg", caption: "Lake Louise", wide: true },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709203/CA14_sixd02.jpg", caption: "", wide: true },
+  ],
+  [
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709231/CAs20_uk4po3.jpg", caption: "Sunrise" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709233/CAs21_blppwq.jpg", caption: "加拿大鵝鵝鵝" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709234/CAs22_dhylrx.jpg", caption: "Dad and son" },
+    { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709235/CAs23_f3ni1t.png", caption: "Icefields Parkway" },
+  ],
+];
+
 type Extra = { text: string; note: string; links?: { label: string; url: string }[] };
 
 const EXTRAS: Extra[] = [
@@ -276,6 +345,53 @@ function ExtraItem({ e }: { e: Extra }) {
   );
 }
 
+function GalleryRow({ photos, rowIndex, onOpen, isMobile, isTouch }: { photos: GalleryPhoto[]; rowIndex: number; onOpen: (url: string) => void; isMobile: boolean; isTouch: boolean }) {
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [tapped, setTapped] = useState<number | null>(null);
+  const allPortrait = photos.every(p => !p.wide);
+  const ROW_H = isMobile ? (allPortrait ? 200 : 130) : (allPortrait ? 360 : 220);
+  const active = isTouch ? tapped : hovered;
+  return (
+    <div style={{ display: "flex", gap: isMobile ? 4 : 6, marginBottom: isMobile ? 4 : 6 }}>
+      {photos.map((photo, pi) => (
+        <motion.div
+          key={pi}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, delay: (rowIndex * photos.length + pi) * 0.04 }}
+          onClick={() => isTouch ? setTapped(t => t === pi ? null : pi) : onOpen(photo.url)}
+          onMouseEnter={() => !isTouch && setHovered(pi)}
+          onMouseLeave={() => !isTouch && setHovered(null)}
+          style={{ flex: photo.wide ? 2 : 1, height: ROW_H, position: "relative", overflow: "hidden", borderRadius: 2, cursor: "pointer", flexShrink: 0 }}
+        >
+          <img
+            src={photo.url}
+            alt={photo.caption}
+            loading="lazy"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)", transform: active === pi ? "scale(1.04)" : "scale(1)" }}
+          />
+          {photo.caption && (
+            <AnimatePresence>
+              {active === pi && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 50%)", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "14px 12px" }}
+                >
+                  <div style={{ fontSize: isMobile ? 10 : 11, color: "rgba(255,255,255,0.9)", fontStyle: "italic", fontFamily: "Georgia, serif" }}>{photo.caption}</div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          )}
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
 function Countdown({ targetDate }: { targetDate: Date }) {
   const [time, setTime] = useState<{ days: number; hrs: number; min: number } | null>(null);
   useEffect(() => {
@@ -307,10 +423,12 @@ function Countdown({ targetDate }: { targetDate: Date }) {
   );
 }
 
-const HERO_URL = "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778680358/CA1_c2rier.jpg";
+const HERO_URL = "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709186/CA1_eirl9m.jpg";
 
 export default function Canada() {
   const [isMobile, setIsMobile] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+  const [lightbox, setLightbox] = useState<string | null>(null);
   const [shareMsg, setShareMsg] = useState<string | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -322,6 +440,10 @@ export default function Canada() {
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
+  }, []);
+
+  useEffect(() => {
+    setIsTouch(navigator.maxTouchPoints > 0);
   }, []);
 
   async function handleShare() {
@@ -343,6 +465,21 @@ export default function Canada() {
           {shareMsg}
         </div>
       )}
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightbox(null)}
+            style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.95)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", cursor: "zoom-out" }}
+          >
+            <img src={lightbox} style={{ maxWidth: "90vw", maxHeight: "90vh", objectFit: "contain" }} alt="" />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Nav */}
       <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "16px 20px" : "18px 40px", background: "rgba(239,241,237,0.85)", backdropFilter: "blur(12px)", borderBottom: `0.5px solid rgba(30,43,30,0.08)` }}>
@@ -478,6 +615,27 @@ export default function Canada() {
           </div>
           {EXTRAS.map((e, i) => <ExtraItem key={i} e={e} />)}
         </motion.div>
+
+        {/* Gallery */}
+        {GALLERY_ROWS.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            style={{ marginBottom: 96 }}
+          >
+            <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: isMobile ? 12 : 32 }}>
+              <span style={{ fontSize: 10, color: ACCENT, letterSpacing: "0.25em" }}>PHOTOGRAPHS</span>
+              <div style={{ flex: 1, height: 0.5, background: `rgba(92,122,92,0.2)` }} />
+            </div>
+            {isTouch && (
+              <p style={{ fontSize: 11, color: MUTED, fontStyle: "italic", margin: "0 0 20px", opacity: 0.7 }}>tap to view</p>
+            )}
+            {GALLERY_ROWS.map((row, ri) => (
+              <GalleryRow key={ri} photos={row} rowIndex={ri} onOpen={setLightbox} isMobile={isMobile} isTouch={isTouch} />
+            ))}
+          </motion.div>
+        )}
 
         {/* Metadata footer */}
         <motion.div
