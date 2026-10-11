@@ -392,6 +392,15 @@ function GalleryRow({ photos, rowIndex, onOpen, isMobile, isTouch }: { photos: G
   );
 }
 
+function shuffle<T>(arr: T[]): T[] {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
 function Countdown({ targetDate }: { targetDate: Date }) {
   const [time, setTime] = useState<{ days: number; hrs: number; min: number } | null>(null);
   useEffect(() => {
@@ -429,6 +438,7 @@ export default function Canada() {
   const [isMobile, setIsMobile] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const [galleryRows, setGalleryRows] = useState(GALLERY_ROWS);
   const [shareMsg, setShareMsg] = useState<string | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -444,6 +454,10 @@ export default function Canada() {
 
   useEffect(() => {
     setIsTouch(navigator.maxTouchPoints > 0);
+  }, []);
+
+  useEffect(() => {
+    setGalleryRows(shuffle(GALLERY_ROWS));
   }, []);
 
   async function handleShare() {
@@ -617,7 +631,7 @@ export default function Canada() {
         </motion.div>
 
         {/* Gallery */}
-        {GALLERY_ROWS.length > 0 && (
+        {galleryRows.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -631,8 +645,8 @@ export default function Canada() {
             {isTouch && (
               <p style={{ fontSize: 11, color: MUTED, fontStyle: "italic", margin: "0 0 20px", opacity: 0.7 }}>tap to view</p>
             )}
-            {GALLERY_ROWS.map((row, ri) => (
-              <GalleryRow key={ri} photos={row} rowIndex={ri} onOpen={setLightbox} isMobile={isMobile} isTouch={isTouch} />
+            {galleryRows.map((row, ri) => (
+              <GalleryRow key={row.map(p => p.url).join("|")} photos={row} rowIndex={ri} onOpen={setLightbox} isMobile={isMobile} isTouch={isTouch} />
             ))}
           </motion.div>
         )}

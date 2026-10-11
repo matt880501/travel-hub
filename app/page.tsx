@@ -17,7 +17,7 @@ const TRIPS: { year: string; list: Trip[] }[] = [
   {
     year: "2026",
     list: [
-      { id: "canada", title: "Canada", sub: "加拿大", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778680358/CA1_c2rier.jpg", href: "/trips/canada-2026" },
+      { id: "canada", title: "Canada", sub: "加拿大", date: "Sep, 2026", fullDate: "Sep 17 – Sep 29, 2026", startDate: "2026-09-17", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709186/CA1_eirl9m.jpg", href: "/trips/canada-2026" },
       { id: "singapore-bintan", title: "Singapore & Bintan", sub: "新加坡 · 民丹島", date: "Jul, 2026", fullDate: "Jul 23 – Jul 28, 2026", startDate: "2026-07-23", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778602513/Bin1_pjzspe.jpg", href: "/trips/singapore-bintan-2026" },
       { id: "nagoya", title: "Nagoya", sub: "名古屋 · 飛驒高山 · 犬山", date: "Mar, 2026", fullDate: "Feb 27 – Mar 4, 2026", startDate: "2026-02-27", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669488/NG1_cfqqat.jpg", href: "/trips/nagoya-2026" },
       { id: "chiang-mai", title: "Chiang Mai", sub: "清邁 · 春節", date: "Feb, 2026", fullDate: "Feb 13 – Feb 19, 2026", startDate: "2026-02-13", status: "done", img: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg", href: "/trips/chiang-mai-2026" },
@@ -65,12 +65,9 @@ const TRIPS: { year: string; list: Trip[] }[] = [
 
 const MEMORIES = [
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778669488/NG1_cfqqat.jpg", label: "Nagoya · Takayama" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430032/CM1_syxfa2.jpg", label: "Chiang Mai" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778843907/OKI1_kvpgjq.jpg", label: "Okinawa" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778862389/AU12_w6s7vd.jpg", label: "Australia" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1779526543/To1_rgcmr9.jpg", label: "Tokyo" },
-  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778682135/BO1_flckks.jpg", label: "Bohol Island" },
   { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1778430033/NZ1_vuque7.jpg", label: "New Zealand" },
+  { url: "https://res.cloudinary.com/dydhvvubl/image/upload/f_auto,q_auto/v1791709186/CA1_eirl9m.jpg", label: "Canada" },
 ];
 function shuffle<T>(arr: T[]): T[] {
   const copy = [...arr];
@@ -236,8 +233,7 @@ export default function Home() {
 
   useEffect(() => {
     setShuffled(shuffle(MEMORIES));
-    const featuredPast = TRIPS.flatMap(g => g.list).filter(t => ["nagoya", "australia"].includes(t.id));
-    const pool = [...featuredPast, ...(upcomingTrip ? [upcomingTrip] : [])];
+    const pool = TRIPS.flatMap(g => g.list).filter(t => ["nagoya", "australia", "canada"].includes(t.id));
     setFeaturedTrip(pool[Math.floor(Math.random() * pool.length)]);
   }, []);
 
