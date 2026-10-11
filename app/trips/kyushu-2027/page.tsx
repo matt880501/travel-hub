@@ -22,7 +22,7 @@ const ITINERARY: Day[] = [
       { time: "12:00", text: "熊本城", mapUrl: "https://www.google.com/maps/search/Kumamoto+Castle", cat: "sight" },
       { time: "13:30", text: "熊本午餐", cat: "food" },
       { time: "15:00", text: "前往阿蘇", mapUrl: "https://www.google.com/maps/search/阿蘇", cat: "transit" },
-      { time: "16:30", text: "阿蘇神社／門前町（視時間）", mapUrl: "https://www.google.com/maps/search/阿蘇神社", cat: "sight" },
+      { time: "16:30", text: "阿蘇神社／門前町", mapUrl: "https://www.google.com/maps/search/阿蘇神社", cat: "sight" },
       { time: "17:30", text: "Check-in · Origami Experience", mapUrl: "https://origami-experience.com/", cat: "stay" },
     ]
   },
@@ -33,7 +33,7 @@ const ITINERARY: Day[] = [
       { time: "10:30", text: "高千穗峽", mapUrl: "https://www.google.com/maps/search/Takachiho+Gorge", cat: "sight" },
       { time: "11:30", text: "真名井瀑布", mapUrl: "https://www.google.com/maps/search/真名井の滝", cat: "sight" },
       { time: "13:00", text: "高千穗神社", mapUrl: "https://www.google.com/maps/search/高千穗神社", cat: "sight" },
-      { time: "14:00", text: "高千穗峽划船（視當日開放）", mapUrl: "https://www.google.com/maps/search/高千穗峽+貸しボート", cat: "sight" },
+      { time: "14:00", text: "高千穗峽划船", mapUrl: "https://www.google.com/maps/search/高千穗峽+貸しボート", cat: "sight" },
       { time: "16:00", text: "返回阿蘇", cat: "transit" },
     ]
   },
@@ -41,7 +41,7 @@ const ITINERARY: Day[] = [
     day: "DAY 3", date: "Feb 5, Fri", location: "阿蘇一日遊",
     items: [
       { time: "09:00", text: "草千里", mapUrl: "https://www.google.com/maps/search/草千里ヶ浜", cat: "sight" },
-      { time: "10:30", text: "阿蘇火山口（視當日管制）", mapUrl: "https://www.google.com/maps/search/阿蘇山火口", cat: "sight" },
+      { time: "10:30", text: "阿蘇火山口", mapUrl: "https://www.google.com/maps/search/阿蘇山火口", cat: "sight" },
       { time: "12:00", text: "大觀峰", mapUrl: "https://www.google.com/maps/search/大觀峰", cat: "sight" },
       { time: "13:30", text: "Milk Road", mapUrl: "https://www.google.com/maps/search/ミルクロード+阿蘇", cat: "sight" },
       { time: "14:30", text: "阿蘇赤牛 午餐", cat: "food" },
@@ -87,7 +87,7 @@ const ITINERARY: Day[] = [
   {
     day: "DAY 7", date: "Feb 9, Tue", location: "福岡／糸島",
     items: [
-      { time: "09:00", text: "視天氣：糸島一日遊", note: "晴天：二見ヶ浦・海邊咖啡廳・糸島海岸｜雨天備案：太宰府天滿宮＋天神/博多購物", cat: "sight" },
+      { time: "09:00", text: "糸島一日遊", note: "雨天備案：太宰府天滿宮＋天神/博多購物", cat: "sight" },
       { time: "10:00", text: "二見ヶ浦", mapUrl: "https://www.google.com/maps/search/二見ヶ浦+糸島", cat: "sight" },
       { time: "11:30", text: "海邊咖啡廳", cat: "cafe" },
       { time: "13:00", text: "糸島海岸", mapUrl: "https://www.google.com/maps/search/糸島+海岸", cat: "sight" },
@@ -372,7 +372,7 @@ export default function Kyushu() {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? 24 : 32 }}>
             {[
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>, label: "TEMPERATURE", value: "-5°C — 10°C", sub: "Sharp cold on the caldera" },
-              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, label: "MOOD", value: "Rustic / Volcanic / Serene", sub: "Steam, ash, and stillness" },
+              { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, label: "MOOD", value: "Onsen & Mountains", sub: "Hot springs, cold air" },
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>, label: "SEASON", value: "Winter", sub: "Aso's grass turns gold" },
               { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, label: "WITH", value: "Family", sub: "Onsen trip across Kyushu" },
             ].map((m, i) => (
