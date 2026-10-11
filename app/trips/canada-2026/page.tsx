@@ -551,7 +551,7 @@ export default function Canada() {
             >
               <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>Autumn 2026</span>
               <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} />
-              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>13 Days</span>
+              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>10 Days</span>
               <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.2)" }} />
               <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>Banff · Jasper · Lake Louise</span>
             </motion.div>
